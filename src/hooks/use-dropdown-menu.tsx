@@ -45,15 +45,13 @@ export default (itemCount: number) => {
    }, [isOpen, returnFocusToButton]);
 
 
+   // Handles maintaining the current focus index between renders, and changing the focus between elements
    const moveFocus = (itemIndex: number) => {
         currentFocusIndex.current = itemIndex
-
-
-        if (currentFocusIndex?.current) {
-            itemRefs.current[itemIndex].current?.focus();
-        }
+        itemRefs.current[itemIndex].current?.focus();
    }
    
+
    // Create a handler function for the button's clicks and keyboard events
    const buttonListener = (e: React.KeyboardEvent | React.MouseEvent) => {
        // Detect if event was a keyboard event or a mouse event
