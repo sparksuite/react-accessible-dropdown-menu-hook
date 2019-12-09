@@ -48,7 +48,14 @@ export default (itemCount: number) => {
    // Handles maintaining the current focus index between renders, and changing the focus between elements
    const moveFocus = (itemIndex: number) => {
         currentFocusIndex.current = itemIndex
+<<<<<<< HEAD
         itemRefs.current[itemIndex].current?.focus();
+=======
+
+        if (currentFocusIndex?.current) {
+            itemRefs.current[itemIndex].current?.focus();
+        }
+>>>>>>> e3e09459b288283cb11eede7bfcbf8952faff594
    }
    
 
