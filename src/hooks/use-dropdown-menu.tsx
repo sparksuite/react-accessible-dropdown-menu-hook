@@ -53,7 +53,7 @@ export default (itemCount: number) => {
    }, [currentFocusIndex]);
    
    
-   // Create handler function for button click and keyboard event
+   // Create a handler function for the button's clicks and keyboard events
    const buttonListener = (e: React.KeyboardEvent | React.MouseEvent) => {
        // Detect if event was a keyboard event or a mouse event
        if (isKeyboardEvent(e)) {
@@ -76,7 +76,7 @@ export default (itemCount: number) => {
    };
    
    
-   // Create handler function for menu controls via keyboard events
+   // Create a function that handles menu logic based on keyboard events that occur on menu items
    const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
        // Create mutable value that initializes as the currentFocusIndex value
        let newFocusIndex = currentFocusIndex;
