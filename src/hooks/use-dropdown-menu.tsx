@@ -77,7 +77,7 @@ export default (itemCount: number) => {
    };
    
    
-   // Create handler function for menu controls via keyboard events
+   // Create a function that handles menu logic based on keyboard events that occur on menu items
    const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
        // Create mutable value that initializes as the currentFocusIndex value
        let newFocusIndex = currentFocusIndex;
