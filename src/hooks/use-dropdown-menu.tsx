@@ -7,7 +7,7 @@ export default (itemCount: number) => {
    // Use state
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const [returnFocusToButton, setReturnFocusToButton] = useState<boolean>(false);
-   const [currentFocusIndex, setCurrentFocusIndex] = useState<number | null>(null);
+   const currentFocusIndex = useRef<number | null>(null);
    const firstRun = useRef(true);
    
    
@@ -38,7 +38,7 @@ export default (itemCount: number) => {
        // If the menu is currently open focus on the first item in the menu, else return focus to the button if state indicates that is desired behavior
        if (isOpen) {
            itemRefs.current[0].current.focus();
-           setCurrentFocusIndex(0);
+           moveFocus(0);
        } else if (returnFocusToButton) {
            buttonRef.current.focus();
        }
@@ -52,6 +52,15 @@ export default (itemCount: number) => {
        }
    }, [currentFocusIndex]);
    
+
+   const moveFocus = (itemIndex: number) => {
+        currentFocusIndex.current = itemIndex
+
+
+        if (currentFocusIndex.current !== null) {
+            itemRefs.current[itemIndex].current?.focus(); // TODO: Optional chaining
+        }
+   }
    
    // Create a handler function for the button's clicks and keyboard events
    const buttonListener = (e: React.KeyboardEvent | React.MouseEvent) => {
@@ -79,18 +88,19 @@ export default (itemCount: number) => {
    // Create a function that handles menu logic based on keyboard events that occur on menu items
    const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
        // Create mutable value that initializes as the currentFocusIndex value
-       let newFocusIndex = currentFocusIndex;
+       let newFocusIndex = currentFocusIndex.current;
        
+
+       // Destructure the key property from the event object
        const { key } = e;
        
        
-       // Prevent default browser behavior except when desirable
+       // Prevent default browser behavior except in cases where maintaining the natural tab order is desired
        if (!(key === 'Tab' || key === 'Shift' || key === 'Enter')) {
            e.preventDefault();
        }
        
        
-       // Create conditional behavior based based on which key was pressed
        // Controls whether the menu is open or closed, if the button should regain focus on close, and if a handler function should be called
        if (key === 'Escape') {
            setIsOpen(false);
@@ -123,7 +133,7 @@ export default (itemCount: number) => {
        
        
        // After any modification set state to the modified value
-       setCurrentFocusIndex(newFocusIndex);
+       moveFocus(newFocusIndex);
    };
    
    
