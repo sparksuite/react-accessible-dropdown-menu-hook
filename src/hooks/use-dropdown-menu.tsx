@@ -49,7 +49,7 @@ export default (itemCount: number) => {
         currentFocusIndex.current = itemIndex
 
 
-        if (currentFocusIndex.current !== null) {
+        if (currentFocusIndex?.current) {
             itemRefs.current[itemIndex].current?.focus();
         }
    }
