@@ -48,7 +48,6 @@ export default (itemCount: number) => {
    const moveFocus = (itemIndex: number) => {
         currentFocusIndex.current = itemIndex
 
-
         if (currentFocusIndex?.current) {
             itemRefs.current[itemIndex].current?.focus();
         }
