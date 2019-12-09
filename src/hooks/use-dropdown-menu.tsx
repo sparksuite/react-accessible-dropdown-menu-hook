@@ -1,5 +1,5 @@
 // Imports
-import React, { useState, useRef, createRef } from 'react';
+import React, { useState, useRef, createRef, useEffect } from 'react';
 import useUpdateOnlyEffect from './use-update-only-effect';
 
 
@@ -9,6 +9,7 @@ export default (itemCount: number) => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
    const [returnFocusToButton, setReturnFocusToButton] = useState<boolean>(false);
    const [currentFocusIndex, setCurrentFocusIndex] = useState<number | null>(null);
+   const firstRun = useRef(true);
    
    
    // Create refs
@@ -21,12 +22,19 @@ export default (itemCount: number) => {
    
    
    // Handle changes in the state of the menu
-   useUpdateOnlyEffect(() => {
+   useEffect(() => {
        // Return if the ref currently points to a null value
        if (!itemRefs.current[0].current || !buttonRef.current) {
            return;
        }
-       
+
+
+       // Return if this is the first fire of the hook, and update ref
+       if (firstRun.current) {
+           firstRun.current = false;
+           return;
+       }
+
        
        // If the menu is currently open focus on the first item in the menu, else return focus to the button if state indicates that is desired behavior
        if (isOpen) {
@@ -39,7 +47,7 @@ export default (itemCount: number) => {
    
    
    // Handle changes in the currently focused element
-   useUpdateOnlyEffect(() => {
+   useEffect(() => {
        if (currentFocusIndex !== null) {
            itemRefs.current[currentFocusIndex].current!.focus(); // TODO: Optional chaining
        }
