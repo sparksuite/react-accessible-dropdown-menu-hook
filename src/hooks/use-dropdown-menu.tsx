@@ -22,7 +22,7 @@ export default (itemCount: number) => {
    
    // Handle changes in the state of the menu
    useEffect(() => {
-       // Return if the ref currently points to a null value
+       // Stop if the ref currently points to a null value
        if (!itemRefs.current[0].current || !buttonRef.current) {
            return;
        }
