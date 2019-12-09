@@ -28,7 +28,7 @@ export default (itemCount: number) => {
        }
 
 
-       // Return if this is the first fire of the hook, and update ref
+       // Stop if this is the first fire of the Hook, and update the ref
        if (firstRun.current) {
            firstRun.current = false;
            return;
