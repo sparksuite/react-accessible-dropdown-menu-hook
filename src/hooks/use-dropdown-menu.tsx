@@ -54,7 +54,7 @@ export default (itemCount: number) => {
    }, [currentFocusIndex]);
    
    
-   // Create handler function for button click and keyboard event
+   // Create a handler function for the button's clicks and keyboard events
    const buttonListener = (e: React.KeyboardEvent | React.MouseEvent) => {
        // Detect if event was a keyboard event or a mouse event
        if (isKeyboardEvent(e)) {
