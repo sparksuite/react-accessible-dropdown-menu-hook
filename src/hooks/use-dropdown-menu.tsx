@@ -50,7 +50,7 @@ export default (itemCount: number) => {
 
 
         if (currentFocusIndex.current !== null) {
-            itemRefs.current[itemIndex].current?.focus(); // TODO: Optional chaining
+            itemRefs.current[itemIndex].current?.focus();
         }
    }
    
