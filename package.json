@@ -1,0 +1,43 @@
+{
+	"name": "react-accessible-dropdown-menu-hook",
+	"version": "1.0.0",
+	"description": "A simple Hook for creating fully accessible dropdown menus in React",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist/"
+	],
+	"scripts": {
+		"test": "TODO",
+		"lint": "TODO",
+		"format": "TODO",
+		"compile": "rm -rf dist/ && tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sparksuite/react-accessible-dropdown-menu-hook.git"
+	},
+	"keywords": [
+		"react",
+		"accessible",
+		"accessibility",
+		"a11y",
+		"dropdown",
+		"drop",
+		"down",
+		"menu",
+		"button",
+		"hook"
+	],
+	"author": "Sparksuite",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues"
+	},
+	"homepage": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook",
+	"dependencies": {},
+	"devDependencies": {},
+	"jest": {
+		"TODO": "TODO"
+	}
+}
