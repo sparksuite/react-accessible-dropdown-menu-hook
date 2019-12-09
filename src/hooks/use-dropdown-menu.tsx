@@ -1,6 +1,5 @@
 // Imports
 import React, { useState, useRef, createRef, useEffect } from 'react';
-import useUpdateOnlyEffect from './use-update-only-effect';
 
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
