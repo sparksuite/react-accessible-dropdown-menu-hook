@@ -43,15 +43,7 @@ export default (itemCount: number) => {
            buttonRef.current.focus();
        }
    }, [isOpen, returnFocusToButton]);
-   
-   
-   // Handle changes in the currently focused element
-   useEffect(() => {
-       if (currentFocusIndex !== null) {
-           itemRefs.current[currentFocusIndex].current!.focus(); // TODO: Optional chaining
-       }
-   }, [currentFocusIndex]);
-   
+
 
    const moveFocus = (itemIndex: number) => {
         currentFocusIndex.current = itemIndex
