@@ -34,14 +34,12 @@ export default (itemCount: number) => {
        }
 
        
-       // If the menu is currently open focus on the first item in the menu, else return focus to the button if state indicates that is desired behavior
+       // If the menu is currently open focus on the first item in the menu
        if (isOpen) {
            itemRefs.current[0].current.focus();
            moveFocus(0);
-       } else if (returnFocusToButton) {
-           buttonRef.current.focus();
        }
-   }, [isOpen, returnFocusToButton]);
+   }, [isOpen]);
 
 
    // Handles moving the focus between menu items
