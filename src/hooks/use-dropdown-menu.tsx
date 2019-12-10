@@ -45,7 +45,7 @@ export default (itemCount: number) => {
    }, [isOpen, returnFocusToButton]);
 
 
-   // Handles maintaining the current focus index between renders, and changing the focus between elements
+   // Handles moving the focus between menu items
    const moveFocus = (itemIndex: number) => {
         currentFocusIndex.current = itemIndex
         itemRefs.current[itemIndex].current?.focus();
