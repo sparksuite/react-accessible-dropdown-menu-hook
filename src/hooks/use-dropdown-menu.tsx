@@ -6,7 +6,6 @@ import React, { useState, useRef, createRef, useEffect } from 'react';
 export default (itemCount: number) => {
    // Use state
    const [isOpen, setIsOpen] = useState<boolean>(false);
-   const [returnFocusToButton, setReturnFocusToButton] = useState<boolean>(false);
    const currentFocusIndex = useRef<number | null>(null);
    const firstRun = useRef(true);
    
@@ -63,10 +62,8 @@ export default (itemCount: number) => {
            }
            if (key === 'Enter' || key === ' ') {
                setIsOpen(true);
-               setReturnFocusToButton(false);
            } else if (key === 'Tab') {
                setIsOpen(false);
-               setReturnFocusToButton(false);
            }
        } else {
            setIsOpen(!isOpen);
@@ -93,11 +90,10 @@ export default (itemCount: number) => {
        // Controls whether the menu is open or closed, if the button should regain focus on close, and if a handler function should be called
        if (key === 'Escape') {
            setIsOpen(false);
-           setReturnFocusToButton(true);
+           buttonRef.current?.focus();
            return;
        } else if (key === 'Tab') {
            setIsOpen(false);
-           setReturnFocusToButton(false);
            return;
        } else if (key === 'Enter') {
            e.currentTarget.click();
