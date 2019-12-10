@@ -19,7 +19,7 @@ export default (itemCount: number) => {
    const isKeyboardEvent = (e: React.KeyboardEvent | React.MouseEvent): e is React.KeyboardEvent => (e as React.KeyboardEvent).key !== undefined;
    
    
-   // Handle changes in the state of the menu
+   // Run whenever the menu opens/closes
    useEffect(() => {
        // Stop if the ref currently points to a null value
        if (!itemRefs.current[0].current || !buttonRef.current) {
