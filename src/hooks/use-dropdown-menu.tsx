@@ -70,7 +70,6 @@ export default (itemCount: number) => {
            }
        } else {
            setIsOpen(!isOpen);
-           setReturnFocusToButton(true);
        }
    };
    
