@@ -51,6 +51,7 @@ export default (itemCount: number) => {
 			if (!(key === 'Tab' || key === 'Shift')) {
 				e.preventDefault();
 			}
+
 			if (key === 'Enter' || key === ' ') {
 				setIsOpen(true);
 			} else if (key === 'Tab') {
