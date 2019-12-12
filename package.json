@@ -38,7 +38,10 @@
 	"dependencies": {
 		"react": "^16.12.0"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"@types/react": "^16.9.16",
+		"typescript": "^3.7.3"
+	},
 	"jest": {
 		"TODO": "TODO"
 	}
