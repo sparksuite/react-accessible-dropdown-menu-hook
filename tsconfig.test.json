@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"esModuleInterop": true,
 		"moduleResolution": "node",
+		"jsx": "react",
 		"noImplicitAny": true,
 		"noUnusedLocals": true,
 		"strict": true,
