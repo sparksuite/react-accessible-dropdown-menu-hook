@@ -9,8 +9,8 @@
 	],
 	"scripts": {
 		"test": "TODO",
-		"lint": "TODO",
-		"format": "TODO",
+		"lint": "eslint --ext .ts,.tsx . && prettier --check '**/*.{ts,tsx,json}'",
+		"format": "eslint --fix --ext .ts,.tsx . && prettier --write '**/*.{ts,tsx,json}'",
 		"compile": "rm -rf dist/ && tsc"
 	},
 	"repository": {
