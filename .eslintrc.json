@@ -15,6 +15,39 @@
 	"rules": {
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"eqeqeq": ["error"],
-		"prefer-template": ["error"]
+		"prefer-template": ["error"],
+		"padding-line-between-statements": [
+			"error",
+			{
+				"blankLine": "always",
+				"prev": "*",
+				"next": "multiline-block-like"
+			},
+			{
+				"blankLine": "always",
+				"prev": "multiline-block-like",
+				"next": "*"
+			},
+			{
+				"blankLine": "always",
+				"prev": "*",
+				"next": "multiline-expression"
+			},
+			{
+				"blankLine": "always",
+				"prev": "multiline-expression",
+				"next": "*"
+			},
+			{
+				"blankLine": "always",
+				"prev": "multiline-const",
+				"next": "*"
+			},
+			{
+				"blankLine": "always",
+				"prev": "multiline-let",
+				"next": "*"
+			}
+		]
 	}
 }
