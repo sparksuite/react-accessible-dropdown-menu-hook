@@ -12,7 +12,8 @@
 		"test": "npm run compile && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
-		"compile": "rm -rf dist/ && tsc"
+		"clean": "rm -rf dist/ && rm test/*.js",
+		"compile": "npm run clean && tsc && tsc --project tsconfig.test.json"
 	},
 	"repository": {
 		"type": "git",
@@ -40,6 +41,9 @@
 		"react": "^16.12.0"
 	},
 	"devDependencies": {
+		"@types/enzyme": "^3.10.4",
+		"@types/enzyme-adapter-react-16": "^1.0.5",
+		"@types/jest": "^24.0.23",
 		"@types/react": "^16.9.16",
 		"@typescript-eslint/eslint-plugin": "^2.11.0",
 		"@typescript-eslint/parser": "^2.11.0",
@@ -59,7 +63,9 @@
 			"/node_modules/",
 			"<rootDir>/test/"
 		],
-		"setupFilesAfterEnv": ["<rootDir>test/setupTests.js"],
+		"setupFilesAfterEnv": [
+			"<rootDir>test/setupTests.js"
+		],
 		"testMatch": [
 			"**/*.test.js"
 		],
