@@ -116,7 +116,9 @@ export default (itemCount: number) => {
        
        
        // After any modification set state to the modified value
-       moveFocus(newFocusIndex);
+       if (newFocusIndex !== null) {
+           moveFocus(newFocusIndex);
+       }
    };
    
    
