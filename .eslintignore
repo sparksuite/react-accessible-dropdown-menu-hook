@@ -1,5 +1,5 @@
 coverage/
-demo/
+docs/
 dist/
 node_modules/
 babel.config.js
