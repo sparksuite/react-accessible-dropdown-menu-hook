@@ -8,11 +8,12 @@
 		"dist/"
 	],
 	"scripts": {
+		"prepare": "yarn --cwd ./demo install --frozen-lockfile && npm link ./demo/node_modules/react ",
 		"test": "npm run compile && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
 		"clean": "rm -rf dist/",
-		"compile": "npm run clean && tsc"
+		"compile": "npm run prepare && npm run clean && tsc"
 	},
 	"repository": {
 		"type": "git",
@@ -36,8 +37,10 @@
 		"url": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues"
 	},
 	"homepage": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook",
-	"dependencies": {
-		"react": "^16.12.0"
+	"dependencies": {},
+	"peerDependencies": {
+		"react": ">=16.8",
+		"react-dom": ">=16.8"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.5",
