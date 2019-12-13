@@ -129,4 +129,4 @@ export default function useDropdownMenu(itemCount: number) {
 
 	// Return a listener for the button, individual list items, and the state of the menu
 	return [buttonProps, itemProps, isOpen] as const;
-};
+}
