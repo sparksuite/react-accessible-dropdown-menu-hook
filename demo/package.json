@@ -21,8 +21,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
-		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'"
+		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,css,html,json}'",
+		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,css,html,json}'"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
