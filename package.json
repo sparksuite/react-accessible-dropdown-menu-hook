@@ -2,17 +2,18 @@
 	"name": "react-accessible-dropdown-menu-hook",
 	"version": "1.0.0",
 	"description": "A simple Hook for creating fully accessible dropdown menus in React",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/use-dropdown-menu.js",
+	"types": "dist/use-dropdown-menu.d.ts",
 	"files": [
 		"dist/"
 	],
 	"scripts": {
-		"test": "npm run compile && jest",
+		"dev": "yarn --cwd ./docs install --frozen-lockfile && npm link ./docs/node_modules/react",
+		"test": "npm run compile && yarn --cwd ./docs build && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
-		"clean": "rm -rf dist/",
-		"compile": "npm run clean && tsc"
+		"clean": "rm -rf coverage/ dist/ node_modules/ docs/node_modules/",
+		"compile": "rm -rf dist/ && tsc"
 	},
 	"repository": {
 		"type": "git",
@@ -36,8 +37,10 @@
 		"url": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues"
 	},
 	"homepage": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook",
-	"dependencies": {
-		"react": "^16.12.0"
+	"dependencies": {},
+	"peerDependencies": {
+		"react": ">=16.8",
+		"react-dom": ">=16.8"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.5",

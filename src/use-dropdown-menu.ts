@@ -2,7 +2,7 @@
 import React, { useState, useRef, createRef, useEffect } from 'react';
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
-export default (itemCount: number) => {
+export default function useDropdownMenu(itemCount: number) {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
@@ -129,4 +129,4 @@ export default (itemCount: number) => {
 
 	// Return a listener for the button, individual list items, and the state of the menu
 	return [buttonProps, itemProps, isOpen] as const;
-};
+}
