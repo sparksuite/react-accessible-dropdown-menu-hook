@@ -12,8 +12,8 @@
 		"test": "npm run compile && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
-		"clean": "rm -rf dist/",
-		"compile": "npm run clean && tsc"
+		"clean": "rm -rf coverage/ dist/ node_modules/ demo/node_modules/",
+		"compile": "rm -rf dist/ && tsc"
 	},
 	"repository": {
 		"type": "git",
