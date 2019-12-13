@@ -8,7 +8,7 @@
 		"dist/"
 	],
 	"scripts": {
-		"postinstall": "yarn --cwd ./demo install --frozen-lockfile && npm link ./demo/node_modules/react",
+		"dev": "yarn --cwd ./demo install --frozen-lockfile && npm link ./demo/node_modules/react",
 		"test": "npm run compile && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
