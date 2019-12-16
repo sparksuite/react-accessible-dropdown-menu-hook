@@ -11,7 +11,7 @@ it('should have correct page title', async () => {
 	await expect(page.title()).resolves.toMatch('React Accessible Dropdown Menu Hook');
 });
 
-it('should have content', async () => {
+it('should focus on the first menu item when the enter key is pressed', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
 
