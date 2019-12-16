@@ -1,15 +1,14 @@
 // Destructured constant for readability
 const { keyboard } = page;
 
-
 // Helper functions used in multiple tests
-const menuDisplayState = () => page.evaluate(() => document.querySelector<HTMLDivElement>("#menu").style.display); 
+const menuDisplayState = () => page.evaluate(() => document.querySelector<HTMLDivElement>('#menu').style.display);
 const currentFocusId = () => page.evaluate(() => document.activeElement.id);
 
 // Tests
 beforeEach(async () => {
 	await page.goto('http://localhost:3000');
-	await page.waitFor("#menubutton");
+	await page.waitFor('#menubutton');
 });
 
 it('has the correct page title', async () => {
@@ -24,12 +23,12 @@ it('focuses on the first menu item when the enter key is pressed', async () => {
 });
 
 it('hides the menu by default and make it visible if it is open', async () => {
-	expect(await menuDisplayState()).toBe("none");
+	expect(await menuDisplayState()).toBe('none');
 
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
 
-	expect(await menuDisplayState()).toBe("block");
+	expect(await menuDisplayState()).toBe('block');
 });
 
 it('hides the menu if the escape key is pressed, and focuses on the menu button', async () => {
