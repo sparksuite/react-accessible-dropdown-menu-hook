@@ -97,6 +97,7 @@
 					"<rootDir>/test/puppeteer/*.test.ts",
 					"<rootDir>/test/puppeteer/*.test.tsx"
 				],
+
 				"verbose": true
 			}
 		]
