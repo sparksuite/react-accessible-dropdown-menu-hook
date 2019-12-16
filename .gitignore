@@ -2,4 +2,3 @@ coverage/
 dist/
 node_modules/
 .DS_Store
-docs/package-lock.json
