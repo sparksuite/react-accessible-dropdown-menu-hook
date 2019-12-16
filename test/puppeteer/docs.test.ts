@@ -1,12 +1,10 @@
-// Imports
-import path from 'path';
-
+// Destructured constant for readability
 const { keyboard } = page;
 
 // Tests
 beforeAll(async () => {
 	await page.goto('http://localhost:3000');
-	await page.waitFor(() => document.querySelector("#menubutton"));
+	await page.waitFor(() => document.querySelector('#menubutton'));
 });
 
 it('should have correct page title', async () => {
@@ -19,5 +17,5 @@ it('should have content', async () => {
 
 	const currentFocus = await page.evaluate(() => document.activeElement.id);
 
-	expect(currentFocus).toBe("menuitem1");
+	expect(currentFocus).toBe('menuitem1');
 });
