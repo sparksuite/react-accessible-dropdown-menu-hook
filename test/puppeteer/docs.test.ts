@@ -35,6 +35,7 @@ it('focuses on the next item in the tab order', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
 	await keyboard.down('Tab');
+
 	expect(await currentFocusID()).toBe('secondbutton');
 });
 
