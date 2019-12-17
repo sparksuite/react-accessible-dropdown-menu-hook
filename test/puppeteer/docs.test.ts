@@ -44,5 +44,6 @@ it('focuses on the previous item in the tab order', async () => {
 	await keyboard.down('Enter');
 	await keyboard.down('Shift');
 	await keyboard.down('Tab');
+
 	expect(await currentFocusID()).toBe('menubutton');
 });
