@@ -1,3 +1,6 @@
+// Imports
+import path from 'path';
+
 // Destructured constant for readability
 const { keyboard } = page;
 
@@ -7,7 +10,7 @@ const currentFocusId = () => page.evaluate(() => document.activeElement.id);
 
 // Tests
 beforeEach(async () => {
-	await page.goto('http://localhost:3000');
+	await page.goto(`file://${path.join(__dirname, '..', '..', 'docs', 'build', 'index.html')}`);
 	await page.waitFor('#menubutton');
 });
 
