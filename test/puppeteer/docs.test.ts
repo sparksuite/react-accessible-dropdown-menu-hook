@@ -28,6 +28,7 @@ it('focuses on the menu button', async () => {
 	await keyboard.down('Enter');
 
 	await keyboard.down('Escape');
+	console.log(await currentFocusID());
 	expect(await currentFocusID()).toBe('menubutton');
 });
 
