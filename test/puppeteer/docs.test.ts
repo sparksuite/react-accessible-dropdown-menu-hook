@@ -39,7 +39,7 @@ it('focuses on the next item in the tab order', async () => {
 	expect(await currentFocusID()).toBe('secondbutton');
 });
 
-it('focuses on the previous item in the tab order', async () => {
+it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
 	await keyboard.down('Shift');
