@@ -31,7 +31,7 @@ it('focuses on the menu button', async () => {
 	expect(await currentFocusID()).toBe('menubutton');
 });
 
-it('focuses on the next item in the tab order', async () => {
+it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
 	await keyboard.down('Tab');
