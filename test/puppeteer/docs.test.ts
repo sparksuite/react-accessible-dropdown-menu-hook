@@ -23,7 +23,7 @@ it('focuses on the first menu item when the enter key is pressed', async () => {
 	expect(await currentFocusID()).toBe('menuitem1');
 });
 
-it('focuses on the menu button', async () => {
+it('focuses on the menu button after pressing escape', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
 	await keyboard.down('Escape');
