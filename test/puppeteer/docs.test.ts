@@ -23,28 +23,27 @@ it('focuses on the first menu item when the enter key is pressed', async () => {
 	expect(await currentFocusID()).toBe('menuitem1');
 });
 
-it('focuses on the menu button', async () => {
+it('focuses on the menu button after pressing escape', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
-
 	await keyboard.down('Escape');
 	console.log(await currentFocusID());
 	expect(await currentFocusID()).toBe('menubutton');
 });
 
-it('focuses on the next item in the tab order', async () => {
+it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
-
 	await keyboard.down('Tab');
+
 	expect(await currentFocusID()).toBe('secondbutton');
 });
 
-it('focuses on the previous item in the tab order', async () => {
+it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
 	await page.focus('#menubutton');
 	await keyboard.down('Enter');
-
 	await keyboard.down('Shift');
 	await keyboard.down('Tab');
+
 	expect(await currentFocusID()).toBe('menubutton');
 });
