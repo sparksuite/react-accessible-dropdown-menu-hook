@@ -26,7 +26,7 @@ it('sets isOpen to true after pressing enter while focused on the menu button', 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 
-	expect(span.text()).toBe("true");
+	expect(span.text()).toBe('true');
 });
 
 it('moves the focus to the next element in the menu after pressing the down arrow', () => {
@@ -92,7 +92,7 @@ it('sets isOpen to false after pressing escape while focused on a menu item', ()
 	button.simulate('keydown', { key: 'Enter' });
 
 	firstMenuItem.simulate('keydown', { key: 'Escape' });
-	expect(span.text()).toBe("false");
+	expect(span.text()).toBe('false');
 });
 
 it('sets isOpen to false after pressing tab while focused on a menu item', () => {
@@ -105,14 +105,13 @@ it('sets isOpen to false after pressing tab while focused on a menu item', () =>
 	button.simulate('keydown', { key: 'Enter' });
 
 	firstMenuItem.simulate('keydown', { key: 'Tab' });
-	expect(span.text()).toBe("false");
+	expect(span.text()).toBe('false');
 });
 
 it('moves the focus to the menu button after pressing escape while focused on a menu item', () => {
 	const component = mount(<TestComponent />);
 	const button = component.find('#menubutton');
 	const firstMenuItem = component.find('#menuitem1');
-	const menu = component.find('#menu');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
