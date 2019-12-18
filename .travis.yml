@@ -48,3 +48,16 @@ jobs:
           tags: true
           repo: sparksuite/react-accessible-dropdown-menu-hook
           branch: master
+    - stage: deploy
+      if: type = push AND tag IS present
+      name: Deploy to GitHub Pages
+      node_js: lts/*
+      script:
+        - npm run dev
+        - yarn --cwd ./demo install --frozen-lockfile
+        - echo "Deploying to GitHub pages..."
+      deploy:
+        provider: pages
+        local_dir: demo/build
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
