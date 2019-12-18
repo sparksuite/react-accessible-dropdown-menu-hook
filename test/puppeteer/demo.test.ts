@@ -19,33 +19,33 @@ it('has the correct page title', async () => {
 });
 
 it('focuses on the first menu item when the enter key is pressed', async () => {
-	await page.focus('#menubutton');
+	await page.focus('#menu-button');
 	await keyboard.down('Enter');
 
-	expect(await currentFocusID()).toBe('menuitem1');
+	expect(await currentFocusID()).toBe('menu-item-1');
 });
 
 it('focuses on the menu button after pressing escape', async () => {
-	await page.focus('#menubutton');
+	await page.focus('#menu-button');
 	await keyboard.down('Enter');
 	await keyboard.down('Escape');
 
-	expect(await currentFocusID()).toBe('menubutton');
+	expect(await currentFocusID()).toBe('menu-button');
 });
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
-	await page.focus('#menubutton');
+	await page.focus('#menu-button');
 	await keyboard.down('Enter');
 	await keyboard.down('Tab');
 
-	expect(await currentFocusID()).toBe('secondbutton');
+	expect(await currentFocusID()).toBe('second-button');
 });
 
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
-	await page.focus('#menubutton');
+	await page.focus('#menu-button');
 	await keyboard.down('Enter');
 	await keyboard.down('Shift');
 	await keyboard.down('Tab');
 
-	expect(await currentFocusID()).toBe('menubutton');
+	expect(await currentFocusID()).toBe('menu-button');
 });

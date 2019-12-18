@@ -10,17 +10,17 @@ it('renders', () => {
 
 it('moves the focus to the first menu item after pressing enter while focused on the menu button', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
+	const button = component.find('#menu-button');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 
-	expect(document.activeElement?.id).toBe('menuitem1');
+	expect(document.activeElement?.id).toBe('menu-item-1');
 });
 
 it('sets isOpen to true after pressing enter while focused on the menu button', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
+	const button = component.find('#menu-button');
 	const span = component.find('#is-open-indicator');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
@@ -31,61 +31,61 @@ it('sets isOpen to true after pressing enter while focused on the menu button', 
 
 it('moves the focus to the next element in the menu after pressing the down arrow', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
-	const secondMenuItem = component.find('#menuitem2');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
+	const secondMenuItem = component.find('#menu-item-2');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	expect(document.activeElement?.id).toBe('menuitem2');
+	expect(document.activeElement?.id).toBe('menu-item-2');
 
 	secondMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	expect(document.activeElement?.id).toBe('menuitem3');
+	expect(document.activeElement?.id).toBe('menu-item-3');
 });
 
 it('moves the focus to the previous element in the menu after pressing the up arrow', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
-	const secondMenuItem = component.find('#menuitem2');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
+	const secondMenuItem = component.find('#menu-item-2');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
 
 	secondMenuItem.simulate('keydown', { key: 'ArrowUp' });
-	expect(document.activeElement?.id).toBe('menuitem1');
+	expect(document.activeElement?.id).toBe('menu-item-1');
 });
 
 it('wraps the focus to the last element when pressing the up arrow at the beginning of the menu', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 	firstMenuItem.simulate('keydown', { key: 'ArrowUp' });
-	expect(document.activeElement?.id).toBe('menuitem3');
+	expect(document.activeElement?.id).toBe('menu-item-3');
 });
 
 it('wraps the focus to the first element when pressing the down arrow at the end of the menu', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
 	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
 	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	expect(document.activeElement?.id).toBe('menuitem1');
+	expect(document.activeElement?.id).toBe('menu-item-1');
 });
 
 it('sets isOpen to false after pressing escape while focused on a menu item', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
 	const span = component.find('#is-open-indicator');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
@@ -97,8 +97,8 @@ it('sets isOpen to false after pressing escape while focused on a menu item', ()
 
 it('sets isOpen to false after pressing tab while focused on a menu item', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
 	const span = component.find('#is-open-indicator');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
@@ -110,12 +110,12 @@ it('sets isOpen to false after pressing tab while focused on a menu item', () =>
 
 it('moves the focus to the menu button after pressing escape while focused on a menu item', () => {
 	const component = mount(<TestComponent />);
-	const button = component.find('#menubutton');
-	const firstMenuItem = component.find('#menuitem1');
+	const button = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
 
 	firstMenuItem.simulate('keydown', { key: 'Escape' });
-	expect(document.activeElement?.id).toBe('menubutton');
+	expect(document.activeElement?.id).toBe('menu-button');
 });
