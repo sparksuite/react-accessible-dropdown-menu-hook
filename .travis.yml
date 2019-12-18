@@ -15,7 +15,7 @@ jobs:
       script:
         - npm run dev
         - npm run lint
-        - yarn --cwd ./docs run lint
+        - yarn --cwd ./demo run lint
     - stage: test
       name: Run tests (Node.js Current)
       node_js: node
