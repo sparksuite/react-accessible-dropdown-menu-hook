@@ -29,6 +29,8 @@ const TestComponent: React.FC = () => {
 			<button type='button' id='secondbutton' tabIndex={0}>
 				Another Button
 			</button>
+
+			<span id='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
 		</React.Fragment>
 	);
 };
