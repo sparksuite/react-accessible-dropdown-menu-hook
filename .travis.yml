@@ -30,14 +30,14 @@ jobs:
         - npm run dev
         - npm test
         - codecov
-    - stage: publish
+    - stage: deploy
       if: type = push AND tag IS present
-      name: Publish to npm
+      name: Deploy to npm
       node_js: lts/*
       script:
         - npm run dev
         - npm run compile
-        - echo "Publishing to npm..."
+        - echo "Deploying to npm..."
       deploy:
         skip_cleanup: true
         provider: npm
