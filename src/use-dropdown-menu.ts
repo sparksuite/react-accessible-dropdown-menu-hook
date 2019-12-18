@@ -37,7 +37,6 @@ export default function useDropdownMenu(itemCount: number) {
 
 		// If the menu is currently open focus on the first item in the menu
 		if (isOpen) {
-			itemRefs.current[0].current.focus();
 			moveFocus(0);
 		}
 	}, [isOpen]);
