@@ -8,8 +8,8 @@
 		"dist/"
 	],
 	"scripts": {
-		"dev": "npm ci && yarn --cwd ./demo install --frozen-lockfile && npm link ./demo/node_modules/react",
-		"test": "npm run compile && yarn --cwd ./demo build && jest",
+		"dev": "yarn install --frozen-lockfile && yarn --cwd ./demo install --frozen-lockfile && yarn --cwd ./demo/node_modules/react link && yarn link react",
+		"test": "yarn compile && yarn --cwd ./demo build && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
 		"clean": "rm -rf coverage/ dist/ node_modules/ demo/node_modules/",
