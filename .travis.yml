@@ -13,30 +13,30 @@ jobs:
       name: Lint code
       node_js: lts/*
       script:
-        - npm run dev
-        - npm run lint
+        - yarn dev
+        - yarn lint
         - yarn --cwd ./demo run lint
     - stage: test
       name: Run tests (Node.js Current)
       node_js: node
       script:
-        - npm run dev
-        - npm test
+        - yarn dev
+        - yarn test
     - stage: test
       name: Run tests (Node.js LTS)
       node_js: lts/*
       script:
-        - npm install -g codecov
-        - npm run dev
-        - npm test
+        - yarn global add codecov
+        - yarn dev
+        - yarn test
         - codecov
     - stage: deploy
       if: type = push AND tag IS present
       name: Deploy to npm
       node_js: lts/*
       script:
-        - npm run dev
-        - npm run compile
+        - yarn dev
+        - yarn compile
         - echo "Deploying to npm..."
       deploy:
         skip_cleanup: true
@@ -53,7 +53,7 @@ jobs:
       name: Deploy to GitHub Pages
       node_js: lts/*
       script:
-        - npm run dev
+        - yarn dev
         - yarn --cwd ./demo install --frozen-lockfile
         - echo "Deploying to GitHub pages..."
       deploy:
