@@ -35,6 +35,7 @@ jobs:
       name: Publish to npm
       node_js: lts/*
       script:
+        - npm run dev
         - npm run compile
         - echo "Publishing to npm..."
       deploy:
