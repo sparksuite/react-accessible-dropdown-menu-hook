@@ -72,15 +72,14 @@
 		"typescript": "^3.7.3"
 	},
 	"jest": {
+		"collectCoverage": true,
+		"coverageDirectory": "./coverage/",
+		"collectCoverageFrom": [
+			"<rootDir>/src/**"
+		],
 		"projects": [
 			{
 				"displayName": "Enzyme",
-				"collectCoverage": true,
-				"coverageDirectory": "./coverage/",
-				"coveragePathIgnorePatterns": [
-					"/node_modules/",
-					"<rootDir>/test/"
-				],
 				"setupFilesAfterEnv": [
 					"<rootDir>/test/setupTests.ts"
 				],
