@@ -9,7 +9,7 @@ const currentFocusID = () => page.evaluate(() => document.activeElement.id);
 
 // Tests
 beforeEach(async () => {
-	await page.goto(`file://${path.join(__dirname, '..', '..', 'docs', 'build', 'index.html')}`);
+	await page.goto(`file://${path.join(__dirname, '..', '..', 'demo', 'build', 'index.html')}`);
 });
 
 it('has the correct page title', async () => {

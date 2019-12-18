@@ -15,7 +15,7 @@ jobs:
       script:
         - npm run dev
         - npm run lint
-        - yarn --cwd ./docs run lint
+        - yarn --cwd ./demo run lint
     - stage: test
       name: Run tests (Node.js Current)
       node_js: node
@@ -30,13 +30,14 @@ jobs:
         - npm run dev
         - npm test
         - codecov
-    - stage: publish
+    - stage: deploy
       if: type = push AND tag IS present
-      name: Publish to npm
+      name: Deploy to npm
       node_js: lts/*
       script:
+        - npm run dev
         - npm run compile
-        - echo "Publishing to npm..."
+        - echo "Deploying to npm..."
       deploy:
         skip_cleanup: true
         provider: npm
@@ -47,3 +48,16 @@ jobs:
           tags: true
           repo: sparksuite/react-accessible-dropdown-menu-hook
           branch: master
+    - stage: deploy
+      if: type = push AND tag IS present
+      name: Deploy to GitHub Pages
+      node_js: lts/*
+      script:
+        - npm run dev
+        - yarn --cwd ./demo install --frozen-lockfile
+        - echo "Deploying to GitHub pages..."
+      deploy:
+        provider: pages
+        local_dir: demo/build
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
