@@ -52,7 +52,7 @@ jobs:
       node_js: lts/*
       script:
         - yarn dev
-        - yarn --cwd ./demo install --frozen-lockfile
+        - yarn --cwd ./demo build
         - echo "Deploying to GitHub pages..."
       deploy:
         provider: pages
