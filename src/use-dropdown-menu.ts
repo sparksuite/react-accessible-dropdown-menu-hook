@@ -82,8 +82,12 @@ export default function useDropdownMenu(itemCount: number) {
 		} else if (key === 'Tab') {
 			setIsOpen(false);
 			return;
-		} else if (key === 'Enter' && !e.currentTarget.href) {
-			e.currentTarget.click();
+		} else if (key === 'Enter') {
+			if (!e.currentTarget.href) {
+				e.currentTarget.click();
+			}
+
+			setIsOpen(false);
 			return;
 		}
 
