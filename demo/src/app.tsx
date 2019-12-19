@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
 	// Return JSX
 	return (
-		<div className='app'>
+		<main className='app'>
 			<h1>React Accessible Dropdown Menu Hook</h1>
 			<h2>A simple Hook for creating fully accessible dropdown menus in React</h2>
 
@@ -45,7 +45,10 @@ const App: React.FC = () => {
 					<em>Once focus is in the menu…</em>
 
 					<ul>
-						<li>The up / down arrow keys allow for navigation through the menu items</li>
+						<li>
+							The up / down arrow keys allow for navigation through the menu items (including wrapping from first to
+							last and vice versa)
+						</li>
 						<li>Pressing tab will close the menu and move the focus to the next focusable element</li>
 						<li>Pressing escape will close the menu and return the focus to the button</li>
 						<li>
@@ -68,7 +71,7 @@ const App: React.FC = () => {
 					Sparksuite <i className='fad fa-external-link' />
 				</a>
 			</div>
-		</div>
+		</main>
 	);
 };
 

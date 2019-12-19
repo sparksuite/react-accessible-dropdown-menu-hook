@@ -57,3 +57,15 @@ Our team carefully studied and adhered to [Web Content Accessibility Guidelines 
 - Appears and operates in predictable ways ([WCAG: 3.2](https://www.w3.org/WAI/WCAG21/quickref/#predictable))
 
 For more details, see [this comment](https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues/8#issuecomment-567568103).
+
+## Local development
+
+To prep a just-cloned or just-cleaned repository for local development, run `yarn dev`.
+
+To test the whole project, run `yarn test`.
+
+To run the demo website locally, run `cd ./demo && yarn start`.
+
+To format the code, run `yarn format` at either the project root or within the `./demo` directory.
+
+To clean the repository (removes any programmatically generated files), run `yarn clean`.

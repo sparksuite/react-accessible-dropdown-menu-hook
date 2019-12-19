@@ -109,7 +109,7 @@ h2 {
 }
 
 #menu a {
-	color: #3a8eb8;
+	color: #29779e;
 	text-decoration: none;
 	cursor: pointer;
 	outline: none;
@@ -150,12 +150,12 @@ ul li {
 
 .footer {
 	margin-top: 10rem;
-	color: #999;
+	color: #767676;
 	font-size: 0.8rem;
 }
 
 .footer a {
-	color: #3a8eb8;
+	color: #29779e;
 	text-decoration: none;
 }
 
@@ -165,7 +165,7 @@ ul li {
 
 .footer a svg {
 	font-size: 80%;
-	color: #777;
+	color: #767676;
 	margin-left: 0.1rem;
 }
 
