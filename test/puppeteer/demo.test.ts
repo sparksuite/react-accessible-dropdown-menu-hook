@@ -83,3 +83,21 @@ it('leaves the menu open if you click inside of it', async () => {
 
 	expect(true).toBe(true);
 });
+
+it('reroutes enter presses on menu items as clicks', async () => {
+	let alertAppeared = false;
+
+	await page.click('#menu-button');
+	await menuOpen();
+
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
+	page.on('dialog', async dialog => {
+		alertAppeared = true;
+		await dialog.dismiss();
+	});
+
+	await page.focus('#menu-item-3');
+	await keyboard.down('Enter');
+
+	expect(alertAppeared).toBe(true);
+});
