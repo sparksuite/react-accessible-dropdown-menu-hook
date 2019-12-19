@@ -119,3 +119,24 @@ it('moves the focus to the menu button after pressing escape while focused on a 
 	firstMenuItem.simulate('keydown', { key: 'Escape' });
 	expect(document.activeElement?.id).toBe('menu-button');
 });
+
+it('opens the menu after clicking the button', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+	const span = component.find('#is-open-indicator');
+
+	button.simulate('click');
+
+	expect(span.text()).toBe('true');
+});
+
+it('closes the menu after clicking the button when the menu is open', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+	const span = component.find('#is-open-indicator');
+
+	button.simulate('click');
+	button.simulate('click');
+
+	expect(span.text()).toBe('false');
+});
