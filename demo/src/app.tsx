@@ -20,11 +20,6 @@ const App: React.FC = () => {
 			</button>
 
 			<div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
-				<a {...itemProps[0]} onClick={() => alert('Click!')} id='menu-item-1'>
-					<i className='fas fa-mouse fa-fw' />
-					Item with click handler
-				</a>
-
 				<a {...itemProps[1]} href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='menu-item-2'>
 					<i className='fab fa-github fa-fw' />
 					View on GitHub
@@ -33,6 +28,11 @@ const App: React.FC = () => {
 				<a {...itemProps[2]} href='https://www.npmjs.com/package/react-accessible-dropdown-menu-hook' id='menu-item-3'>
 					<i className='fab fa-npm fa-fw' />
 					View on npm
+				</a>
+
+				<a {...itemProps[0]} onClick={() => alert('Click!')} id='menu-item-1'>
+					<i className='fas fa-mouse fa-fw' />
+					Item with click handler
 				</a>
 			</div>
 
