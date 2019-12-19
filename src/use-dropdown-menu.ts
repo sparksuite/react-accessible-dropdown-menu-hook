@@ -70,7 +70,7 @@ export default function useDropdownMenu(itemCount: number) {
 		const { key } = e;
 
 		// Prevent default browser behavior except in cases where maintaining the natural tab order is desired
-		if (!(key === 'Tab' || key === 'Shift' || key === 'Enter')) {
+		if (key !== 'Tab' && key !== 'Shift' && key !== 'Enter') {
 			e.preventDefault();
 		}
 
