@@ -47,7 +47,7 @@ jobs:
         on:
           tags: true
     - stage: deploy
-      if: type = push AND tag IS present
+      if: branch = master
       name: Deploy to GitHub Pages
       node_js: lts/*
       script:
@@ -61,4 +61,4 @@ jobs:
         local_dir: demo/build
         github_token: $GITHUB_TOKEN
         on:
-          tags: true
+          branch: master
