@@ -82,22 +82,22 @@ h2 {
 	border-radius: 0.25rem;
 	box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 	opacity: 0;
-    visibility: hidden;
+	visibility: hidden;
 	transition: all 0.2s ease;
 	will-change: transform;
 	text-align: left;
 	position: absolute;
 	width: fit-content;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
 	z-index: 2;
 }
 
 #menu.visible {
-	transform: translateX(-50%), translateY(-.3rem);
-    visibility: visible;
+	transform: translateX(-50%), translateY(-0.3rem);
+	visibility: visible;
 	opacity: 1;
 }
 

@@ -18,7 +18,7 @@ const App: React.FC = () => {
 				<span>Try me!</span>
 				<i className='fal fa-angle-down' />
 			</button>
-			
+
 			<div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
 				<a {...itemProps[0]} onClick={() => alert('Click!')} id='menu-item-1'>
 					<i className='fas fa-mouse fa-fw' />
@@ -37,9 +37,14 @@ const App: React.FC = () => {
 			</div>
 
 			<div className='footer'>
-				<a href="https://github.com/sparksuite/react-accessible-dropdown-menu-hook" id='first-footer-link'>View on GitHub</a>
-				<a href="https://www.npmjs.com/package/react-accessible-dropdown-menu-hook">View on npm</a>
-				Built by <a href="https://www.sparksuite.com" target='_blank' rel="noopener noreferrer">Sparksuite</a>
+				<a href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='first-footer-link'>
+					View on GitHub
+				</a>
+				<a href='https://www.npmjs.com/package/react-accessible-dropdown-menu-hook'>View on npm</a>
+				Built by{' '}
+				<a href='https://www.sparksuite.com' target='_blank' rel='noopener noreferrer'>
+					Sparksuite
+				</a>
 			</div>
 		</div>
 	);
