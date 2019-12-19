@@ -60,10 +60,12 @@ For more details, see [this comment](https://github.com/sparksuite/react-accessi
 
 ## Local development
 
-To prep your just cloned, or just cleaned repository for local development, run `yarn dev`.
+To prep a just-cloned or just-cleaned repository for local development, run `yarn dev`.
 
 To test the whole project, run `yarn test`.
 
-To run the demo website locally, `cd ./demo && yarn start`.
+To run the demo website locally, run `cd ./demo && yarn start`.
 
-To format the code, run `yarn format` at either the project root or within the demo directory.
+To format the code, run `yarn format` at either the project root or within the `./demo` directory.
+
+To clean the repository (removes any programmatically generated files), run `yarn clean`.
