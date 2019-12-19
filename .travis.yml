@@ -43,7 +43,7 @@ jobs:
         skip_cleanup: true
         email: wes@sparksuite.com
         api_key:
-          secure: KjhT/uNlOgk4p2wz7mQEx8CSLE5x13VS3J4mYRZFQJe5AWBbKQi2UO1rxq95fHYGncw4BS+fr4ruZy+fzud29Z+gu/bKBDoIw6Hnz6s8rYKYtb2HBE8vcZ9Lf/wq/Epp/CX1QjFcMIn1ZrsMpDD5h5S/SmoXBIxiiDcCEhS0O9pwxUjEgnUcx+qxSigDvS+mKNfZzO0otUKjsNG7aJAlNTa05llrCw8dphG5uSW8WoIULu8oZqt4m2mhAG6SSJdCHi3+4IAOLBLAAX8vG9OeFDgG4emU9IYxRWmgefYRZO16IOIqEKWmw9x0rpryqZLcPteiWdz6A4DXPvjI6QDr1Qt1AgIufvtkjXAuffhRVk/u+WM+rxhGdyeWCpC4/zRk99UKaL/6CKtWIu9x1KzmsRH2q+wjrUMi9z5saWws2rpEjsOj48HSjV4GhMq5aJ9APngXxuT53AY3Z8gdga1Ffcf8so6fVAT21dDybZZwROa+Shq2cnvggAMOeIlgZWo8UhbPCwblSA45Yv7B2JS5FfLRPx7YI7a/RVixH+JCV8RBkneZOJIZCcmcc9zD53elhNQardqQDTwvzd2V/6sPcP4FNpeJ27MiAhrEOro3xtYdRxN5BhbOMfXiTR3YGhpI3QYiYMlnTcbNpLkaRpifwI6jQzCzhGsqgHRD5HnCDYI=
+          secure: "XsLC251bgk08SByGf3WWuEs8d3/ps3jGpWgpXyD9Abdjncfj4fPy8826XyvFelnQmr1TOfCcIXypRJ/QnNBoow5ACbA4q6/8KbTxB0BmsVR+QbszDfbc+JCSuL+WH7WmisOl/6zONA8wrw1xZW5VxBbs7VJQbskGyiq56+utvAoaVAnZqyD0QzICt+bJtSsKsRrZFhVI85NCTGNEhmpYrp0hJdT4wBw2HvoxpeV+RbgzsftSzPJfd9Jg3PSY/d0D9jleNsHFjrDZiDBI+7r489YGF4LsN1jlZPXYJt2SiM129MsqYHKuYCxsVDkS7TYHFjf1bH1USNeQHzDBcbp0LrelzKErSiapabsiibYbimiAxdZ6pnarOHnZ4W02JBc//Jl+VLiqd4SRwo8roi2odTSWKdlc+6VTca+5fZM5uiNy3yYL6FljaauF6ZOu7dEdfC36tdTwVMpjlqjIsCh1PlxdLd7bejWESMy7bFDnr5BG07auYCtiD7X5+GrxaYXAt0qF3uTzgjb6oZVZ9illy9eTAeXXztu2OHOePSRe/gYCEqIyo7B0H/lKDkYdfUICOPxW5RP4mx+XJ9ayfhIgTZQeq2gsoZy44HTKgYiXK8dTOvKxTT8044pDObY8/a6fp1rWGThqzOzcBGlPSpJLbf7C/h1xxRiRL77iBMY8j1A="
         on:
           tags: true
     - stage: deploy
@@ -52,6 +52,7 @@ jobs:
       node_js: lts/*
       script:
         - yarn dev
+        - yarn compile
         - yarn --cwd ./demo build
         - echo "Deploying to GitHub pages..."
       deploy:
