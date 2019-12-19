@@ -6,6 +6,8 @@ const { keyboard } = page;
 
 // Helper functions used in multiple tests
 const currentFocusID = () => page.evaluate(() => document.activeElement.id);
+const menuOpen = () => page.waitForSelector('#menu', { visible: true });
+const menuClosed = () => page.waitForSelector('#menu', { hidden: true });
 
 // Tests
 beforeEach(async () => {
@@ -21,31 +23,46 @@ it('has the correct page title', async () => {
 it('focuses on the first menu item when the enter key is pressed', async () => {
 	await page.focus('#menu-button');
 	await keyboard.down('Enter');
+	await menuOpen();
 
 	expect(await currentFocusID()).toBe('menu-item-1');
 });
 
 it('focuses on the menu button after pressing escape', async () => {
-	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.click('#menu-button');
+	await menuOpen();
 	await keyboard.down('Escape');
+	await menuClosed();
 
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
-	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.click('#menu-button');
+	await menuOpen();
 	await keyboard.down('Tab');
+	await menuClosed();
 
 	expect(await currentFocusID()).toBe('first-footer-link');
 });
 
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
-	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.click('#menu-button');
+	await menuOpen();
 	await keyboard.down('Shift');
 	await keyboard.down('Tab');
+	await menuClosed();
 
 	expect(await currentFocusID()).toBe('menu-button');
+});
+
+it('closes the menu if you click outside of it', async () => {
+	await page.click('#menu-button');
+	await menuOpen();
+	await page.click('body');
+	await menuClosed();
+
+	// menuClosed() will time out if it doesn't actually close
+
+	expect(true).toBe(true);
 });
