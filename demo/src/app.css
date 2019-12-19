@@ -163,6 +163,12 @@ ul li {
 	text-decoration: underline;
 }
 
+.footer a svg {
+	font-size: 80%;
+	color: #777;
+	margin-left: 0.1rem;
+}
+
 .footer a:not(:last-child) {
 	margin-right: 2rem;
 }

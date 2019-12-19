@@ -55,12 +55,14 @@ const App: React.FC = () => {
 
 			<div className='footer'>
 				<a href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='first-footer-link'>
-					View on GitHub
+					View on GitHub <i className='fad fa-external-link' />
 				</a>
-				<a href='https://www.npmjs.com/package/react-accessible-dropdown-menu-hook'>View on npm</a>
-				Built by{' '}
+				<a href='https://www.npmjs.com/package/react-accessible-dropdown-menu-hook'>
+					View on npm <i className='fad fa-external-link' />
+				</a>
+				Built by&nbsp;
 				<a href='https://www.sparksuite.com' target='_blank' rel='noopener noreferrer'>
-					Sparksuite
+					Sparksuite <i className='fad fa-external-link' />
 				</a>
 			</div>
 		</div>
