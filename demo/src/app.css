@@ -83,7 +83,7 @@ h2 {
 	box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.2s ease;
+	transition: transform 0.2s ease, opacity 0.2s ease;
 	will-change: transform;
 	text-align: left;
 	position: absolute;
