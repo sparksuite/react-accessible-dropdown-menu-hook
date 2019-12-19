@@ -38,7 +38,7 @@ it('focuses on the next item in the tab order after pressing tab', async () => {
 	await keyboard.down('Enter');
 	await keyboard.down('Tab');
 
-	expect(await currentFocusID()).toBe('second-button');
+	expect(await currentFocusID()).toBe('first-footer-link');
 });
 
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
