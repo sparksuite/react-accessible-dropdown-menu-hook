@@ -48,7 +48,7 @@ const App: React.FC = () => {
 						<li>The up / down arrow keys allow for navigation through the menu items</li>
 						<li>Pressing tab will close the menu and move the focus to the next focusable element</li>
 						<li>Pressing escape will close the menu and return the focus to the button</li>
-						<li>Pressing enter will trigger that item (whether itʼs a link or has a click handler attached)</li>
+						<li>Pressing enter will activate that item and close the menu (whether itʼs a link or has a click handler attached)</li>
 					</ul>
 				</li>
 			</ul>
