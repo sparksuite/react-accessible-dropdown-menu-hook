@@ -5,31 +5,66 @@ import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 
 // Functional component
 const App: React.FC = () => {
+	// Use the Hook
 	const [buttonProps, itemProps, isOpen] = useDropdownMenu(3);
 
+	// Return JSX
 	return (
 		<div className='app'>
-			<button type='button' {...buttonProps} id='menu-button' tabIndex={0}>
-				Primary
+			<h1>React Accessible Dropdown Menu Hook</h1>
+			<h2>A simple Hook for creating fully accessible dropdown menus in React</h2>
+
+			<button {...buttonProps} type='button' id='menu-button'>
+				<span>Try me!</span>
+				<i className='fal fa-angle-down' />
 			</button>
 
-			<div style={{ display: isOpen ? 'block' : 'none' }} role='menu' id='menu'>
-				<a style={{ display: 'block' }} {...itemProps[0]} onClick={() => null} id='menu-item-1'>
-					Item 1
+			<div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
+				<a {...itemProps[0]} href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='menu-item-1'>
+					<i className='fab fa-github fa-fw' />
+					View on GitHub
 				</a>
 
-				<a style={{ display: 'block' }} href='https://example.com' {...itemProps[1]} id='menu-item-2'>
-					Item 2
+				<a {...itemProps[1]} href='https://www.npmjs.com/package/react-accessible-dropdown-menu-hook' id='menu-item-2'>
+					<i className='fab fa-npm fa-fw' />
+					View on npm
 				</a>
 
-				<a style={{ display: 'block' }} href='https://example.com' {...itemProps[2]} id='menu-item-3'>
-					Item 3
+				<a {...itemProps[2]} onClick={() => alert('Click!')} id='menu-item-3'>
+					<i className='fas fa-mouse fa-fw' />
+					Item with click handler
 				</a>
 			</div>
 
-			<button type='button' id='second-button' tabIndex={0}>
-				Another Button
-			</button>
+			<h3>Behavior:</h3>
+
+			<ul>
+				<li>The menu can be revealed by clicking the button, or by focusing the button and pressing enter / space</li>
+				<li>When the menu is revealed, the first menu item is automatically focused</li>
+				<li>
+					<em>Once focus is in the menu…</em>
+
+					<ul>
+						<li>The up / down arrow keys allow for navigation through the menu items</li>
+						<li>Pressing tab will close the menu and move the focus to the next focusable element</li>
+						<li>Pressing escape will close the menu and return the focus to the button</li>
+						<li>Pressing enter will trigger that item (whether itʼs a link or has a click handler attached)</li>
+					</ul>
+				</li>
+			</ul>
+
+			<div className='footer'>
+				<a href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='first-footer-link'>
+					View on GitHub <i className='fad fa-external-link' />
+				</a>
+				<a href='https://www.npmjs.com/package/react-accessible-dropdown-menu-hook'>
+					View on npm <i className='fad fa-external-link' />
+				</a>
+				Built by&nbsp;
+				<a href='https://www.sparksuite.com' target='_blank' rel='noopener noreferrer'>
+					Sparksuite <i className='fad fa-external-link' />
+				</a>
+			</div>
 		</div>
 	);
 };

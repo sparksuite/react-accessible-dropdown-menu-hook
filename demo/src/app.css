@@ -14,3 +14,161 @@ body {
 .app {
 	text-align: center;
 }
+
+h1 {
+	margin: 0;
+	padding: 0 2rem;
+	margin-top: 4rem;
+	line-height: 1;
+	color: #333;
+	font-weight: 500;
+	font-size: 3rem;
+}
+
+h2 {
+	margin: 0;
+	padding: 0 2rem;
+	margin-top: 0.5rem;
+	line-height: 1;
+	color: #555;
+	font-weight: 300;
+	font-size: 1.5rem;
+	font-style: italic;
+}
+
+#menu-button {
+	appearance: none;
+	width: 10rem;
+	margin: 3rem auto 0;
+	padding: 1rem 0;
+	background: #eee;
+	outline: none;
+	border: 1px solid #ddd;
+	border-radius: 0.2rem;
+	font-size: 1.5rem;
+	color: #000;
+	font-weight: 300;
+	cursor: pointer;
+	position: relative;
+	line-height: 1;
+	transition: all 0.2s ease 0.05s;
+	display: flex;
+}
+
+#menu-button:hover {
+	background: #fafafa;
+}
+
+#menu-button:focus {
+	box-shadow: 0 0 0 0.15rem #fff, 0 0 0 0.3rem #bbb;
+}
+
+#menu-button span {
+	flex-grow: 1;
+	text-align: center;
+}
+
+#menu-button svg {
+	margin-right: 1rem;
+	color: #999;
+}
+
+#menu {
+	background: #fff;
+	margin: auto;
+	margin-top: 0.8rem;
+	padding: 0.8rem 1rem;
+	border: 1px solid #ddd;
+	border-radius: 0.25rem;
+	box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+	opacity: 0;
+	visibility: hidden;
+	transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0.2s;
+	will-change: transform;
+	text-align: left;
+	position: absolute;
+	width: fit-content;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 2;
+}
+
+#menu.visible {
+	transform: translateY(-0.3rem);
+	transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0s;
+	visibility: visible;
+	opacity: 1;
+}
+
+#menu a {
+	display: block;
+	font-size: 1.2rem;
+	padding: 0.25rem;
+}
+
+#menu a {
+	color: #3a8eb8;
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
+	border: 0.1rem solid transparent;
+	border-radius: 0.2rem;
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+#menu a:focus {
+	border-color: #3a8eb8;
+}
+
+#menu a svg {
+	color: #777;
+	margin-right: 0.5rem;
+}
+
+h3 {
+	margin: 10rem 0 1rem;
+	font-weight: 300;
+	font-size: 2rem;
+}
+
+ul {
+	width: fit-content;
+	max-width: 40rem;
+	margin: auto;
+	text-align: left;
+	line-height: 1.3;
+}
+
+ul li {
+	padding: 0.25rem 0;
+}
+
+.footer {
+	margin-top: 10rem;
+	color: #999;
+	font-size: 0.8rem;
+}
+
+.footer a {
+	color: #3a8eb8;
+	text-decoration: none;
+}
+
+.footer a:hover {
+	text-decoration: underline;
+}
+
+.footer a svg {
+	font-size: 80%;
+	color: #777;
+	margin-left: 0.1rem;
+}
+
+.footer a:not(:last-child) {
+	margin-right: 2rem;
+}
