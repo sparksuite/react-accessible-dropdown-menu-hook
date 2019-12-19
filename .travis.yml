@@ -39,15 +39,13 @@ jobs:
         - yarn compile
         - echo "Deploying to npm..."
       deploy:
-        skip_cleanup: true
         provider: npm
+        skip_cleanup: true
         email: wes@sparksuite.com
         api_key:
-          secure: OTUxkiEVzOsC8OM2tc+dITVMQp2fxa+X3VRfLwUBoH/EQmd0h9m6MVQVviMSGHSZZ7NZqEEjx1wh3OIJ+9k2ov7Snn0LZc9Q+zU6QpvMuK1VemCCeJl0NYl5BaWNqFAlTmC3fPC6Z7btVMDeWdp3YaQ1Kr1EWgth1jgxSepxW9hCacAfwIgTJw/4JhwJKUdA3cETQ6QZTn244dMhTNz/CrLB5DFI/qm83ImIr8iQWtz1qAeMy4peXSLz7IcLkhOIoFVlNcy61jf35HVSOy6T7s6a9RZnUV2VwtWlFxAO/tA9Rzkxw0Oo9LB9worw2TkOY39L9KifUpGl6AESwAKVyXQrqjkt0VrZqq/WKOnwhKfZ83ahZL3TpcUADBM0DpLAX1qFyPYgoZlMaXKX2DaQDmP7X+lSRYokSdVrgvivo/ck50Gnqk4eCW7mpgJ0BspvQznlRzNUdaeSQMSki/7EAWZH29B3VD8WWTwI+8gpEymPignXMpy+kGDxMZiE0+VbRm7m22aCb32Xzui0kIvDcuqjJzE376D4eEodnvkVOTy9RLzcTsVfAkQpBHds+Xaby0U5IEW/CkPHJn1Nuovl153bAp7bAj6JnarCIuTGmrQNq+UNCOQvt88DfjtoQQnJ0UPgDFb/C5uNUEZOU97/W0csNaBmNgE+KdjMVzq0TWs=
+          secure: KjhT/uNlOgk4p2wz7mQEx8CSLE5x13VS3J4mYRZFQJe5AWBbKQi2UO1rxq95fHYGncw4BS+fr4ruZy+fzud29Z+gu/bKBDoIw6Hnz6s8rYKYtb2HBE8vcZ9Lf/wq/Epp/CX1QjFcMIn1ZrsMpDD5h5S/SmoXBIxiiDcCEhS0O9pwxUjEgnUcx+qxSigDvS+mKNfZzO0otUKjsNG7aJAlNTa05llrCw8dphG5uSW8WoIULu8oZqt4m2mhAG6SSJdCHi3+4IAOLBLAAX8vG9OeFDgG4emU9IYxRWmgefYRZO16IOIqEKWmw9x0rpryqZLcPteiWdz6A4DXPvjI6QDr1Qt1AgIufvtkjXAuffhRVk/u+WM+rxhGdyeWCpC4/zRk99UKaL/6CKtWIu9x1KzmsRH2q+wjrUMi9z5saWws2rpEjsOj48HSjV4GhMq5aJ9APngXxuT53AY3Z8gdga1Ffcf8so6fVAT21dDybZZwROa+Shq2cnvggAMOeIlgZWo8UhbPCwblSA45Yv7B2JS5FfLRPx7YI7a/RVixH+JCV8RBkneZOJIZCcmcc9zD53elhNQardqQDTwvzd2V/6sPcP4FNpeJ27MiAhrEOro3xtYdRxN5BhbOMfXiTR3YGhpI3QYiYMlnTcbNpLkaRpifwI6jQzCzhGsqgHRD5HnCDYI=
         on:
           tags: true
-          repo: sparksuite/react-accessible-dropdown-menu-hook
-          branch: master
     - stage: deploy
       if: type = push AND tag IS present
       name: Deploy to GitHub Pages
@@ -58,6 +56,8 @@ jobs:
         - echo "Deploying to GitHub pages..."
       deploy:
         provider: pages
-        local_dir: demo/build
         skip_cleanup: true
+        local_dir: demo/build
         github_token: $GITHUB_TOKEN
+        on:
+          tags: true
