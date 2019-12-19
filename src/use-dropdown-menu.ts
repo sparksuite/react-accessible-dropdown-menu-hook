@@ -63,16 +63,16 @@ export default function useDropdownMenu(itemCount: number) {
 
 	// Create a function that handles menu logic based on keyboard events that occur on menu items
 	const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-		// Create mutable value that initializes as the currentFocusIndex value
-		let newFocusIndex = currentFocusIndex.current;
-
 		// Destructure the key property from the event object
 		const { key } = e;
 
-		// Prevent default browser behavior except in cases where maintaining the natural tab order is desired
-		if (key !== 'Tab' && key !== 'Shift' && key !== 'Enter') {
-			e.preventDefault();
+		// Ignore keys that we shouldn't handle
+		if (!['Tab', 'Shift', 'Enter', 'Escape', 'ArrowUp', 'ArrowDown'].includes(key)) {
+			return;
 		}
+
+		// Create mutable value that initializes as the currentFocusIndex value
+		let newFocusIndex = currentFocusIndex.current;
 
 		// Controls whether the menu is open or closed, if the button should regain focus on close, and if a handler function should be called
 		if (key === 'Escape') {
