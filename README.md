@@ -2,7 +2,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/sparksuite/react-accessible-dropdown-menu-hook.svg)](https://greenkeeper.io/)
 
-This Hook handles all the accessibility logic when building a dropdown menu, dropdown button, etc., and leaves the design completely up to you.
+This Hook handles all the accessibility logic when building a dropdown menu, dropdown button, etc., and leaves the design completely up to you. [View the demo.](http://sparksuite.github.io/react-accessible-dropdown-menu-hook)
 
 ## Getting started
 
@@ -22,7 +22,7 @@ Import the Hook:
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 ```
 
-Call the Hook in the top level of your component:
+Call the Hook, telling it how many items your menu will have.
 
 ```tsx
 const [buttonProps, itemProps, isOpen] = useDropdownMenu(numberOfItems);
