@@ -90,6 +90,7 @@ it('reroutes enter presses on menu items as clicks', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
 
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
 	page.on('dialog', async dialog => {
 		alertAppeared = true;
 		await dialog.dismiss();

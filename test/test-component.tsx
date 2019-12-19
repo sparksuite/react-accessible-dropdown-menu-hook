@@ -1,5 +1,5 @@
 // Imports
-import React, { useState } from 'react';
+import React from 'react';
 import useDropdownMenu from '../src/use-dropdown-menu';
 
 // A mock component for testing the Hook
@@ -26,9 +26,7 @@ const TestComponent: React.FC = () => {
 				</a>
 			</div>
 
-			<button id='second-button'>
-				Another Button
-			</button>
+			<button id='second-button'>Another Button</button>
 
 			<span id='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
 		</React.Fragment>
