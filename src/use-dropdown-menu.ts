@@ -70,7 +70,7 @@ export default function useDropdownMenu(itemCount: number) {
 		const { key } = e;
 
 		// Prevent default browser behavior except in cases where maintaining the natural tab order is desired
-		if (!(key === 'Tab' || key === 'Shift' || key === 'Enter')) {
+		if (key !== 'Tab' && key !== 'Shift' && key !== 'Enter') {
 			e.preventDefault();
 		}
 
@@ -82,7 +82,7 @@ export default function useDropdownMenu(itemCount: number) {
 		} else if (key === 'Tab') {
 			setIsOpen(false);
 			return;
-		} else if (key === 'Enter') {
+		} else if (key === 'Enter' && !e.currentTarget.href) {
 			e.currentTarget.click();
 			return;
 		}
