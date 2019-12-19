@@ -36,6 +36,23 @@ const App: React.FC = () => {
 				</a>
 			</div>
 
+			<h3>Behavior:</h3>
+
+			<ul>
+				<li>The menu can be revealed by clicking the button, or by focusing the button and pressing enter / space</li>
+				<li>When the menu is revealed, the first menu item is automatically focused</li>
+				<li>
+					<em>Once focus is in the menu...</em>
+
+					<ul>
+						<li>The up / down arrow keys allow for navigation through the menu items</li>
+						<li>Pressing tab will close the menu and move the focus to the next focusable element</li>
+						<li>Pressing escape will close the menu and return the focus to the button</li>
+						<li>Pressing enter will trigger that item (whether itʼs a link or has a click handler attached)</li>
+					</ul>
+				</li>
+			</ul>
+
 			<div className='footer'>
 				<a href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='first-footer-link'>
 					View on GitHub
