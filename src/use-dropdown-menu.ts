@@ -40,38 +40,33 @@ export default function useDropdownMenu(itemCount: number) {
 			moveFocus(0);
 		}
 
-
 		// This function is designed to handle every click
 		const handleEveryClick = (event: MouseEvent) => {
 			// Ignore if the menu isn't open
 			if (!isOpen) {
 				return;
 			}
-			
+
 			// Make this happen asynchronously
 			setTimeout(() => {
 				// Type guard
 				if (!(event.target instanceof Element)) {
 					return;
 				}
-				
-				
+
 				// Ignore if we're clicking inside the menu
 				if (event.target.closest('[role="menu"]')) {
 					return;
 				}
-				
-				
+
 				// Hide dropdown
 				setIsOpen(false);
 			}, 10);
 		};
-		
-		
+
 		// Add listener
 		document.addEventListener('click', handleEveryClick);
-		
-		
+
 		// Return function to remove listener
 		return () => document.removeEventListener('click', handleEveryClick);
 	}, [isOpen]);

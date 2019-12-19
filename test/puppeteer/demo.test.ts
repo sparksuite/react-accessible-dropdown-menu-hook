@@ -31,7 +31,7 @@ it('focuses on the first menu item when the enter key is pressed', async () => {
 it('focuses on the menu button after pressing escape', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
-	
+
 	await keyboard.down('Escape');
 	await menuClosed();
 
@@ -41,7 +41,7 @@ it('focuses on the menu button after pressing escape', async () => {
 it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
-	
+
 	await keyboard.down('Tab');
 	await menuClosed();
 
@@ -51,7 +51,7 @@ it('focuses on the next item in the tab order after pressing tab', async () => {
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
-	
+
 	await keyboard.down('Shift');
 	await keyboard.down('Tab');
 	await menuClosed();
@@ -62,7 +62,7 @@ it('focuses on the previous item in the tab order after pressing shift-tab', asy
 it('closes the menu if you click outside of it', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
-	
+
 	await page.click('body');
 	await menuClosed(); // times out if menu doesn't close
 
