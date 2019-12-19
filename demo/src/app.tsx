@@ -42,7 +42,7 @@ const App: React.FC = () => {
 				<li>The menu can be revealed by clicking the button, or by focusing the button and pressing enter / space</li>
 				<li>When the menu is revealed, the first menu item is automatically focused</li>
 				<li>
-					<em>Once focus is in the menu...</em>
+					<em>Once focus is in the menu…</em>
 
 					<ul>
 						<li>The up / down arrow keys allow for navigation through the menu items</li>
