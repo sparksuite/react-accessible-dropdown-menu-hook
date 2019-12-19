@@ -31,6 +31,7 @@ it('focuses on the first menu item when the enter key is pressed', async () => {
 it('focuses on the menu button after pressing escape', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
+	
 	await keyboard.down('Escape');
 	await menuClosed();
 
@@ -40,6 +41,7 @@ it('focuses on the menu button after pressing escape', async () => {
 it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
+	
 	await keyboard.down('Tab');
 	await menuClosed();
 
@@ -49,6 +51,7 @@ it('focuses on the next item in the tab order after pressing tab', async () => {
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
+	
 	await keyboard.down('Shift');
 	await keyboard.down('Tab');
 	await menuClosed();
@@ -59,10 +62,24 @@ it('focuses on the previous item in the tab order after pressing shift-tab', asy
 it('closes the menu if you click outside of it', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
+	
 	await page.click('body');
-	await menuClosed();
+	await menuClosed(); // times out if menu doesn't close
 
-	// menuClosed() will time out if it doesn't actually close
+	expect(true).toBe(true);
+});
+
+it('leaves the menu open if you click inside of it', async () => {
+	await page.click('#menu-button');
+	await menuOpen();
+
+	await page.click('#menu-item-1');
+	await new Promise(resolve => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
+	await menuOpen(); // times out if menu closes
+
+	await page.click('#menu');
+	await new Promise(resolve => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
+	await menuOpen(); // times out if menu closes
 
 	expect(true).toBe(true);
 });
