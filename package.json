@@ -77,6 +77,7 @@
 		"collectCoverageFrom": [
 			"<rootDir>/src/**"
 		],
+		"verbose": true,
 		"projects": [
 			{
 				"displayName": "Enzyme",
@@ -86,8 +87,7 @@
 				"testMatch": [
 					"<rootDir>/test/*.test.ts",
 					"<rootDir>/test/*.test.tsx"
-				],
-				"verbose": true
+				]
 			},
 			{
 				"displayName": "Puppeteer",
@@ -95,8 +95,7 @@
 				"testMatch": [
 					"<rootDir>/test/puppeteer/*.test.ts",
 					"<rootDir>/test/puppeteer/*.test.tsx"
-				],
-				"verbose": true
+				]
 			}
 		]
 	}
