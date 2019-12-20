@@ -29,13 +29,13 @@ export default function useDropdownMenu(itemCount: number) {
 			firstRun.current = false;
 			return;
 		}
-		
+
 		// If the menu is currently open focus on the first item in the menu
 		if (isOpen) {
 			moveFocus(0);
 		}
 	}, [isOpen]);
-		
+
 	// Handle listening for clicks and auto-hiding the menu
 	useEffect(() => {
 		// This function is designed to handle every click
