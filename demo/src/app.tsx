@@ -40,7 +40,8 @@ const App: React.FC = () => {
 
 			<ul>
 				<li>The menu can be revealed by clicking the button, or by focusing the button and pressing enter / space</li>
-				<li>When the menu is revealed, the first menu item is automatically focused</li>
+				<li>If the menu is revealed with the keyboard, the first menu item is automatically focused</li>
+				<li>If the menu is revealed with the mouse, the first menu item can be focused by pressing tab / arrow down</li>
 				<li>
 					<em>Once focus is in the menu…</em>
 
@@ -50,6 +51,7 @@ const App: React.FC = () => {
 							last and vice versa)
 						</li>
 						<li>Pressing tab will close the menu and move the focus to the next focusable element</li>
+						<li>Pressing shift-tab will close the menu and move the focus to the previous focusable element</li>
 						<li>Pressing escape will close the menu and return the focus to the button</li>
 						<li>
 							Pressing enter will activate that item and close the menu (whether itʼs a link or has a click handler
