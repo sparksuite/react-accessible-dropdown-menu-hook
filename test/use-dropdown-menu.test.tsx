@@ -18,6 +18,36 @@ it('moves the focus to the first menu item after pressing enter while focused on
 	expect(document.activeElement?.id).toBe('menu-item-1');
 });
 
+it('moves the focus to the first menu item after pressing space while focused on the menu button', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+
+	button.getDOMNode<HTMLButtonElement>().focus();
+	button.simulate('keydown', { key: ' ' });
+
+	expect(document.activeElement?.id).toBe('menu-item-1');
+});
+
+it('moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+
+	button.simulate('click');
+	button.simulate('keydown', { key: 'Tab' });
+
+	expect(document.activeElement?.id).toBe('menu-item-1');
+});
+
+it('moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+
+	button.simulate('click');
+	button.simulate('keydown', { key: 'ArrowDown' });
+
+	expect(document.activeElement?.id).toBe('menu-item-1');
+});
+
 it('sets isOpen to true after pressing enter while focused on the menu button', () => {
 	const component = mount(<TestComponent />);
 	const button = component.find('#menu-button');
@@ -25,6 +55,17 @@ it('sets isOpen to true after pressing enter while focused on the menu button', 
 
 	button.getDOMNode<HTMLButtonElement>().focus();
 	button.simulate('keydown', { key: 'Enter' });
+
+	expect(span.text()).toBe('true');
+});
+
+it('sets isOpen to true after pressing space while focused on the menu button', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+	const span = component.find('#is-open-indicator');
+
+	button.getDOMNode<HTMLButtonElement>().focus();
+	button.simulate('keydown', { key: ' ' });
 
 	expect(span.text()).toBe('true');
 });

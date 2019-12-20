@@ -20,16 +20,16 @@ it('has the correct page title', async () => {
 	await expect(page.title()).resolves.toMatch('React Accessible Dropdown Menu Hook');
 });
 
-it('focuses on the first menu item when the enter key is pressed', async () => {
-	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+it('leaves focus on the button after clicking it', async () => {
+	await page.click('#menu-button');
 	await menuOpen();
 
-	expect(await currentFocusID()).toBe('menu-item-1');
+	expect(await currentFocusID()).toBe('menu-button');
 });
 
 it('focuses on the menu button after pressing escape', async () => {
-	await page.click('#menu-button');
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
 	await menuOpen();
 
 	await keyboard.down('Escape');
@@ -39,7 +39,8 @@ it('focuses on the menu button after pressing escape', async () => {
 });
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
-	await page.click('#menu-button');
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
 	await menuOpen();
 
 	await keyboard.down('Tab');
@@ -49,7 +50,8 @@ it('focuses on the next item in the tab order after pressing tab', async () => {
 });
 
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
-	await page.click('#menu-button');
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
 	await menuOpen();
 
 	await keyboard.down('Shift');
@@ -60,17 +62,19 @@ it('focuses on the previous item in the tab order after pressing shift-tab', asy
 });
 
 it('closes the menu if you click outside of it', async () => {
-	await page.click('#menu-button');
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
 	await menuOpen();
 
-	await page.click('body');
+	await page.click('h1');
 	await menuClosed(); // times out if menu doesn't close
 
 	expect(true).toBe(true);
 });
 
 it('leaves the menu open if you click inside of it', async () => {
-	await page.click('#menu-button');
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
 	await menuOpen();
 
 	await page.click('#menu-item-1');
@@ -87,7 +91,8 @@ it('leaves the menu open if you click inside of it', async () => {
 it('reroutes enter presses on menu items as clicks', async () => {
 	let alertAppeared = false;
 
-	await page.click('#menu-button');
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
 	await menuOpen();
 
 	// eslint-disable-next-line @typescript-eslint/no-misused-promises

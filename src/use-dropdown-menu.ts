@@ -7,6 +7,7 @@ export default function useDropdownMenu(itemCount: number) {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
 	const firstRun = useRef(true);
+	const clickedOpen = useRef(false);
 
 	// Create refs
 	const buttonRef = useRef<HTMLButtonElement>(null);
@@ -31,8 +32,10 @@ export default function useDropdownMenu(itemCount: number) {
 		}
 
 		// If the menu is currently open focus on the first item in the menu
-		if (isOpen) {
+		if (isOpen && !clickedOpen.current) {
 			moveFocus(0);
+		} else if (!isOpen) {
+			clickedOpen.current = false;
 		}
 	}, [isOpen]);
 
@@ -53,7 +56,7 @@ export default function useDropdownMenu(itemCount: number) {
 				}
 
 				// Ignore if we're clicking inside the menu
-				if (event.target.closest('[role="menu"]')) {
+				if (event.target.closest('[role="menu"]') instanceof Element) {
 					return;
 				}
 
@@ -75,16 +78,19 @@ export default function useDropdownMenu(itemCount: number) {
 		if (isKeyboardEvent(e)) {
 			const { key } = e;
 
-			if (key !== 'Tab' && key !== 'Shift') {
-				e.preventDefault();
+			if (!['Enter', ' ', 'Tab', 'ArrowDown'].includes(key)) {
+				return;
 			}
 
-			if (key === 'Enter' || key === ' ') {
+			if ((key === 'Tab' || key === 'ArrowDown') && clickedOpen.current && isOpen) {
+				e.preventDefault();
+				moveFocus(0);
+			} else if (key !== 'Tab') {
+				e.preventDefault();
 				setIsOpen(true);
-			} else if (key === 'Tab') {
-				setIsOpen(false);
 			}
 		} else {
+			clickedOpen.current = !isOpen;
 			setIsOpen(!isOpen);
 		}
 	};
