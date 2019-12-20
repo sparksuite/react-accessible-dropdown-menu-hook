@@ -22,13 +22,8 @@ export default function useDropdownMenu(itemCount: number) {
 		itemRefs.current[itemIndex].current?.focus();
 	};
 
-	// Run whenever the menu opens/closes
+	// Focus the first item when the menu opens
 	useEffect(() => {
-		// Stop if the ref currently points to a null value
-		if (!itemRefs.current[0].current || !buttonRef.current) {
-			return;
-		}
-
 		// Stop if this is the first fire of the Hook, and update the ref
 		if (firstRun.current) {
 			firstRun.current = false;
@@ -39,7 +34,10 @@ export default function useDropdownMenu(itemCount: number) {
 		if (isOpen) {
 			moveFocus(0);
 		}
+	}, [isOpen]);
 
+	// Handle listening for clicks and auto-hiding the menu
+	useEffect(() => {
 		// This function is designed to handle every click
 		const handleEveryClick = (event: MouseEvent) => {
 			// Ignore if the menu isn't open
