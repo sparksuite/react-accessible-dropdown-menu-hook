@@ -56,7 +56,7 @@ export default function useDropdownMenu(itemCount: number) {
 				}
 
 				// Ignore if we're clicking inside the menu
-				if (event.target.closest('[role="menu"]')) {
+				if (event.target.closest('[role="menu"]') instanceof Element) {
 					return;
 				}
 
