@@ -75,7 +75,7 @@ export default function useDropdownMenu(itemCount: number) {
 		if (isKeyboardEvent(e)) {
 			const { key } = e;
 
-			if (!(key === 'Tab' || key === 'Shift')) {
+			if (key !== 'Tab' && key !== 'Shift') {
 				e.preventDefault();
 			}
 
