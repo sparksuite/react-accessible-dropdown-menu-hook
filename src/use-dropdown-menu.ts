@@ -1,7 +1,6 @@
 // Imports
 import React, { useState, useRef, createRef, useEffect } from 'react';
 
-
 // Create interface for button properties
 interface ButtonProps
 	extends Pick<
@@ -10,7 +9,6 @@ interface ButtonProps
 	> {
 	ref: ((instance: HTMLButtonElement | null) => void) | React.RefObject<HTMLButtonElement> | null | undefined;
 }
-
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
 export default function useDropdownMenu(itemCount: number) {
