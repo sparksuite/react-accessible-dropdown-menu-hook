@@ -1,6 +1,15 @@
 // Imports
 import React, { useState, useRef, createRef, useEffect } from 'react';
 
+// Create interface for button properties
+interface ButtonProps
+	extends Pick<
+		React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+		'onKeyDown' | 'onClick' | 'tabIndex' | 'role' | 'aria-haspopup' | 'aria-expanded'
+	> {
+	ref: React.RefObject<HTMLButtonElement>;
+}
+
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
 export default function useDropdownMenu(itemCount: number) {
 	// Use state
@@ -147,7 +156,7 @@ export default function useDropdownMenu(itemCount: number) {
 	};
 
 	// Define spreadable props for button and items
-	const buttonProps: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> = {
+	const buttonProps: ButtonProps = {
 		onKeyDown: buttonListener,
 		onClick: buttonListener,
 		tabIndex: 0,
