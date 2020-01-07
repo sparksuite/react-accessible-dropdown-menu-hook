@@ -47,7 +47,7 @@ jobs:
         on:
           tags: true
     - stage: deploy
-      if: branch = master
+      if: type = push AND branch = master
       name: Deploy to GitHub Pages
       node_js: lts/*
       script:
