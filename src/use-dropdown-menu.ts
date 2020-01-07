@@ -7,7 +7,7 @@ interface ButtonProps
 		React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
 		'onKeyDown' | 'onClick' | 'tabIndex' | 'role' | 'aria-haspopup' | 'aria-expanded'
 	> {
-	ref: ((instance: HTMLButtonElement | null) => void) | React.RefObject<HTMLButtonElement> | null | undefined;
+	ref: React.RefObject<HTMLButtonElement>;
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
