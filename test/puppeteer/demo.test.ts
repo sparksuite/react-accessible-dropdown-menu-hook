@@ -72,6 +72,23 @@ it('closes the menu if you click outside of it', async () => {
 	expect(true).toBe(true);
 });
 
+it('closes the menu if you click a menu item with a click handler', async () => {
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
+	await menuOpen();
+
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
+	page.once('dialog', async dialog => {
+		await dialog.dismiss();
+	});
+
+	await page.focus('#menu-item-3');
+	await keyboard.down('Enter');
+	await menuClosed(); // times out if menu doesn't close
+
+	expect(true).toBe(true);
+});
+
 it('leaves the menu open if you click inside of it', async () => {
 	await page.focus('#menu-button');
 	await keyboard.down('Enter');
@@ -96,7 +113,7 @@ it('reroutes enter presses on menu items as clicks', async () => {
 	await menuOpen();
 
 	// eslint-disable-next-line @typescript-eslint/no-misused-promises
-	page.on('dialog', async dialog => {
+	page.once('dialog', async dialog => {
 		alertAppeared = true;
 		await dialog.dismiss();
 	});

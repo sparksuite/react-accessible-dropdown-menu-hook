@@ -74,11 +74,29 @@ export default function useDropdownMenu(itemCount: number) {
 			}, 10);
 		};
 
+		// This function is designed to close the menu when an item is clicked
+		const handleItemClick = (event: MouseEvent) => {
+			if (!(event.target as HTMLAnchorElement)?.href) {
+				setIsOpen(false);
+			}
+		};
+
 		// Add listener
 		document.addEventListener('click', handleEveryClick);
 
-		// Return function to remove listener
-		return () => document.removeEventListener('click', handleEveryClick);
+		if (isOpen) {
+			// Add listener for each item
+			itemRefs.current?.forEach(ref => ref.current?.addEventListener('click', handleItemClick));
+		} else {
+			// Remove listener for each item
+			itemRefs.current?.forEach(ref => ref.current?.removeEventListener('click', handleItemClick));
+		}
+
+		// Return function to remove listeners
+		return () => {
+			document.removeEventListener('click', handleEveryClick);
+			itemRefs.current?.forEach(ref => ref.current?.removeEventListener('click', handleItemClick));
+		};
 	}, [isOpen]);
 
 	// Create a handler function for the button's clicks and keyboard events
