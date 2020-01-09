@@ -85,7 +85,7 @@ export default function useDropdownMenu(itemCount: number) {
 	useEffect(() => {
 		// This function is designed to close the menu when an item is clicked
 		const handleItemClick = (event: MouseEvent) => {
-			if ((event.target as HTMLAnchorElement)?.href === undefined) {
+			if (!(event.target as HTMLAnchorElement)?.href) {
 				setIsOpen(false);
 			}
 		};

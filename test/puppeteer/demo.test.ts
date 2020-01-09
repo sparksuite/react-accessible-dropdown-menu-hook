@@ -82,8 +82,7 @@ it('closes the menu if you click a menu item with a click handler', async () => 
 		await dialog.dismiss();
 	});
 
-	await page.focus('#menu-item-3');
-	await keyboard.down('Enter');
+	await page.click('#menu-item-3');
 	await menuClosed(); // times out if menu doesn't close
 
 	expect(true).toBe(true);
