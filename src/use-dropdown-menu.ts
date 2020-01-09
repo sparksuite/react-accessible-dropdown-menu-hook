@@ -74,15 +74,21 @@ export default function useDropdownMenu(itemCount: number) {
 			}, 10);
 		};
 
+		// Add listener
+		document.addEventListener('click', handleEveryClick);
+
+		// Return function to remove listener
+		return () => document.removeEventListener('click', handleEveryClick);
+	}, [isOpen]);
+
+	// Handle listening for item clicks and closing the menu
+	useEffect(() => {
 		// This function is designed to close the menu when an item is clicked
 		const handleItemClick = (event: MouseEvent) => {
-			if (!(event.target as HTMLAnchorElement)?.href) {
+			if ((event.target as HTMLAnchorElement)?.href === undefined) {
 				setIsOpen(false);
 			}
 		};
-
-		// Add listener
-		document.addEventListener('click', handleEveryClick);
 
 		if (isOpen) {
 			// Add listener for each item
@@ -93,10 +99,7 @@ export default function useDropdownMenu(itemCount: number) {
 		}
 
 		// Return function to remove listeners
-		return () => {
-			document.removeEventListener('click', handleEveryClick);
-			itemRefs.current?.forEach(ref => ref.current?.removeEventListener('click', handleItemClick));
-		};
+		return () => itemRefs.current?.forEach(ref => ref.current?.removeEventListener('click', handleItemClick));
 	}, [isOpen]);
 
 	// Create a handler function for the button's clicks and keyboard events
