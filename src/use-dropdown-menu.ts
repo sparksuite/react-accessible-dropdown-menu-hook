@@ -90,6 +90,7 @@ export default function useDropdownMenu(itemCount: number) {
 			}
 		};
 
+		// Add/remove listener based on whether the menu is open
 		if (isOpen) {
 			// Add listener for each item
 			itemRefs.current?.forEach(ref => ref.current?.addEventListener('click', handleItemClick));
