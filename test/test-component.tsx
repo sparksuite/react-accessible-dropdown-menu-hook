@@ -4,7 +4,7 @@ import useDropdownMenu from '../src/use-dropdown-menu';
 
 // A mock component for testing the Hook
 const TestComponent: React.FC = () => {
-	const [buttonProps, itemProps, isOpen] = useDropdownMenu(3);
+	const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
 
 	return (
 		<React.Fragment>
