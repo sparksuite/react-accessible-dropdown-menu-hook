@@ -25,7 +25,7 @@ import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 Call the Hook, telling it how many items your menu will have.
 
 ```tsx
-const [buttonProps, itemProps, isOpen] = useDropdownMenu(numberOfItems);
+const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(numberOfItems);
 ```
 
 Spread the `buttonProps` onto a button:
@@ -44,6 +44,47 @@ Create the menu with the `role='menu'` property and spread `itemProps[x]` onto e
 ```
 
 Done!
+
+## Usage
+This Hook returns an object of the following shape:
+
+```ts
+{
+    buttonProps: {
+        onKeyDown: () => void,
+		onClick: () => void,
+		tabIndex: 0,
+		ref: React.RefObject<HTMLButtonElement>,
+		role: 'button',
+		'aria-haspopup': true,
+		'aria-expanded': boolean,
+    },
+    itemProps: [{
+        onKeyDown: () => void,
+		tabIndex: -1,
+		role: 'menuitem',
+		ref: React.RefObject<HTMLAnchorElement>,
+    }, ...],
+    isOpen: boolean,
+    setIsOpen: () => void
+}
+```
+
+- buttonProps: An object meant to be spread as properties on a button element. 
+    - onKeyDown: A function which manages the behavior of your dropdown menu when a key is pressed while focused on the menu button.
+    - onClick: The same function as onKeyDown, but it differentiates behavior for click events.
+    - tabIndex: Sets the tab-index property of the button element.
+    - ref: A React ref applied to the button element, used to manage focus.
+    - role: A role property in accordance with WAI-ARIA guidelines.
+    - aria-haspopup: An aria attribute indicating this button has a related menu element.
+    - aria-expanded: An aria attribute indicating whether the menu is currently open or not.
+- itemProps: An array of objects to be spread on all of the menu items in your component.
+    - onKeyDown: A function which manages the behavior of your dropdown menu when a key is pressed while focused on a menu item.
+    - tabIndex: Sets the tab-index property to -1 to allow artificial focusing of the elements.
+    - role: A role property set to menuitem in accordance with WAI-ARIA guidelines. 
+    - ref: A react ref applied to each menu item, used to manage focus.
+- isOpen: A boolean value indicating if the menu is open or closed.
+- setIsOpen: The state setting method of isOpen, useful for situations where a developer need to programmatically close the menu.
 
 ## Accessibility notes
 Our team carefully studied and adhered to [Web Content Accessibility Guidelines 2.1](https://www.w3.org/WAI/standards-guidelines/wcag/) and  [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/) when designing this Hook. Here are some facets of accessibility that are handled automatically:
