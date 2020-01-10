@@ -51,25 +51,25 @@ This Hook returns an object of the following shape:
 ```ts
 {
     buttonProps: {
-        onKeyDown: () => void,
-        onClick: () => void,
-        tabIndex: 0,
-        ref: React.RefObject<HTMLButtonElement>,
-        role: 'button',
-        'aria-haspopup': true,
-        'aria-expanded': boolean,
-    },
+        onKeyDown: () => void;
+        onClick: () => void;
+        tabIndex: 0;
+        ref: React.RefObject<HTMLButtonElement>;
+        role: 'button';
+        'aria-haspopup': true;
+        'aria-expanded': boolean;
+    };
     itemProps: [
         {
-            onKeyDown: () => void,
-            tabIndex: -1,
-            role: 'menuitem',
-            ref: React.RefObject<HTMLAnchorElement>,
-        },
+            onKeyDown: () => void;
+            tabIndex: -1;
+            role: 'menuitem';
+            ref: React.RefObject<HTMLAnchorElement>;
+        };
         ...
-    ],
-    isOpen: boolean,
-    setIsOpen: (newValue: boolean) => void
+    ];
+    isOpen: boolean;
+    setIsOpen: (newValue: boolean) => void;
 }
 ```
 
