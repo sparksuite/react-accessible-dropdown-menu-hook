@@ -52,12 +52,12 @@ This Hook returns an object of the following shape:
 {
     buttonProps: {
         onKeyDown: () => void,
-		onClick: () => void,
-		tabIndex: 0,
-		ref: React.RefObject<HTMLButtonElement>,
-		role: 'button',
-		'aria-haspopup': true,
-		'aria-expanded': boolean,
+        onClick: () => void,
+        tabIndex: 0,
+        ref: React.RefObject<HTMLButtonElement>,
+        role: 'button',
+        'aria-haspopup': true,
+        'aria-expanded': boolean,
     },
     itemProps: [
         {
