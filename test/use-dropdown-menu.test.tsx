@@ -70,6 +70,20 @@ it('sets isOpen to true after pressing space while focused on the menu button', 
 	expect(span.text()).toBe('true');
 });
 
+it('sets isOpen to false after clicking a menu item that calls the state change function', () => {
+	const component = mount(<TestComponent />);
+	const button = component.find('#menu-button');
+	const itemWithHandler = component.find('#menu-item-1');
+	const span = component.find('#is-open-indicator');
+
+	button.getDOMNode<HTMLButtonElement>().focus();
+	button.simulate('keydown', { key: 'Enter' });
+
+	itemWithHandler.simulate('click');
+
+	expect(span.text()).toBe('false');
+});
+
 it('moves the focus to the next element in the menu after pressing the down arrow', () => {
 	const component = mount(<TestComponent />);
 	const button = component.find('#menu-button');

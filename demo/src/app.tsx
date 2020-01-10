@@ -6,7 +6,7 @@ import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 // Functional component
 const App: React.FC = () => {
 	// Use the Hook
-	const [buttonProps, itemProps, isOpen] = useDropdownMenu(3);
+	const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
 
 	// Return JSX
 	return (
