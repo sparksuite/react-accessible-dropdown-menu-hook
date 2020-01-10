@@ -51,8 +51,8 @@ This Hook returns an object of the following shape:
 ```ts
 {
     buttonProps: {
-        onKeyDown: () => void;
-        onClick: () => void;
+        onKeyDown: (e: React.KeyboardEvent | React.MouseEvent) => void;
+        onClick: (e: React.KeyboardEvent | React.MouseEvent) => void;
         tabIndex: 0;
         ref: React.RefObject<HTMLButtonElement>;
         role: 'button';
@@ -61,7 +61,7 @@ This Hook returns an object of the following shape:
     };
     itemProps: [
         {
-            onKeyDown: () => void;
+            onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
             tabIndex: -1;
             role: 'menuitem';
             ref: React.RefObject<HTMLAnchorElement>;
@@ -75,7 +75,7 @@ This Hook returns an object of the following shape:
 
 - **buttonProps:** An object meant to be spread as properties on a `<button />` element.
     - **onKeyDown:** A function which manages the behavior of your dropdown menu when a key is pressed while focused on the menu button.
-    - **onClick:** The same function as `onKeyDown()`, but it behavior differs somewhat for click events.
+    - **onClick:** The same function as `onKeyDown()`, but its behavior differs somewhat for click events.
     - **tabIndex:** Sets the tab index property of the `<button />` element.
     - **ref:** A React ref applied to the `<button />` element, used to manage focus.
     - **role:** A role property in accordance with WAI-ARIA guidelines.
