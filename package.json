@@ -9,7 +9,7 @@
 	],
 	"scripts": {
 		"dev": "yarn --cwd ./demo install --frozen-lockfile && yarn install --frozen-lockfile",
-		"test": "yarn compile && yarn --cwd ./demo build && jest",
+		"test": "yarn compile && yarn --cwd ./demo build && yarn --cwd ./demo test --watchAll=false && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
 		"clean": "rm -rf coverage/ dist/ node_modules/ demo/node_modules/",
