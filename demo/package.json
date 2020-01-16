@@ -20,7 +20,9 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
+		"pretest": "yarn remove react-accessible-dropdown-menu-hook && yarn --cwd ../ pack --filename package.tgz && yarn add file:./package.tgz",
 		"test": "react-scripts test",
+		"posttest": "yarn remove react-accessible-dropdown-menu-hook && yarn add link:../",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,css,html,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,css,html,json}'"
 	},
