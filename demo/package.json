@@ -12,12 +12,12 @@
 		"@types/react-dom": "^16.9.0",
 		"prettier": "^1.19.1",
 		"react": "^16.12.0",
+		"react-accessible-dropdown-menu-hook": "link:../",
 		"react-dom": "^16.12.0",
 		"react-scripts": "3.3.0",
 		"typescript": "~3.7.2"
 	},
 	"scripts": {
-		"postinstall": "yarn --cwd ../ link && yarn link react-accessible-dropdown-menu-hook",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,css,html,json}'",

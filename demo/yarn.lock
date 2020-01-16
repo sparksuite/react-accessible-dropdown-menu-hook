@@ -8252,6 +8252,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+"react-accessible-dropdown-menu-hook@link:..":
+  version "0.0.0"
+  uid ""
+
 react-app-polyfill@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-1.0.5.tgz#59c7377a0b9ed25692eeaca7ad9b12ef2d064709"
