@@ -20,7 +20,8 @@ export default function useDropdownMenu(itemCount: number) {
 
 	// Create refs
 	const buttonRef = useRef<HTMLButtonElement>(null);
-	const itemRefs = useRef([...Array(itemCount)].map(() => createRef<HTMLAnchorElement>()));
+
+	const itemRefs = useRef<React.RefObject<HTMLAnchorElement>[]>([]);
 
 	// Create type guard
 	const isKeyboardEvent = (e: React.KeyboardEvent | React.MouseEvent): e is React.KeyboardEvent =>
@@ -31,6 +32,11 @@ export default function useDropdownMenu(itemCount: number) {
 		currentFocusIndex.current = itemIndex;
 		itemRefs.current[itemIndex].current?.focus();
 	};
+
+	// Initialize refs an update them on prop changes
+	useEffect(() => {
+		itemRefs.current = [...Array(itemCount)].map(() => createRef<HTMLAnchorElement>());
+	}, [itemCount]);
 
 	// Focus the first item when the menu opens
 	useEffect(() => {
