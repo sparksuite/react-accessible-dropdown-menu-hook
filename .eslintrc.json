@@ -24,6 +24,7 @@
 		"@typescript-eslint/no-unused-vars": "error",
 		"eqeqeq": ["error"],
 		"prefer-template": ["error"],
+		"react/prop-types": "off",
 		"padding-line-between-statements": [
 			"error",
 			{
