@@ -9,6 +9,7 @@
 	],
 	"scripts": {
 		"dev": "yarn --cwd ./demo install --frozen-lockfile && yarn install --frozen-lockfile",
+		"greenkeeperDev": "yarn --cwd ./demo install && yarn install",
 		"test": "yarn compile && yarn --cwd ./demo build && yarn --cwd ./demo test --watchAll=false && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",

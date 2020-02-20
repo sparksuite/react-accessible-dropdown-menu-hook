@@ -8332,7 +8332,7 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-"react-accessible-dropdown-menu-hook@link:..":
+"react-accessible-dropdown-menu-hook@link:../":
   version "0.0.0"
   uid ""
 
