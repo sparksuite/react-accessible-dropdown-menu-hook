@@ -13,22 +13,21 @@ jobs:
       name: Lint code
       node_js: lts/*
       script:
-        - "([[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]]) && yarn greenkeeper-dev || yarn dev"
+        - "[[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
         - yarn lint
         - yarn --cwd ./demo run lint
     - stage: test
       name: Run tests (Node.js Current)
       node_js: node
       script:
-        - "([[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]]) || [[ $TRAVIS_Head_
-        BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
+        - "[[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
         - yarn test
     - stage: test
       name: Run tests (Node.js LTS)
       node_js: lts/*
       script:
         - yarn global add codecov
-        - "([[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]]) && yarn greenkeeper-dev || yarn dev"
+        - "[[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
         - yarn test
         - codecov
     - stage: deploy
@@ -36,7 +35,7 @@ jobs:
       name: Deploy to npm
       node_js: lts/*
       script:
-        - "([[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]]) && yarn greenkeeper-dev || yarn dev"
+        - "[[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
         - yarn compile
         - echo "Deploying to npm..."
       deploy:
@@ -52,7 +51,7 @@ jobs:
       name: Deploy to GitHub Pages
       node_js: lts/*
       script:
-        - "([[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]]) && yarn greenkeeper-dev || yarn dev"
+        - "[[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
         - yarn compile
         - yarn --cwd ./demo build
         - echo "Deploying to GitHub pages..."
