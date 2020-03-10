@@ -8,8 +8,8 @@
 		"dist/"
 	],
 	"scripts": {
-		"dev": "yarn --cwd ./demo install --frozen-lockfile && yarn install --frozen-lockfile",
-		"greenkeeper-dev": "yarn --cwd ./demo install && yarn install",
+		"dev": "yarn --cwd ./demo install --frozen-lockfile --check-files && yarn install --frozen-lockfile --check-files",
+		"greenkeeper-dev": "yarn --cwd ./demo install --check-files && yarn install --check-files",
 		"test": "yarn compile && yarn --cwd ./demo build && yarn --cwd ./demo test --watchAll=false && jest",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
