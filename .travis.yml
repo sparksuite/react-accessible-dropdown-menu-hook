@@ -13,7 +13,7 @@ jobs:
       name: Lint code
       node_js: lts/*
       script:
-        - echo "[ $TRAVIS_BRANCH ]"
+        - echo "[ $TRAVIS_PULL_REQUEST_BRANCH ]"
         - "[[ $TRAVIS_BRANCH =~ ^greenkeeper.*$ ]] || [[ $TRAVIS_HEAD_BRANCH =~ ^greenkeeper.*$ ]] && yarn greenkeeper-dev || yarn dev"
         - yarn lint
         - yarn --cwd ./demo run lint
