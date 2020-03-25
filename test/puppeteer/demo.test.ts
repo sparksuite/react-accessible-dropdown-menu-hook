@@ -78,11 +78,11 @@ it('leaves the menu open if you click inside of it', async () => {
 	await menuOpen();
 
 	await page.click('#menu-item-1');
-	await new Promise(resolve => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
+	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
 	await menuOpen(); // times out if menu closes
 
 	await page.click('#menu');
-	await new Promise(resolve => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
+	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
 	await menuOpen(); // times out if menu closes
 
 	expect(true).toBe(true);
@@ -96,7 +96,7 @@ it('reroutes enter presses on menu items as clicks', async () => {
 	await menuOpen();
 
 	// eslint-disable-next-line @typescript-eslint/no-misused-promises
-	page.once('dialog', async dialog => {
+	page.once('dialog', async (dialog) => {
 		alertAppeared = true;
 		await dialog.dismiss();
 	});
