@@ -62,7 +62,7 @@
 		"eslint-config-prettier": "^6.7.0",
 		"eslint-plugin-react": "^7.17.0",
 		"eslint-plugin-react-hooks": "^2.3.0",
-		"jest": "^24.9.0",
+		"jest": "link:./demo/node_modules/jest",
 		"jest-puppeteer": "^4.3.0",
 		"prettier": "^1.19.1",
 		"puppeteer": "^2.0.0",
