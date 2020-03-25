@@ -2,7 +2,6 @@ language: node_js
 branches:
   only:
     - master
-    - /^greenkeeper.*$/
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/ # Allow vX.X.X tags
 stages:
   - test
