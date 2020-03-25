@@ -64,7 +64,7 @@
 		"eslint-plugin-react-hooks": "^2.3.0",
 		"jest": "link:./demo/node_modules/jest",
 		"jest-puppeteer": "^4.3.0",
-		"prettier": "^1.19.1",
+		"prettier": "^2.0.2",
 		"puppeteer": "^2.0.0",
 		"react": "link:./demo/node_modules/react",
 		"react-dom": "^16.12.0",
