@@ -195,3 +195,32 @@ it('closes the menu after clicking the button when the menu is open', () => {
 
 	expect(span.text()).toBe('false');
 });
+
+it('adds properties to items added after mount', () => {
+	const component = mount(<TestComponent />);
+	const addItemButton = component.find('#add-item');
+
+	addItemButton.simulate('click');
+
+	const fourthMenuItem = component.find('#menu-item-4');
+
+	expect(fourthMenuItem.prop('role')).toBe('menuitem');
+});
+
+it('can navigate to a dynamically-added item', () => {
+	const component = mount(<TestComponent />);
+	const addItemButton = component.find('#add-item');
+	const menuButton = component.find('#menu-button');
+	const firstMenuItem = component.find('#menu-item-1');
+
+	addItemButton.simulate('click');
+
+	menuButton.getDOMNode<HTMLButtonElement>().focus();
+	menuButton.simulate('keydown', { key: 'Enter' });
+
+	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
+	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
+	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
+
+	expect(document.activeElement?.id).toBe('menu-item-4');
+});

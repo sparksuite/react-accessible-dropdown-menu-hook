@@ -1,10 +1,11 @@
 // Imports
-import React from 'react';
+import React, { useState } from 'react';
 import useDropdownMenu from '../src/use-dropdown-menu';
 
 // A mock component for testing the Hook
 const TestComponent: React.FC = () => {
-	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
+	const [itemCount, setItemCount] = useState(3);
+	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(itemCount);
 
 	return (
 		<React.Fragment>
@@ -13,20 +14,28 @@ const TestComponent: React.FC = () => {
 			</button>
 
 			<div role='menu' id='menu'>
-				<a {...itemProps[0]} onClick={() => setIsOpen(false)} id='menu-item-1'>
-					Item 1
-				</a>
-
-				<a {...itemProps[1]} href='https://example.com' id='menu-item-2'>
-					Item 2
-				</a>
-
-				<a {...itemProps[2]} href='https://example.com' id='menu-item-3'>
-					Item 3
-				</a>
+				{itemProps.map((props, i) => (
+					<a
+						{...props}
+						key={i}
+						id={`menu-item-${i + 1}`}
+						onClick={i === 0 ? () => setIsOpen(false) : undefined}
+						href={i !== 0 ? 'https://example.com' : undefined}
+					>
+						Item {i + 1}
+					</a>
+				))}
 			</div>
 
 			<button id='second-button'>Another Button</button>
+
+			<button id='remove-item' onClick={() => setItemCount((prevCount) => prevCount - 1)}>
+				Remove Item
+			</button>
+
+			<button id='add-item' onClick={() => setItemCount((prevCount) => prevCount + 1)}>
+				Add Item
+			</button>
 
 			<span id='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
 		</React.Fragment>
