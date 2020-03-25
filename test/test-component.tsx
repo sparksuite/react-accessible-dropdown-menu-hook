@@ -29,11 +29,11 @@ const TestComponent: React.FC = () => {
 
 			<button id='second-button'>Another Button</button>
 
-			<button id='remove-item' onClick={() => setItemCount(prevCount => prevCount - 1)}>
+			<button id='remove-item' onClick={() => setItemCount((prevCount) => prevCount - 1)}>
 				Remove Item
 			</button>
 
-			<button id='add-item' onClick={() => setItemCount(prevCount => prevCount + 1)}>
+			<button id='add-item' onClick={() => setItemCount((prevCount) => prevCount + 1)}>
 				Add Item
 			</button>
 
