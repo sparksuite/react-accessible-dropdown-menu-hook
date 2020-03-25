@@ -207,7 +207,7 @@ it('adds properties to items added after mount', () => {
 	expect(fourthMenuItem.prop('role')).toBe('menuitem');
 });
 
-it('can navigate to a new item', () => {
+it('can navigate to a dynamically-added item', () => {
 	const component = mount(<TestComponent />);
 	const addItemButton = component.find('#add-item');
 	const menuButton = component.find('#menu-button');
