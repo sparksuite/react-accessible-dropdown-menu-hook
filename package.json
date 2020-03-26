@@ -54,7 +54,7 @@
 		"@types/react": "^16.9.16",
 		"@typescript-eslint/eslint-plugin": "^2.11.0",
 		"@typescript-eslint/parser": "^2.11.0",
-		"babel-jest": "^24.9.0",
+		"babel-jest": "^25.2.1",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.15.1",
 		"eslint": "^6.7.2",
