@@ -1,7 +1,5 @@
 # React Accessible Dropdown Menu Hook
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/sparksuite/react-accessible-dropdown-menu-hook.svg)](https://greenkeeper.io/)
-
 This Hook handles all the accessibility logic when building a dropdown menu, dropdown button, etc., and leaves the design completely up to you. It also handles the logic for closing the menu when you click outside of it. [View the demo.](http://sparksuite.github.io/react-accessible-dropdown-menu-hook)
 
 ## Getting started
