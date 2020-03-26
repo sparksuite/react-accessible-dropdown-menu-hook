@@ -10,11 +10,11 @@
 		"@types/node": "^13.1.0",
 		"@types/react": "^16.9.0",
 		"@types/react-dom": "^16.9.0",
-		"prettier": "^1.19.1",
+		"prettier": "^2.0.2",
 		"react": "^16.12.0",
-		"react-accessible-dropdown-menu-hook": "link:../",
+		"react-accessible-dropdown-menu-hook": "link:..",
 		"react-dom": "^16.12.0",
-		"react-scripts": "3.4.0",
+		"react-scripts": "3.4.1",
 		"typescript": "^3.8.3"
 	},
 	"scripts": {
@@ -22,7 +22,7 @@
 		"build": "react-scripts build",
 		"pretest": "RANDOM_STRING=$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 32 ; echo) && yarn remove react-accessible-dropdown-menu-hook && yarn --cwd ../ pack --filename package-$RANDOM_STRING.tgz && yarn add file:./package-$RANDOM_STRING.tgz && rm package-$RANDOM_STRING.tgz",
 		"test": "react-scripts test",
-		"posttest": "yarn remove react-accessible-dropdown-menu-hook && yarn add link:../",
+		"posttest": "yarn remove react-accessible-dropdown-menu-hook && yarn add link:..",
 		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,css,html,json}'",
 		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,css,html,json}'"
 	},
