@@ -54,7 +54,7 @@ const App: React.FC = () => {
 						<li>Pressing shift-tab will close the menu and move the focus to the previous focusable element</li>
 						<li>Pressing escape will close the menu and return the focus to the button</li>
 						<li>
-							Pressing enter will activate that item and close the menu (whether itʼs a link or has a click handler
+							Pressing enter will activate that item and close the menu (whether it’s a link or has a click handler
 							attached)
 						</li>
 					</ul>
