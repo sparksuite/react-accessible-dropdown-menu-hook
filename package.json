@@ -36,7 +36,7 @@
 	"bugs": {
 		"url": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues"
 	},
-	"homepage": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook",
+	"homepage": "https://sparksuite.github.io/react-accessible-dropdown-menu-hook/",
 	"dependencies": {},
 	"peerDependencies": {
 		"react": ">=16.8",
