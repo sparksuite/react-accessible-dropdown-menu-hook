@@ -59,31 +59,6 @@ it('sets isOpen to true after pressing enter while focused on the menu button', 
 	expect(span.text()).toBe('true');
 });
 
-it('sets body overflow to hidden when menu is open', () => {
-	const component = mount(<TestComponent />);
-	const button = component.find('#menu-button');
-	const body = document.querySelector('body');
-
-	button.getDOMNode<HTMLButtonElement>().focus();
-	button.simulate('keydown', { key: 'Enter' });
-
-	expect(body.style.overflow).toBe('hidden');
-});
-
-it('reverts body overflow when menu is closed', () => {
-	const component = mount(<TestComponent />);
-	const button = component.find('#menu-button');
-	const firstMenuItem = component.find('#menu-item-1');
-	const body = document.querySelector('body');
-
-	button.getDOMNode<HTMLButtonElement>().focus();
-	button.simulate('keydown', { key: 'Enter' });
-
-	firstMenuItem.simulate('keydown', { key: 'Escape' });
-
-	expect(body.style.overflow).toBe('true');
-});
-
 it('moves the focus to the next element in the menu after pressing the down arrow', () => {
 	const component = mount(<TestComponent />);
 	const button = component.find('#menu-button');
