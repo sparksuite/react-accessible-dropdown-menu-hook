@@ -97,6 +97,8 @@ export default function useDropdownMenu(itemCount: number) {
 			return;
 		}
 
+		console.log(body.style.overflow);
+
 		// Check if the overflow style has not been saved
 		if (typeof overflowStyle.current !== 'string') {
 			overflowStyle.current = body.style.overflow;
@@ -108,7 +110,7 @@ export default function useDropdownMenu(itemCount: number) {
 		}
 
 		// Revert overflow style on close
-		if (isOpen) {
+		if (!isOpen) {
 			body.style.overflow = overflowStyle.current;
 		}
 

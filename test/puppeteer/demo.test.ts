@@ -38,6 +38,29 @@ it('focuses on the menu button after pressing escape', async () => {
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
+it('sets body overflow style to hidden when the menu is opened', async () => {
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
+	await menuOpen();
+
+	expect(
+		await page.evaluate(() => window.getComputedStyle(document.querySelector('body')).getPropertyValue('overflow'))
+	).toBe('hidden');
+});
+
+it('reverts body overflow when menu is closed', async () => {
+	await page.focus('#menu-button');
+	await keyboard.down('Enter');
+	await menuOpen();
+
+	await page.click('h1');
+	await menuClosed();
+
+	expect(
+		await page.evaluate(() => window.getComputedStyle(document.querySelector('body')).getPropertyValue('overflow'))
+	).toBe('visible');
+});
+
 it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.focus('#menu-button');
 	await keyboard.down('Enter');
