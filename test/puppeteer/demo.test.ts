@@ -1,10 +1,21 @@
 // Imports
 import path from 'path';
+import { Page } from 'puppeteer';
 
 // Helper functions used in multiple tests
 const currentFocusID = () => page.evaluate(() => document.activeElement.id);
 const menuOpen = () => page.waitForSelector('#menu', { visible: true });
 const menuClosed = () => page.waitForSelector('#menu', { hidden: true });
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const menuIsOpen = async (page: Page) =>
+	await page.evaluate(() => {
+		const element = document.querySelector('#menu');
+		const style = getComputedStyle(element);
+		const rect = element.getBoundingClientRect();
+
+		return style.visibility !== 'hidden' && !!(rect.bottom || rect.top || rect.height || rect.width);
+	});
 
 // Tests
 beforeEach(async () => {
@@ -82,8 +93,8 @@ it('leaves the menu open if you click inside of it', async () => {
 	});
 
 	await page.click('#menu-item-3');
-	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
-	await menuOpen(); // times out if menu closes
+	await sleep(1000); // visibility: hidden is delayed via CSS
+	expect(await menuIsOpen(page)).toBe(true);
 
 	const { xOffset, yOffset } = await page.evaluate((el: HTMLElement) => {
 		const { left: xOffset, top: yOffset } = el.getBoundingClientRect();
@@ -91,8 +102,8 @@ it('leaves the menu open if you click inside of it', async () => {
 	}, await page.$('#menu'));
 
 	await page.mouse.click(xOffset + 2, yOffset + 2); // Click just inside the top left corner (`page.click()` clicks the center, which is a link to NPM)
-	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
-	await menuOpen(); // times out if menu closes
+	await sleep(1000); // visibility: hidden is delayed via CSS
+	expect(await menuIsOpen(page)).toBe(true);
 
 	expect(true).toBe(true);
 });
