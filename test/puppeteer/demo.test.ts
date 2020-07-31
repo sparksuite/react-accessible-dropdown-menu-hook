@@ -1,16 +1,26 @@
 // Imports
 import path from 'path';
-
-// Destructured constant for readability
-const { keyboard } = page;
+import { Page } from 'puppeteer';
 
 // Helper functions used in multiple tests
 const currentFocusID = () => page.evaluate(() => document.activeElement.id);
 const menuOpen = () => page.waitForSelector('#menu', { visible: true });
 const menuClosed = () => page.waitForSelector('#menu', { hidden: true });
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const menuIsOpen = async (page: Page) =>
+	await page.evaluate(() => {
+		const element = document.querySelector('#menu');
+		const style = getComputedStyle(element);
+		const rect = element.getBoundingClientRect();
+
+		return style.visibility !== 'hidden' && !!(rect.bottom || rect.top || rect.height || rect.width);
+	});
 
 // Tests
 beforeEach(async () => {
+	await jestPuppeteer.resetPage();
+
 	await page.goto(`file://${path.join(__dirname, '..', '..', 'demo', 'build', 'index.html')}`, {
 		waitUntil: 'load',
 	});
@@ -34,10 +44,10 @@ it('leaves focus on the button after clicking it', async () => {
 
 it('focuses on the menu button after pressing escape', async () => {
 	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 	await menuOpen();
 
-	await keyboard.down('Escape');
+	await page.keyboard.down('Escape');
 	await menuClosed();
 
 	expect(await currentFocusID()).toBe('menu-button');
@@ -64,10 +74,10 @@ it('does not disable scroll by arrow key when menu is closed', async () => {
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 	await menuOpen();
 
-	await keyboard.down('Tab');
+	await page.keyboard.down('Tab');
 	await menuClosed();
 
 	expect(await currentFocusID()).toBe('first-footer-link');
@@ -75,11 +85,11 @@ it('focuses on the next item in the tab order after pressing tab', async () => {
 
 it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
 	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 	await menuOpen();
 
-	await keyboard.down('Shift');
-	await keyboard.down('Tab');
+	await page.keyboard.down('Shift');
+	await page.keyboard.down('Tab');
 	await menuClosed();
 
 	expect(await currentFocusID()).toBe('menu-button');
@@ -87,7 +97,7 @@ it('focuses on the previous item in the tab order after pressing shift-tab', asy
 
 it('closes the menu if you click outside of it', async () => {
 	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 	await menuOpen();
 
 	await page.click('h1');
@@ -98,16 +108,26 @@ it('closes the menu if you click outside of it', async () => {
 
 it('leaves the menu open if you click inside of it', async () => {
 	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 	await menuOpen();
 
-	await page.click('#menu-item-1');
-	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
-	await menuOpen(); // times out if menu closes
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
+	page.once('dialog', async (dialog) => {
+		await dialog.dismiss();
+	});
 
-	await page.click('#menu');
-	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
-	await menuOpen(); // times out if menu closes
+	await page.click('#menu-item-3');
+	await sleep(1000); // visibility: hidden is delayed via CSS
+	expect(await menuIsOpen(page)).toBe(true);
+
+	const { xOffset, yOffset } = await page.evaluate((el: HTMLElement) => {
+		const { left: xOffset, top: yOffset } = el.getBoundingClientRect();
+		return { xOffset, yOffset };
+	}, await page.$('#menu'));
+
+	await page.mouse.click(xOffset + 2, yOffset + 2); // Click just inside the top left corner (`page.click()` clicks the center, which is a link to NPM)
+	await sleep(1000); // visibility: hidden is delayed via CSS
+	expect(await menuIsOpen(page)).toBe(true);
 
 	expect(true).toBe(true);
 });
@@ -116,7 +136,7 @@ it('reroutes enter presses on menu items as clicks', async () => {
 	let alertAppeared = false;
 
 	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 	await menuOpen();
 
 	// eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -126,7 +146,7 @@ it('reroutes enter presses on menu items as clicks', async () => {
 	});
 
 	await page.focus('#menu-item-3');
-	await keyboard.down('Enter');
+	await page.keyboard.down('Enter');
 
 	expect(alertAppeared).toBe(true);
 });
