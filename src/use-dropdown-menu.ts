@@ -21,7 +21,6 @@ export default function useDropdownMenu(itemCount: number) {
 	// Create refs
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const itemRefs = useRef<React.RefObject<HTMLAnchorElement>[]>([]);
-	const overflowStyle = useRef<string | null>(null);
 
 	// Initialize refs and update them when the item count changes
 	useEffect(() => {
@@ -89,35 +88,21 @@ export default function useDropdownMenu(itemCount: number) {
 
 	// Disable scroll when the menu is opened, and revert back to the previous style when the menu is closed
 	useEffect(() => {
-		// Select for body element
-		const body = document.querySelector('body');
-
-		// Type check against the body not being selected for
-		if (!body) {
-			return;
-		}
-
-		// Check if the overflow style has not been saved
-		if (typeof overflowStyle.current !== 'string') {
-			overflowStyle.current = body.style.overflow;
-		}
-
-		// Set the overflow style to hidden on menu open
-		if (isOpen) {
-			body.style.overflow = 'hidden';
-		}
-
-		// Revert overflow style on close
-		if (!isOpen) {
-			body.style.overflow = overflowStyle.current;
-		}
-
-		// Ensure the body style is reverted on dismount
-		return () => {
-			if (typeof overflowStyle.current === 'string') {
-				body.style.overflow = overflowStyle.current;
+		const disableArrowScroll = (event: KeyboardEvent) => {
+			if (
+				isOpen &&
+				(event.key === 'ArrowDown' ||
+					event.key === 'ArrowUp' ||
+					event.key === 'ArrowLeft' ||
+					event.key === 'ArrowRight')
+			) {
+				event.preventDefault();
 			}
 		};
+
+		document.addEventListener('keydown', disableArrowScroll);
+
+		return () => document.removeEventListener('keydown', disableArrowScroll);
 	}, [isOpen]);
 
 	// Create a handler function for the button's clicks and keyboard events

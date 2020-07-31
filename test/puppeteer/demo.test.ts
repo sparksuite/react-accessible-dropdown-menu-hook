@@ -14,6 +14,11 @@ beforeEach(async () => {
 	await page.goto(`file://${path.join(__dirname, '..', '..', 'demo', 'build', 'index.html')}`, {
 		waitUntil: 'load',
 	});
+
+	await page.setViewport({
+		width: 500,
+		height: 500,
+	});
 });
 
 it('has the correct page title', async () => {
@@ -38,27 +43,24 @@ it('focuses on the menu button after pressing escape', async () => {
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
-it('sets body overflow style to hidden when the menu is opened', async () => {
+it('disables scroll by arrow key when menu is open', async () => {
 	await page.focus('#menu-button');
 	await keyboard.down('Enter');
 	await menuOpen();
 
-	expect(
-		await page.evaluate(() => window.getComputedStyle(document.querySelector('body')).getPropertyValue('overflow'))
-	).toBe('hidden');
+	await keyboard.down('ArrowDown');
+
+	expect(await page.evaluate(() => window.scrollY === 0)).toBeTruthy();
 });
 
-it('reverts body overflow when menu is closed', async () => {
-	await page.focus('#menu-button');
-	await keyboard.down('Enter');
-	await menuOpen();
-
-	await page.click('h1');
+it('does not effect scroll when menu is closed', async () => {
 	await menuClosed();
+	await page.focus('body');
 
-	expect(
-		await page.evaluate(() => window.getComputedStyle(document.querySelector('body')).getPropertyValue('overflow'))
-	).toBe('visible');
+	await keyboard.press('ArrowDown');
+	await keyboard.press('ArrowDown');
+
+	expect(await page.evaluate(() => window.scrollY > 0)).toBeTruthy();
 });
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
