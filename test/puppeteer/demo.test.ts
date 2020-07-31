@@ -69,8 +69,6 @@ it('does not disable scroll by arrow key when menu is closed', async () => {
 		height: 500,
 	});
 
-	await page.focus('body');
-
 	const currentScrollY = await page.evaluate(() => window.scrollY);
 	await page.keyboard.press('ArrowDown');
 	await sleep(1000); // Give page time to scroll
