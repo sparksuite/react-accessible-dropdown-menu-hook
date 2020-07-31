@@ -44,8 +44,7 @@ it('focuses on the menu button after pressing escape', async () => {
 });
 
 it('disables scroll by arrow key when menu is open', async () => {
-	await page.focus('#menu-button');
-	await keyboard.down('Enter');
+	await page.click('#menu-button');
 	await menuOpen();
 
 	await keyboard.down('ArrowDown');
