@@ -24,11 +24,6 @@ beforeEach(async () => {
 	await page.goto(`file://${path.join(__dirname, '..', '..', 'demo', 'build', 'index.html')}`, {
 		waitUntil: 'load',
 	});
-
-	await page.setViewport({
-		width: 500,
-		height: 500,
-	});
 });
 
 it('has the correct page title', async () => {
@@ -54,22 +49,32 @@ it('focuses on the menu button after pressing escape', async () => {
 });
 
 it('disables scroll by arrow key when menu is open', async () => {
+	await page.setViewport({
+		width: 1000,
+		height: 500,
+	});
+
 	await page.click('#menu-button');
 	await menuOpen();
 
-	await keyboard.down('ArrowDown');
-
-	expect(await page.evaluate(() => window.scrollY)).toBe(0);
+	const currentScrollY = await page.evaluate(() => window.scrollY);
+	await page.keyboard.down('ArrowDown');
+	await sleep(1000); // Give page time to scroll
+	expect(await page.evaluate(() => window.scrollY)).toBe(currentScrollY);
 });
 
 it('does not disable scroll by arrow key when menu is closed', async () => {
-	await menuClosed();
+	await page.setViewport({
+		width: 1000,
+		height: 500,
+	});
+
 	await page.focus('body');
 
-	await keyboard.press('ArrowDown');
-	await keyboard.press('ArrowDown');
-
-	expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+	const currentScrollY = await page.evaluate(() => window.scrollY);
+	await page.keyboard.press('ArrowDown');
+	await sleep(1000); // Give page time to scroll
+	expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(currentScrollY);
 });
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
