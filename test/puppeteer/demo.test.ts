@@ -76,11 +76,21 @@ it('leaves the menu open if you click inside of it', async () => {
 	await page.keyboard.down('Enter');
 	await menuOpen();
 
-	await page.click('#menu-item-1');
+	// eslint-disable-next-line @typescript-eslint/no-misused-promises
+	page.once('dialog', async (dialog) => {
+		await dialog.dismiss();
+	});
+
+	await page.click('#menu-item-3');
 	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
 	await menuOpen(); // times out if menu closes
 
-	await page.click('#menu');
+	const { xOffset, yOffset } = await page.evaluate((el: HTMLElement) => {
+		const { left: xOffset, top: yOffset } = el.getBoundingClientRect();
+		return { xOffset, yOffset };
+	}, await page.$('#menu'));
+
+	await page.mouse.click(xOffset + 2, yOffset + 2); // Click just inside the top left corner (`page.click()` clicks the center, which is a link to NPM)
 	await new Promise((resolve) => setTimeout(resolve, 1000)); // visibility: hidden is delayed via CSS
 	await menuOpen(); // times out if menu closes
 
