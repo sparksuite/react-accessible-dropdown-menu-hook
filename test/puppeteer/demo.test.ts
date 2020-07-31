@@ -50,7 +50,7 @@ it('disables scroll by arrow key when menu is open', async () => {
 
 	await keyboard.down('ArrowDown');
 
-	expect(await page.evaluate(() => window.scrollY === 0)).toBeTruthy();
+	expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });
 
 it('does not effect scroll when menu is closed', async () => {
@@ -60,7 +60,7 @@ it('does not effect scroll when menu is closed', async () => {
 	await keyboard.press('ArrowDown');
 	await keyboard.press('ArrowDown');
 
-	expect(await page.evaluate(() => window.scrollY > 0)).toBeTruthy();
+	expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
 });
 
 it('focuses on the next item in the tab order after pressing tab', async () => {
