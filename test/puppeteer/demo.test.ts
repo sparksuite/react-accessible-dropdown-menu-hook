@@ -52,7 +52,7 @@ it('disables scroll by arrow key when menu is open', async () => {
 	expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });
 
-it('does not effect scroll when menu is closed', async () => {
+it('does not disable scroll by arrow key when menu is closed', async () => {
 	await menuClosed();
 	await page.focus('body');
 
