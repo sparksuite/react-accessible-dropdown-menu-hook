@@ -86,7 +86,7 @@ export default function useDropdownMenu(itemCount: number) {
 		return () => document.removeEventListener('click', handleEveryClick);
 	}, [isOpen]);
 
-	// Disable scroll when the menu is opened, and revert back to the previous style when the menu is closed
+	// Disable scroll when the menu is opened, and revert back when the menu is closed
 	useEffect(() => {
 		const disableArrowScroll = (event: KeyboardEvent) => {
 			if (isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
