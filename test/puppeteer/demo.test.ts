@@ -48,6 +48,33 @@ it('focuses on the menu button after pressing escape', async () => {
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
+it('disables scroll by arrow key when menu is open', async () => {
+	await page.setViewport({
+		width: 1000,
+		height: 500,
+	});
+
+	await page.click('#menu-button');
+	await menuOpen();
+
+	const currentScrollY = await page.evaluate(() => window.scrollY);
+	await page.keyboard.down('ArrowDown');
+	await sleep(1000); // Give page time to scroll
+	expect(await page.evaluate(() => window.scrollY)).toBe(currentScrollY);
+});
+
+it('does not disable scroll by arrow key when menu is closed', async () => {
+	await page.setViewport({
+		width: 1000,
+		height: 500,
+	});
+
+	const currentScrollY = await page.evaluate(() => window.scrollY);
+	await page.keyboard.press('ArrowDown');
+	await sleep(1000); // Give page time to scroll
+	expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(currentScrollY);
+});
+
 it('focuses on the next item in the tab order after pressing tab', async () => {
 	await page.focus('#menu-button');
 	await page.keyboard.down('Enter');

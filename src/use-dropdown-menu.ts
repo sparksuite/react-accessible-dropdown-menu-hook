@@ -86,6 +86,19 @@ export default function useDropdownMenu(itemCount: number) {
 		return () => document.removeEventListener('click', handleEveryClick);
 	}, [isOpen]);
 
+	// Disable scroll when the menu is opened, and revert back when the menu is closed
+	useEffect(() => {
+		const disableArrowScroll = (event: KeyboardEvent) => {
+			if (isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+				event.preventDefault();
+			}
+		};
+
+		document.addEventListener('keydown', disableArrowScroll);
+
+		return () => document.removeEventListener('keydown', disableArrowScroll);
+	}, [isOpen]);
+
 	// Create a handler function for the button's clicks and keyboard events
 	const buttonListener = (e: React.KeyboardEvent | React.MouseEvent) => {
 		// Detect if event was a keyboard event or a mouse event
