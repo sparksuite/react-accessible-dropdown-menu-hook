@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './app';
 
 // Tests
-it('renders', () => {
+it('Renders', () => {
 	const div = document.createElement('div');
 	ReactDOM.render(<App />, div);
 });
