@@ -56,11 +56,14 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	fireEvent(screen.getByText('Primary'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
+	fireEvent(
+		screen.getByText('Primary'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
 
 	expect(screen.getByText('Item 1')).toHaveFocus();
 });
@@ -114,15 +117,18 @@ it('Moves the focus to the next element in the menu after pressing the down arro
 	userEvent.type(screen.getByText('Primary'), '{enter}', {
 		skipClick: true,
 	});
-	
+
 	expect(screen.getByText('Item 1')).toHaveFocus();
 
-	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 1'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 2')).toHaveFocus();
 });
 
@@ -130,27 +136,33 @@ it('Moves the focus to the previous element in the menu after pressing the up ar
 	render(<TestComponent />);
 
 	userEvent.tab();
-	
+
 	userEvent.type(screen.getByText('Primary'), '{enter}', {
 		skipClick: true,
 	});
-	
+
 	expect(screen.getByText('Item 1')).toHaveFocus();
 
-	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 1'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 2')).toHaveFocus();
 
-	fireEvent(screen.getByText('Item 2'), new KeyboardEvent('keydown', {
-		key: 'ArrowUp',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 2'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowUp',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 1')).toHaveFocus();
 });
 
@@ -158,19 +170,22 @@ it('Wraps the focus to the last element when pressing the up arrow at the beginn
 	render(<TestComponent />);
 
 	userEvent.tab();
-	
+
 	userEvent.type(screen.getByText('Primary'), '{enter}', {
 		skipClick: true,
 	});
-	
+
 	expect(screen.getByText('Item 1')).toHaveFocus();
 
-	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
-		key: 'ArrowUp',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 1'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowUp',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 3')).toHaveFocus();
 });
 
@@ -178,27 +193,33 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 	render(<TestComponent />);
 
 	userEvent.tab();
-	
+
 	userEvent.type(screen.getByText('Primary'), '{enter}', {
 		skipClick: true,
 	});
-	
+
 	expect(screen.getByText('Item 1')).toHaveFocus();
 
-	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
-		key: 'ArrowUp',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 1'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowUp',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 3')).toHaveFocus();
 
-	fireEvent(screen.getByText('Item 3'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 3'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 1')).toHaveFocus();
 });
 
@@ -222,7 +243,7 @@ it('Sets isOpen to false after pressing tab while focused on a menu item', () =>
 	render(<TestComponent />);
 
 	userEvent.tab();
-	
+
 	userEvent.type(screen.getByText('Primary'), '{enter}', {
 		skipClick: true,
 	});
@@ -236,11 +257,11 @@ it('Moves the focus to the menu button after pressing escape while focused on a 
 	render(<TestComponent />);
 
 	userEvent.tab();
-	
+
 	userEvent.type(screen.getByText('Primary'), '{enter}', {
 		skipClick: true,
 	});
-	
+
 	userEvent.type(screen.getByText('Item 1'), '{esc}', {
 		skipClick: true,
 	});
@@ -282,29 +303,41 @@ it('Can navigate to a dynamically-added item', () => {
 
 	userEvent.click(screen.getByText('Primary'));
 
-	fireEvent(screen.getByText('Primary'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
+	fireEvent(
+		screen.getByText('Primary'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
 
-	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
+	fireEvent(
+		screen.getByText('Item 1'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
 
-	fireEvent(screen.getByText('Item 2'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
+	fireEvent(
+		screen.getByText('Item 2'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
 
-	fireEvent(screen.getByText('Item 3'), new KeyboardEvent('keydown', {
-		key: 'ArrowDown',
-		bubbles: true,
-		cancelable: true,
-	}));
-	
+	fireEvent(
+		screen.getByText('Item 3'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
 	expect(screen.getByText('Item 4')).toHaveFocus();
 });

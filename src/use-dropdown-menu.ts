@@ -11,6 +11,7 @@ interface ButtonProps
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useDropdownMenu(itemCount: number) {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -24,7 +25,7 @@ export default function useDropdownMenu(itemCount: number) {
 
 	// Initialize refs and update them when the item count changes
 	useEffect(() => {
-		itemRefs.current = [...Array(itemCount)].map(() => createRef<HTMLAnchorElement>());
+		itemRefs.current = [...Array<undefined>(itemCount)].map(() => createRef<HTMLAnchorElement>());
 	}, [itemCount]);
 
 	// Create type guard
@@ -187,7 +188,7 @@ export default function useDropdownMenu(itemCount: number) {
 		'aria-expanded': isOpen,
 	};
 
-	const itemProps = [...Array(itemCount)].map((ignore, index) => ({
+	const itemProps = [...Array<undefined>(itemCount)].map((_ignore, index) => ({
 		onKeyDown: itemListener,
 		tabIndex: -1,
 		role: 'menuitem',
