@@ -55,13 +55,13 @@ export default function useDropdownMenu(itemCount: number) {
 
 	// Handle listening for clicks and auto-hiding the menu
 	useEffect(() => {
+		// Ignore if the menu isn't open
+		if (!isOpen) {
+			return;
+		}
+
 		// This function is designed to handle every click
 		const handleEveryClick = (event: MouseEvent) => {
-			// Ignore if the menu isn't open
-			if (!isOpen) {
-				return;
-			}
-
 			// Make this happen asynchronously
 			setTimeout(() => {
 				// Type guard
