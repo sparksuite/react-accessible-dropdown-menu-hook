@@ -80,7 +80,10 @@ export default function useDropdownMenu(itemCount: number) {
 		};
 
 		// Add listener
-		document.addEventListener('click', handleEveryClick);
+		//  -> Force it to be async to fix: https://github.com/facebook/react/issues/20074
+		setTimeout(() => {
+			document.addEventListener('click', handleEveryClick);
+		}, 1);
 
 		// Return function to remove listener
 		return () => document.removeEventListener('click', handleEveryClick);
