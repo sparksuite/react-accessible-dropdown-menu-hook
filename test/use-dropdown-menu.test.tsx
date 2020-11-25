@@ -1,6 +1,6 @@
 // Imports
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TestComponent from './test-component';
 
@@ -49,7 +49,6 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 	expect(screen.getByText('Item 1')).toHaveFocus();
 });
 
-/*
 it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button', () => {
 	render(<TestComponent />);
 
@@ -57,13 +56,14 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	userEvent.type(screen.getByText('Primary'), '{arrowdown}', {
-		skipClick: true,
-	});
+	fireEvent(screen.getByText('Primary'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
 
 	expect(screen.getByText('Item 1')).toHaveFocus();
 });
-*/
 
 it('Sets isOpen to true after pressing enter while focused on the menu button', () => {
 	render(<TestComponent />);
@@ -106,60 +106,101 @@ it('Sets isOpen to false after clicking a menu item that calls the state change 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
 
-/*
 it('Moves the focus to the next element in the menu after pressing the down arrow', () => {
-	const component = render(<TestComponent />);
-	const button = component.find('#menu-button');
-	const firstMenuItem = component.find('#menu-item-1');
-	const secondMenuItem = component.find('#menu-item-2');
+	render(<TestComponent />);
 
-	button.getDOMNode<HTMLButtonElement>().focus();
-	button.simulate('keydown', { key: 'Enter' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	expect(document.activeElement?.id).toBe('menu-item-2');
+	userEvent.tab();
 
-	secondMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	expect(document.activeElement?.id).toBe('menu-item-3');
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+	
+	expect(screen.getByText('Item 1')).toHaveFocus();
+
+	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 2')).toHaveFocus();
 });
 
 it('Moves the focus to the previous element in the menu after pressing the up arrow', () => {
-	const component = render(<TestComponent />);
-	const button = component.find('#menu-button');
-	const firstMenuItem = component.find('#menu-item-1');
-	const secondMenuItem = component.find('#menu-item-2');
+	render(<TestComponent />);
 
-	button.getDOMNode<HTMLButtonElement>().focus();
-	button.simulate('keydown', { key: 'Enter' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
+	userEvent.tab();
+	
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+	
+	expect(screen.getByText('Item 1')).toHaveFocus();
 
-	secondMenuItem.simulate('keydown', { key: 'ArrowUp' });
-	expect(document.activeElement?.id).toBe('menu-item-1');
+	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 2')).toHaveFocus();
+
+	fireEvent(screen.getByText('Item 2'), new KeyboardEvent('keydown', {
+		key: 'ArrowUp',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 1')).toHaveFocus();
 });
 
 it('Wraps the focus to the last element when pressing the up arrow at the beginning of the menu', () => {
-	const component = render(<TestComponent />);
-	const button = component.find('#menu-button');
-	const firstMenuItem = component.find('#menu-item-1');
+	render(<TestComponent />);
 
-	button.getDOMNode<HTMLButtonElement>().focus();
-	button.simulate('keydown', { key: 'Enter' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowUp' });
-	expect(document.activeElement?.id).toBe('menu-item-3');
+	userEvent.tab();
+	
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+	
+	expect(screen.getByText('Item 1')).toHaveFocus();
+
+	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
+		key: 'ArrowUp',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 3')).toHaveFocus();
 });
 
 it('Wraps the focus to the first element when pressing the down arrow at the end of the menu', () => {
-	const component = render(<TestComponent />);
-	const button = component.find('#menu-button');
-	const firstMenuItem = component.find('#menu-item-1');
+	render(<TestComponent />);
 
-	button.getDOMNode<HTMLButtonElement>().focus();
-	button.simulate('keydown', { key: 'Enter' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	expect(document.activeElement?.id).toBe('menu-item-1');
+	userEvent.tab();
+	
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+	
+	expect(screen.getByText('Item 1')).toHaveFocus();
+
+	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
+		key: 'ArrowUp',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 3')).toHaveFocus();
+
+	fireEvent(screen.getByText('Item 3'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 1')).toHaveFocus();
 });
-*/
 
 it('Sets isOpen to false after pressing escape while focused on a menu item', () => {
 	render(<TestComponent />);
@@ -234,22 +275,36 @@ it('Adds properties to items added after mount', () => {
 	expect(screen.getByText('Item 4')).toHaveAttribute('role', 'menuitem');
 });
 
-/*
 it('Can navigate to a dynamically-added item', () => {
-	const component = render(<TestComponent />);
-	const addItemButton = component.find('#add-item');
-	const menuButton = component.find('#menu-button');
-	const firstMenuItem = component.find('#menu-item-1');
+	render(<TestComponent />);
 
-	addItemButton.simulate('click');
+	userEvent.click(screen.getByText('Add Item'));
 
-	menuButton.getDOMNode<HTMLButtonElement>().focus();
-	menuButton.simulate('keydown', { key: 'Enter' });
+	userEvent.click(screen.getByText('Primary'));
 
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
-	firstMenuItem.simulate('keydown', { key: 'ArrowDown' });
+	fireEvent(screen.getByText('Primary'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
 
-	expect(document.activeElement?.id).toBe('menu-item-4');
+	fireEvent(screen.getByText('Item 1'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
+
+	fireEvent(screen.getByText('Item 2'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
+
+	fireEvent(screen.getByText('Item 3'), new KeyboardEvent('keydown', {
+		key: 'ArrowDown',
+		bubbles: true,
+		cancelable: true,
+	}));
+	
+	expect(screen.getByText('Item 4')).toHaveFocus();
 });
-*/
