@@ -37,7 +37,7 @@ const TestComponent: React.FC = () => {
 				Add Item
 			</button>
 
-			<span id='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
+			<span data-testid='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
 		</React.Fragment>
 	);
 };

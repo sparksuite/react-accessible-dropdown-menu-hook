@@ -26,18 +26,18 @@ beforeEach(async () => {
 	});
 });
 
-it('has the correct page title', async () => {
+it('Has the correct page title', async () => {
 	await expect(page.title()).resolves.toMatch('React Accessible Dropdown Menu Hook');
 });
 
-it('leaves focus on the button after clicking it', async () => {
+it('Leaves focus on the button after clicking it', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
 
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
-it('focuses on the menu button after pressing escape', async () => {
+it('Focuses on the menu button after pressing escape', async () => {
 	await page.focus('#menu-button');
 	await page.keyboard.down('Enter');
 	await menuOpen();
@@ -48,7 +48,7 @@ it('focuses on the menu button after pressing escape', async () => {
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
-it('disables scroll by arrow key when menu is open', async () => {
+it('Disables scroll by arrow key when menu is open', async () => {
 	await page.setViewport({
 		width: 1000,
 		height: 500,
@@ -63,7 +63,7 @@ it('disables scroll by arrow key when menu is open', async () => {
 	expect(await page.evaluate(() => window.scrollY)).toBe(currentScrollY);
 });
 
-it('does not disable scroll by arrow key when menu is closed', async () => {
+it('Does not disable scroll by arrow key when menu is closed', async () => {
 	await page.setViewport({
 		width: 1000,
 		height: 500,
@@ -75,7 +75,7 @@ it('does not disable scroll by arrow key when menu is closed', async () => {
 	expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(currentScrollY);
 });
 
-it('focuses on the next item in the tab order after pressing tab', async () => {
+it('Focuses on the next item in the tab order after pressing tab', async () => {
 	await page.focus('#menu-button');
 	await page.keyboard.down('Enter');
 	await menuOpen();
@@ -86,7 +86,7 @@ it('focuses on the next item in the tab order after pressing tab', async () => {
 	expect(await currentFocusID()).toBe('first-footer-link');
 });
 
-it('focuses on the previous item in the tab order after pressing shift-tab', async () => {
+it('Focuses on the previous item in the tab order after pressing shift-tab', async () => {
 	await page.focus('#menu-button');
 	await page.keyboard.down('Enter');
 	await menuOpen();
@@ -98,7 +98,7 @@ it('focuses on the previous item in the tab order after pressing shift-tab', asy
 	expect(await currentFocusID()).toBe('menu-button');
 });
 
-it('closes the menu if you click outside of it', async () => {
+it('Closes the menu if you click outside of it', async () => {
 	await page.focus('#menu-button');
 	await page.keyboard.down('Enter');
 	await menuOpen();
@@ -109,7 +109,7 @@ it('closes the menu if you click outside of it', async () => {
 	expect(true).toBe(true);
 });
 
-it('leaves the menu open if you click inside of it', async () => {
+it('Leaves the menu open if you click inside of it', async () => {
 	await page.focus('#menu-button');
 	await page.keyboard.down('Enter');
 	await menuOpen();
@@ -135,7 +135,7 @@ it('leaves the menu open if you click inside of it', async () => {
 	expect(true).toBe(true);
 });
 
-it('reroutes enter presses on menu items as clicks', async () => {
+it('Reroutes enter presses on menu items as clicks', async () => {
 	let alertAppeared = false;
 
 	await page.focus('#menu-button');
