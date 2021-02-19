@@ -10,8 +10,8 @@
 	"scripts": {
 		"dev": "yarn --cwd ./demo install --frozen-lockfile --check-files && yarn install --frozen-lockfile --check-files",
 		"test": "yarn compile && yarn --cwd ./demo build && yarn --cwd ./demo test --watchAll=false && jest",
-		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json}'",
-		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json}'",
+		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json,yml}'",
+		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
 		"compile": "rm -rf dist/ && tsc"
 	},
