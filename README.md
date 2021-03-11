@@ -2,6 +2,11 @@
 
 This Hook handles all the accessibility logic when building a dropdown menu, dropdown button, etc., and leaves the design completely up to you. It also handles the logic for closing the menu when you click outside of it. [View the demo.](http://sparksuite.github.io/react-accessible-dropdown-menu-hook)
 
+- 📦 Written entirely in TypeScript
+- 🔬 Thoroughly tested
+- ⚡️ Zero dependencies
+- ✨ Tiny size
+
 ## Getting started
 
 Install with Yarn or npm:
@@ -20,7 +25,7 @@ Import the Hook:
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 ```
 
-Call the Hook, telling it how many items your menu will have.
+Call the Hook, telling it how many items your menu will have:
 
 ```tsx
 const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(numberOfItems);
@@ -81,7 +86,7 @@ This Hook returns an object of the following shape:
     - **aria-expanded:** An ARIA attribute indicating whether the menu is currently open.
 - **itemProps:** An array of objects meant to be spread as properties on `<a />` elements that serve as menu items in your dropdown.
     - **onKeyDown:** A function which manages the behavior of your dropdown menu when a key is pressed while focused on a menu item.
-    - **tabIndex:** Sets the tab index property to `-1` to prevent the browser's native focusing logic. Focus is managed programatically by this Hook.
+    - **tabIndex:** Sets the tab index property to `-1` to prevent the browser’s native focusing logic. Focus is managed programatically by this Hook.
     - **role:** A role property in accordance with WAI-ARIA guidelines. 
     - **ref:** A React ref applied to each menu item, used to manage focus.
 - **isOpen:** A boolean value indicating if the menu is open or closed. The developer should use this value to make the menu visible or not.
