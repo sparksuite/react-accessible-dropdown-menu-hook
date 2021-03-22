@@ -1,0 +1,132 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+	--ifm-color-primary: #8eb34b;
+	--ifm-color-primary-dark: #80a144;
+	--ifm-color-primary-darker: #799840;
+	--ifm-color-primary-darkest: #637d35;
+	--ifm-color-primary-light: #99bb5c;
+	--ifm-color-primary-lighter: #9fbf65;
+	--ifm-color-primary-lightest: #b0ca80;
+	--ifm-color-secondary: #67b1d6;
+	--ifm-code-font-size: 95%;
+}
+
+.docusaurus-highlight-code-line {
+	background-color: rgb(72, 77, 91);
+	display: block;
+	margin: 0 calc(-1 * var(--ifm-pre-padding));
+	padding: 0 var(--ifm-pre-padding);
+}
+
+.demo-button {
+	appearance: none;
+	width: 10rem;
+	margin: auto;
+	padding: 1rem 0;
+	background: #eee;
+	outline: none;
+	border: 1px solid #ddd;
+	border-radius: 0.2rem;
+	font-size: 1.5rem;
+	color: #000;
+	font-weight: 300;
+	cursor: pointer;
+	position: relative;
+	line-height: 1;
+	transition: all 0.2s ease 0.05s;
+	display: flex;
+}
+
+.demo-button:hover {
+	background: #fafafa;
+}
+
+.demo-button:focus {
+	box-shadow: 0 0 0 0.15rem #fff, 0 0 0 0.3rem #bbb;
+}
+
+.demo-button span {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.demo-button svg {
+	margin-right: 1rem;
+	color: #999;
+}
+
+.demo-menu {
+	background: #fff;
+	margin: auto;
+	margin-top: 0.8rem;
+	padding: 0.8rem 1rem;
+	border: 1px solid #ddd;
+	border-radius: 0.25rem;
+	box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+	opacity: 0;
+	visibility: hidden;
+	transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0.2s;
+	will-change: transform;
+	text-align: left;
+	position: absolute;
+	width: fit-content;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 2;
+}
+
+.demo-menu.visible {
+	transform: translateY(-0.3rem);
+	transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0s;
+	visibility: visible;
+	opacity: 1;
+}
+
+.demo-menu a {
+	display: block;
+	font-size: 1.2rem;
+	padding: 0.25rem;
+}
+
+.demo-menu a {
+	color: #29779e;
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
+	border: 0.1rem solid transparent;
+	border-radius: 0.2rem;
+}
+
+.demo-menu a:hover {
+	text-decoration: underline;
+}
+
+.demo-menu a:focus {
+	border-color: #3a8eb8;
+}
+
+.demo-menu a svg {
+	color: #777;
+	margin-right: 0.5rem;
+}
+
+ul.behavior {
+	width: fit-content;
+	max-width: 50rem;
+	margin: 12rem auto 0;
+	text-align: left;
+	line-height: 1.3;
+}
+
+ul.behavior li {
+	padding: 0.25rem 0;
+}

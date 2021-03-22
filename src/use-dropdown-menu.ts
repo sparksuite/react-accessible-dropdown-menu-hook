@@ -11,8 +11,19 @@ interface ButtonProps
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function useDropdownMenu(itemCount: number) {
+interface DropdownMenuResponse {
+	readonly buttonProps: ButtonProps;
+	readonly itemProps: {
+		onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
+		tabIndex: number;
+		role: string;
+		ref: React.RefObject<HTMLAnchorElement>;
+	}[];
+	readonly isOpen: boolean;
+	readonly setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function useDropdownMenu(itemCount: number): DropdownMenuResponse {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
@@ -33,7 +44,7 @@ export default function useDropdownMenu(itemCount: number) {
 		(e as React.KeyboardEvent).key !== undefined;
 
 	// Handles moving the focus between menu items
-	const moveFocus = (itemIndex: number) => {
+	const moveFocus = (itemIndex: number): void => {
 		currentFocusIndex.current = itemIndex;
 		itemRefs.current[itemIndex].current?.focus();
 	};
@@ -62,7 +73,7 @@ export default function useDropdownMenu(itemCount: number) {
 		}
 
 		// This function is designed to handle every click
-		const handleEveryClick = (event: MouseEvent) => {
+		const handleEveryClick = (event: MouseEvent): void => {
 			// Make this happen asynchronously
 			setTimeout(() => {
 				// Type guard
@@ -87,12 +98,12 @@ export default function useDropdownMenu(itemCount: number) {
 		}, 1);
 
 		// Return function to remove listener
-		return () => document.removeEventListener('click', handleEveryClick);
+		return (): void => document.removeEventListener('click', handleEveryClick);
 	}, [isOpen]);
 
 	// Disable scroll when the menu is opened, and revert back when the menu is closed
 	useEffect(() => {
-		const disableArrowScroll = (event: KeyboardEvent) => {
+		const disableArrowScroll = (event: KeyboardEvent): void => {
 			if (isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
 				event.preventDefault();
 			}
@@ -100,11 +111,11 @@ export default function useDropdownMenu(itemCount: number) {
 
 		document.addEventListener('keydown', disableArrowScroll);
 
-		return () => document.removeEventListener('keydown', disableArrowScroll);
+		return (): void => document.removeEventListener('keydown', disableArrowScroll);
 	}, [isOpen]);
 
 	// Create a handler function for the button's clicks and keyboard events
-	const buttonListener = (e: React.KeyboardEvent | React.MouseEvent) => {
+	const buttonListener = (e: React.KeyboardEvent | React.MouseEvent): void => {
 		// Detect if event was a keyboard event or a mouse event
 		if (isKeyboardEvent(e)) {
 			const { key } = e;
@@ -127,7 +138,7 @@ export default function useDropdownMenu(itemCount: number) {
 	};
 
 	// Create a function that handles menu logic based on keyboard events that occur on menu items
-	const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+	const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>): void => {
 		// Destructure the key property from the event object
 		const { key } = e;
 

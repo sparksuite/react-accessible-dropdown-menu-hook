@@ -1,0 +1,36 @@
+{
+	"homepage": ".",
+	"scripts": {
+		"pretest": "react-scripts build",
+		"test": "jest --color"
+	},
+	"dependencies": {
+		"@types/jest": "^26.0.21",
+		"@types/jest-environment-puppeteer": "^4.4.1",
+		"@types/node": "^14.0.0",
+		"@types/react": "^17.0.0",
+		"@types/react-dom": "^17.0.0",
+		"jest-puppeteer": "^4.4.0",
+		"merge": "^2.1.1",
+		"puppeteer": "^8.0.0",
+		"react": "^17.0.1",
+		"react-accessible-dropdown-menu-hook": "link:../..",
+		"react-dom": "^17.0.1",
+		"react-scripts": "4.0.1",
+		"ts-jest": "^26.5.4",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.1.2"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}

@@ -1,8 +1,48 @@
 // Imports
-import React from 'react';
+import React, { useState } from 'react';
+import useDropdownMenu from './use-dropdown-menu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import TestComponent from './test-component';
+
+// A mock component for testing the Hook
+const TestComponent: React.FC = () => {
+	const [itemCount, setItemCount] = useState(3);
+	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(itemCount);
+
+	return (
+		<React.Fragment>
+			<button {...buttonProps} id='menu-button'>
+				Primary
+			</button>
+
+			<div role='menu' id='menu'>
+				{itemProps.map((props, i) => (
+					<a
+						{...props}
+						key={i}
+						id={`menu-item-${i + 1}`}
+						onClick={i === 0 ? (): void => setIsOpen(false) : undefined}
+						href={i !== 0 ? 'https://example.com' : undefined}
+					>
+						Item {i + 1}
+					</a>
+				))}
+			</div>
+
+			<button id='second-button'>Another Button</button>
+
+			<button id='remove-item' onClick={(): void => setItemCount((prevCount) => prevCount - 1)}>
+				Remove Item
+			</button>
+
+			<button id='add-item' onClick={(): void => setItemCount((prevCount) => prevCount + 1)}>
+				Add Item
+			</button>
+
+			<span data-testid='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
+		</React.Fragment>
+	);
+};
 
 // Tests
 it('Renders', () => {

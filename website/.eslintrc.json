@@ -1,0 +1,11 @@
+{
+	"extends": ["../eslint.base.json", "plugin:react/recommended"],
+	"settings": {
+		"react": {
+			"version": "17.0"
+		}
+	},
+	"rules": {
+		"@typescript-eslint/explicit-function-return-type": "off"
+	}
+}

@@ -1,13 +1,23 @@
-# React Accessible Dropdown Menu Hook
+# <div align="center">React Accessible Dropdown Menu Hook</div>
 
-This Hook handles all the accessibility logic when building a dropdown menu, dropdown button, etc., and leaves the design completely up to you. It also handles the logic for closing the menu when you click outside of it. [View the demo.](http://sparksuite.github.io/react-accessible-dropdown-menu-hook)
+<p align="center">
+<a href="https://www.npmjs.com/package/react-accessible-dropdown-menu-hook"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/react-accessible-dropdown-menu-hook"></a>
+<a href="https://app.codecov.io/gh/sparksuite/react-accessible-dropdown-menu-hook/branch/master"><img alt="Codecov coverage" src="https://img.shields.io/codecov/c/github/sparksuite/react-accessible-dropdown-menu-hook"></a>
+<a href="https://www.npmjs.com/package/react-accessible-dropdown-menu-hook"><img alt="npm downloads" src="https://img.shields.io/npm/dw/react-accessible-dropdown-menu-hook"></a>
+<a href="https://www.npmjs.com/package/react-accessible-dropdown-menu-hook"><img alt="npm release" src="https://img.shields.io/npm/v/react-accessible-dropdown-menu-hook"></a>
+<a href="https://github.com/sparksuite/rugged"><img alt="tested with Rugged" src="https://img.shields.io/badge/tested%20with-Rugged-green"></a>
+<a href="https://github.com/sparksuite/react-accessible-dropdown-menu-hook/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/npm/l/react-accessible-dropdown-menu-hook"></a>
+</p>
 
+This Hook handles all the accessibility logic when building a dropdown menu, dropdown button, etc., and leaves the design completely up to you. It also handles the logic for closing the menu when you click outside of it.
+
+- ♿️ Fully accessible
 - 📦 Written entirely in TypeScript
 - 🔬 Thoroughly tested
 - ⚡️ Zero dependencies
 - ✨ Tiny size
 
-## Getting started
+## Quick start
 
 Install with Yarn or npm:
 
@@ -48,72 +58,19 @@ Create the menu with the `role='menu'` property and spread `itemProps[x]` onto e
 
 Done!
 
-## Design
-This Hook returns an object of the following shape:
+## Documentation
 
-```ts
-{
-    buttonProps: {
-        onKeyDown: (e: React.KeyboardEvent | React.MouseEvent) => void;
-        onClick: (e: React.KeyboardEvent | React.MouseEvent) => void;
-        tabIndex: 0;
-        ref: React.RefObject<HTMLButtonElement>;
-        role: 'button';
-        'aria-haspopup': true;
-        'aria-expanded': boolean;
-    };
-    itemProps: [
-        {
-            onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
-            tabIndex: -1;
-            role: 'menuitem';
-            ref: React.RefObject<HTMLAnchorElement>;
-        };
-        ...
-    ];
-    isOpen: boolean;
-    setIsOpen: (newValue: boolean) => void;
-}
-```
+Read the docs at: https://sparksuite.github.io/react-accessible-dropdown-menu-hook/docs/
 
-- **buttonProps:** An object meant to be spread as properties on a `<button />` element.
-    - **onKeyDown:** A function which manages the behavior of your dropdown menu when a key is pressed while focused on the menu button.
-    - **onClick:** The same function as `onKeyDown()`, but its behavior differs somewhat for click events.
-    - **tabIndex:** Sets the tab index property of the `<button />` element.
-    - **ref:** A React ref applied to the `<button />` element, used to manage focus.
-    - **role:** A role property in accordance with WAI-ARIA guidelines.
-    - **aria-haspopup:** An ARIA attribute indicating this button has a related menu element.
-    - **aria-expanded:** An ARIA attribute indicating whether the menu is currently open.
-- **itemProps:** An array of objects meant to be spread as properties on `<a />` elements that serve as menu items in your dropdown.
-    - **onKeyDown:** A function which manages the behavior of your dropdown menu when a key is pressed while focused on a menu item.
-    - **tabIndex:** Sets the tab index property to `-1` to prevent the browser’s native focusing logic. Focus is managed programatically by this Hook.
-    - **role:** A role property in accordance with WAI-ARIA guidelines. 
-    - **ref:** A React ref applied to each menu item, used to manage focus.
-- **isOpen:** A boolean value indicating if the menu is open or closed. The developer should use this value to make the menu visible or not.
-- **setIsOpen:** A function useful for allowing the developer to programmatically open/close the menu.
+## Demo
+
+See it in action: https://sparksuite.github.io/react-accessible-dropdown-menu-hook/demo/
 
 ## Accessibility notes
-Our team carefully studied and adhered to [Web Content Accessibility Guidelines 2.1](https://www.w3.org/WAI/standards-guidelines/wcag/) and  [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/) when designing this Hook. Here are some facets of accessibility that are handled automatically:
 
-- Careful following of the best practices for menus ([WAI-ARIA: 3.15](https://www.w3.org/TR/wai-aria-practices/#menu))
-  - The only deviation is that the first menu item is only focused when the menu is revealed via the keyboard ([see why](https://github.com/sparksuite/react-accessible-dropdown-menu-hook/pull/63))
-- Strict adherence to the best practices for menu buttons ([WAI-ARIA: 3.16](https://www.w3.org/TR/wai-aria-practices/#menubutton))
-- Full keyboard accessibility ([WCAG: 2.1](https://www.w3.org/WAI/WCAG21/quickref/#keyboard-accessible))
-- Use of ARIA properties and roles to establish relationships amongst elements ([WCAG: 1.3.1](https://www.w3.org/WAI/WCAG21/quickref/#info-and-relationships))
-- Use of roles to identify the purpose of different parts of the menu ([WCAG: 1.3.6](https://www.w3.org/WAI/WCAG21/quickref/#identify-purpose))
-- Focusable components receive focus in an order that preserves meaning and operability ([WCAG: 2.4.3](https://www.w3.org/WAI/WCAG21/quickref/#focus-order))
-- Appears and operates in predictable ways ([WCAG: 3.2](https://www.w3.org/WAI/WCAG21/quickref/#predictable))
+Our team carefully studied and adhered to strict accessibility guidelines when designing this Hook. To learn more, see: https://sparksuite.github.io/react-accessible-dropdown-menu-hook/docs/design/accessibility.
 
-For more details, see [this comment](https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues/8#issuecomment-567568103).
+## Contributing
 
-## Local development
+We love contributions! Contributing is easy; [learn how](https://github.com/sparksuite/react-accessible-dropdown-menu-hook/blob/master/CONTRIBUTING.md).
 
-To prep a just-cloned or just-cleaned repository for local development, run `yarn dev`.
-
-To test the whole project, run `yarn test`.
-
-To run the demo website locally, run `cd ./demo && yarn start`.
-
-To format the code, run `yarn format` at either the project root or within the `./demo` directory.
-
-To clean the repository (removes any programmatically generated files), run `yarn clean`.
