@@ -1,5 +1,7 @@
-coverage/
-demo/
-dist/
 node_modules/
+coverage/
+dist/
+build/
+.docusaurus/
 babel.config.js
+jest-puppeteer.config.js

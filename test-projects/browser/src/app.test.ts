@@ -1,33 +1,38 @@
 // Imports
 import path from 'path';
-import { Page } from 'puppeteer';
+import { ElementHandle, Page } from 'puppeteer';
 
 // Helper functions used in multiple tests
-const currentFocusID = () => page.evaluate(() => document.activeElement.id);
-const menuOpen = () => page.waitForSelector('#menu', { visible: true });
-const menuClosed = () => page.waitForSelector('#menu', { hidden: true });
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const currentFocusID = (): Promise<string | undefined> => page.evaluate(() => document.activeElement?.id);
+const menuOpen = (): Promise<ElementHandle<Element> | null> => page.waitForSelector('#menu', { visible: true });
+const menuClosed = (): Promise<ElementHandle<Element> | null> => page.waitForSelector('#menu', { hidden: true });
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
 
-const menuIsOpen = async (page: Page) =>
+const menuIsOpen = async (page: Page): Promise<boolean> =>
 	await page.evaluate(() => {
 		const element = document.querySelector('#menu');
+
+		if (!element) {
+			throw new Error('Missing element');
+		}
+
 		const style = getComputedStyle(element);
 		const rect = element.getBoundingClientRect();
 
-		return style.visibility !== 'hidden' && !!(rect.bottom || rect.top || rect.height || rect.width);
+		return style.visibility !== 'hidden' && Boolean(rect.bottom || rect.top || rect.height || rect.width);
 	});
 
 // Tests
 beforeEach(async () => {
 	await jestPuppeteer.resetPage();
 
-	await page.goto(`file://${path.join(__dirname, '..', '..', 'demo', 'build', 'index.html')}`, {
+	await page.goto(`file://${path.join(__dirname, '..', 'build', 'index.html')}`, {
 		waitUntil: 'load',
 	});
 });
 
 it('Has the correct page title', async () => {
-	await expect(page.title()).resolves.toMatch('React Accessible Dropdown Menu Hook');
+	await expect(page.title()).resolves.toMatch('Browser');
 });
 
 it('Leaves focus on the button after clicking it', async () => {

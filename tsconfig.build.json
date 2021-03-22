@@ -2,6 +2,8 @@
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
 		"module": "CommonJS",
+		"outDir": "./dist/",
 		"target": "ES2015"
-	}
+	},
+	"exclude": ["**/*.test.ts", "**/*.test.tsx"]
 }

@@ -8,12 +8,13 @@
 		"dist/"
 	],
 	"scripts": {
-		"dev": "yarn --cwd ./demo install --frozen-lockfile --check-files && yarn install --frozen-lockfile --check-files",
-		"test": "yarn compile && yarn --cwd ./demo build && yarn --cwd ./demo test --watchAll=false && jest",
-		"lint": "eslint --ext .ts,.js,.tsx . && prettier --check '**/*.{ts,js,tsx,json,yml}'",
-		"format": "eslint --fix --ext .ts,.js,.tsx . && prettier --write '**/*.{ts,js,tsx,json,yml}'",
+		"dev": "yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
+		"test": "jest && rugged",
+		"lint": "eslint --ext .js,.ts,.jsx,.tsx ./ && prettier --check '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
+		"format": "eslint --fix --ext .js,.ts,.jsx,.tsx ./ && prettier --write '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"clean": "git clean -X -d --force && find . -type d -empty -delete",
-		"compile": "rm -rf dist/ && tsc"
+		"precompile": "rm -rf dist/",
+		"compile": "tsc --project tsconfig.build.json"
 	},
 	"repository": {
 		"type": "git",
@@ -38,63 +39,28 @@
 	},
 	"homepage": "https://sparksuite.github.io/react-accessible-dropdown-menu-hook/",
 	"dependencies": {},
-	"peerDependencies": {
-		"react": ">=16.8",
-		"react-dom": ">=16.8"
-	},
+	"peerDependencies": {},
 	"devDependencies": {
-		"@babel/core": "^7.7.5",
-		"@babel/preset-env": "^7.7.6",
-		"@babel/preset-react": "^7.7.4",
-		"@babel/preset-typescript": "^7.7.4",
 		"@testing-library/jest-dom": "^5.11.6",
 		"@testing-library/react": "^11.2.2",
 		"@testing-library/user-event": "^12.2.2",
 		"@types/jest": "^26.0.3",
-		"@types/jest-environment-puppeteer": "^4.3.1",
 		"@types/react": "^17.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.8.2",
 		"@typescript-eslint/parser": "^4.8.2",
-		"babel-jest": "link:./demo/node_modules/babel-jest",
 		"eslint": "^7.14.0",
 		"eslint-config-prettier": "^7.1.0",
 		"eslint-plugin-react": "^7.17.0",
 		"eslint-plugin-react-hooks": "^4.0.0",
-		"jest": "link:./demo/node_modules/jest",
-		"jest-puppeteer": "^4.3.0",
+		"jest": "link:./test-projects/browser/node_modules/jest",
+		"jest-ts-webcompat-resolver": "^1.0.0",
 		"prettier": "^2.0.2",
-		"puppeteer": "^5.5.0",
-		"react": "link:./demo/node_modules/react",
-		"react-dom": "link:./demo/node_modules/react-dom",
+		"react": "link:./test-projects/browser/node_modules/react",
+		"react-dom": "link:./test-projects/browser/node_modules/react-dom",
 		"react-test-renderer": "^17.0.1",
+		"rugged": "^1.0.0-alpha.0",
+		"ts-jest": "^26.5.4",
+		"ts-node": "^9.1.1",
 		"typescript": "^4.1.2"
-	},
-	"jest": {
-		"collectCoverage": true,
-		"coverageDirectory": "./coverage/",
-		"collectCoverageFrom": [
-			"<rootDir>/src/**"
-		],
-		"verbose": true,
-		"projects": [
-			{
-				"displayName": "Testing Library",
-				"setupFilesAfterEnv": [
-					"<rootDir>/test/setupTests.ts"
-				],
-				"testMatch": [
-					"<rootDir>/test/*.test.ts",
-					"<rootDir>/test/*.test.tsx"
-				]
-			},
-			{
-				"displayName": "Puppeteer",
-				"preset": "jest-puppeteer",
-				"testMatch": [
-					"<rootDir>/test/puppeteer/*.test.ts",
-					"<rootDir>/test/puppeteer/*.test.tsx"
-				]
-			}
-		]
 	}
 }
