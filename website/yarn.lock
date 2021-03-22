@@ -8024,10 +8024,9 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-accessible-dropdown-menu-hook@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-accessible-dropdown-menu-hook/-/react-accessible-dropdown-menu-hook-2.2.0.tgz#0b54fafcd9248df4e7cf6e0fe997ae72fc8059e1"
-  integrity sha512-2lZUFcm1SBdJ/qiyTtcaNn07w4gVPL4VcI7dw/DoKAz8MZW3TUcRBwyhaAkuKJmdlxX4A4L9S26k2wmjdylzlQ==
+"react-accessible-dropdown-menu-hook@link:..":
+  version "0.0.0"
+  uid ""
 
 react-base16-styling@^0.6.0:
   version "0.6.0"
