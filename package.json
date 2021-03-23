@@ -8,7 +8,7 @@
 		"dist/"
 	],
 	"scripts": {
-		"dev": "yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
+		"dev": "yarn --cwd ./test-projects/browser install --frozen-lockfile && yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
 		"test": "jest && rugged",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx ./ && prettier --check '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"format": "eslint --fix --ext .js,.ts,.jsx,.tsx ./ && prettier --write '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
