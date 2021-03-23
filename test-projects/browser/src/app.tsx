@@ -15,7 +15,9 @@ const App: React.FC = () => {
 		<main className='app'>
 			<h1>Browser</h1>
 
-			<button {...buttonProps} type='button' id='menu-button'>Example</button>
+			<button {...buttonProps} type='button' id='menu-button'>
+				Example
+			</button>
 
 			<div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
 				<a {...itemProps[0]} href='https://github.com/sparksuite/react-accessible-dropdown-menu-hook' id='menu-item-1'>
@@ -31,7 +33,9 @@ const App: React.FC = () => {
 				</a>
 			</div>
 
-			<a href="https://www.sparksuite.com/" id="next-link">Sparksuite</a>
+			<a href='https://www.sparksuite.com/' id='next-link'>
+				Sparksuite
+			</a>
 		</main>
 	);
 };
