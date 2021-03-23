@@ -381,3 +381,41 @@ it('Can navigate to a dynamically-added item', () => {
 
 	expect(screen.getByText('Item 4')).toHaveFocus();
 });
+
+it('Ignores keys that buttons don’t need to handle', () => {
+	render(<TestComponent />);
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), 'Z', {
+		skipClick: true,
+	});
+});
+
+it('Ignores keys that items don’t need to handle', () => {
+	render(<TestComponent />);
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	userEvent.type(screen.getByText('Item 1'), 'Z', {
+		skipClick: true,
+	});
+});
+
+it('Doesn’t crash when enter press occurs on a menu item', () => {
+	render(<TestComponent />);
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	userEvent.type(screen.getByText('Item 1'), '{enter}', {
+		skipClick: true,
+	});
+});
