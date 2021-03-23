@@ -88,7 +88,7 @@ it('Focuses on the next item in the tab order after pressing tab', async () => {
 	await page.keyboard.down('Tab');
 	await menuClosed();
 
-	expect(await currentFocusID()).toBe('first-footer-link');
+	expect(await currentFocusID()).toBe('next-link');
 });
 
 it('Focuses on the previous item in the tab order after pressing shift-tab', async () => {
