@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 dist/
-yarn-error.log*
-yarn-debug.log*
+.eslintcache*
 .DS_Store*
+yarn-debug.log*
+yarn-error.log*
