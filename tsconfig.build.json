@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"module": "CommonJS",
 		"outDir": "./dist/",
-		"target": "es5"
+		"target": "ES2015"
 	},
 	"exclude": ["**/*.test.ts", "**/*.test.tsx"]
 }
