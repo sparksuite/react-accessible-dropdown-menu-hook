@@ -1777,6 +1777,10 @@
   version "0.0.0"
   uid ""
 
+"@types/react@*":
+  version "0.0.0"
+  uid ""
+
 "@types/react@link:../../node_modules/@types/react":
   version "0.0.0"
   uid ""
