@@ -1818,6 +1818,23 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-loadable@^5.5.5":
+  version "5.5.5"
+  resolved "https://registry.yarnpkg.com/@types/react-loadable/-/react-loadable-5.5.5.tgz#b8acc3d6cae5dbd82742927b5042b967cf9185cf"
+  integrity sha512-TDDZAtxqQFE90+qbv63BOJFKKbxsZW0cHbT70OOT7MLkik1815NwN0Gn4SyoJSkvh+XxUr0axsFGlP5Ak/SdpA==
+  dependencies:
+    "@types/react" "*"
+    "@types/webpack" "^4"
+
+"@types/react-router-config@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-router-config/-/react-router-config-5.0.2.tgz#4d3b52e71ed363a1976a12321e67b09a99ad6d10"
+  integrity sha512-WOSetDV3YPxbkVJAdv/bqExJjmcdCi/vpCJh3NfQOy1X15vHMSiMioXIcGekXDJJYhqGUMDo9e337mh508foAA==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+    "@types/react-router" "*"
+
 "@types/react-router-dom@^5.1.7":
   version "5.1.7"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.7.tgz#a126d9ea76079ffbbdb0d9225073eb5797ab7271"
@@ -1898,7 +1915,7 @@
     "@types/source-list-map" "*"
     source-map "^0.7.3"
 
-"@types/webpack@^4.41.0", "@types/webpack@^4.41.8":
+"@types/webpack@^4", "@types/webpack@^4.41.0", "@types/webpack@^4.41.8":
   version "4.41.27"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.27.tgz#f47da488c8037e7f1b2dbf2714fbbacb61ec0ffc"
   integrity sha512-wK/oi5gcHi72VMTbOaQ70VcDxSQ1uX8S2tukBK9ARuGXrYM/+u4ou73roc7trXDNmCxCoerE8zruQqX/wuHszA==

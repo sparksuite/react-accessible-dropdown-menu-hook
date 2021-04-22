@@ -80,9 +80,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - run: yarn install --frozen-lockfile --prefer-offline
-      - run: yarn compile
-      - run: yarn --cwd ./website install --frozen-lockfile --prefer-offline
+      - run: yarn dev
       - run: yarn --cwd ./website type-check
       - run: yarn --cwd ./website build
   publish:

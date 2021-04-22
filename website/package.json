@@ -20,6 +20,8 @@
 		"@fortawesome/free-solid-svg-icons": "^5.15.3",
 		"@fortawesome/react-fontawesome": "^0.1.14",
 		"@mdx-js/react": "^1.6.21",
+		"@types/react-loadable": "^5.5.5",
+		"@types/react-router-config": "^5.0.2",
 		"clsx": "^1.1.1",
 		"react": "link:../node_modules/react",
 		"react-accessible-dropdown-menu-hook": "link:../",
