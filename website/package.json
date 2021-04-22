@@ -13,8 +13,8 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"@docusaurus/core": "2.0.0-alpha.72",
-		"@docusaurus/preset-classic": "2.0.0-alpha.72",
+		"@docusaurus/core": "2.0.0-alpha.73",
+		"@docusaurus/preset-classic": "2.0.0-alpha.73",
 		"@fortawesome/fontawesome-svg-core": "^1.2.35",
 		"@fortawesome/free-brands-svg-icons": "^5.15.3",
 		"@fortawesome/free-solid-svg-icons": "^5.15.3",
