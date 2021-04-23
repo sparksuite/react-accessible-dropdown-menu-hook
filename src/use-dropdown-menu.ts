@@ -36,7 +36,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 
 	// Initialize refs and update them when the item count changes
 	useEffect(() => {
-		itemRefs.current = [...Array<undefined>(itemCount)].map(() => createRef<HTMLAnchorElement>());
+		itemRefs.current = Array.from({ length: itemCount }, () => createRef<HTMLAnchorElement>());
 	}, [itemCount]);
 
 	// Create type guard
@@ -199,7 +199,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 		'aria-expanded': isOpen,
 	};
 
-	const itemProps = [...Array<undefined>(itemCount)].map((_ignore, index) => ({
+	const itemProps = Array.from({ length: itemCount }, (_ignore, index) => ({
 		onKeyDown: itemListener,
 		tabIndex: -1,
 		role: 'menuitem',
