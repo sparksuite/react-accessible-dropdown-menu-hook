@@ -1,5 +1,5 @@
 // Imports
-import React, { useState, useRef, createRef, useEffect } from 'react';
+import React, { useState, useRef, createRef, useEffect, useMemo } from 'react';
 
 // Create interface for button properties
 interface ButtonProps
@@ -32,12 +32,10 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 
 	// Create refs
 	const buttonRef = useRef<HTMLButtonElement>(null);
-	const itemRefs = useRef<React.RefObject<HTMLAnchorElement>[]>([]);
-
-	// Initialize refs and update them when the item count changes
-	useEffect(() => {
-		itemRefs.current = Array.from({ length: itemCount }, () => createRef<HTMLAnchorElement>());
-	}, [itemCount]);
+	const itemRefs = useMemo<React.RefObject<HTMLAnchorElement>[]>(
+		() => Array.from({ length: itemCount }, () => createRef<HTMLAnchorElement>()),
+		[itemCount]
+	);
 
 	// Create type guard
 	const isKeyboardEvent = (e: React.KeyboardEvent | React.MouseEvent): e is React.KeyboardEvent =>
@@ -46,7 +44,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 	// Handles moving the focus between menu items
 	const moveFocus = (itemIndex: number): void => {
 		currentFocusIndex.current = itemIndex;
-		itemRefs.current[itemIndex].current?.focus();
+		itemRefs[itemIndex].current?.focus();
 	};
 
 	// Focus the first item when the menu opens
@@ -175,10 +173,10 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 				newFocusIndex += 1;
 			}
 
-			if (newFocusIndex > itemRefs.current.length - 1) {
+			if (newFocusIndex > itemRefs.length - 1) {
 				newFocusIndex = 0;
 			} else if (newFocusIndex < 0) {
-				newFocusIndex = itemRefs.current.length - 1;
+				newFocusIndex = itemRefs.length - 1;
 			}
 		}
 
@@ -203,7 +201,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 		onKeyDown: itemListener,
 		tabIndex: -1,
 		role: 'menuitem',
-		ref: itemRefs.current[index],
+		ref: itemRefs[index],
 	}));
 
 	// Return a listener for the button, individual list items, and the state of the menu
