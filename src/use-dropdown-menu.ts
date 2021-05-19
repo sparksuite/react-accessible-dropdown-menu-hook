@@ -141,7 +141,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 		const { key } = e;
 
 		// Ignore keys that we shouldn't handle
-		if (!['Tab', 'Shift', 'Enter', 'Escape', 'ArrowUp', 'ArrowDown'].includes(key)) {
+		if (!['Tab', 'Shift', 'Enter', 'Escape', 'ArrowUp', 'ArrowDown', ' '].includes(key)) {
 			return;
 		}
 
@@ -156,7 +156,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 		} else if (key === 'Tab') {
 			setIsOpen(false);
 			return;
-		} else if (key === 'Enter') {
+		} else if (key === 'Enter' || key === ' ') {
 			if (!e.currentTarget.href) {
 				e.currentTarget.click();
 			}
