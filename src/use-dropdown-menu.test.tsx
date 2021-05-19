@@ -447,7 +447,7 @@ it('Closes the menu after pressing enter on a menu item with a click handler', (
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
 
-it('Activates the click handler of a menu item enter while focused on it', () => {
+it('Activates the click handler of a menu item after pressing enter while focused on it', () => {
 	render(<TestComponent />);
 
 	jest.spyOn(console, 'log');
