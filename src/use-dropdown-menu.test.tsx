@@ -464,3 +464,21 @@ it('Activates the click handler of a menu item after pressing enter while focuse
 
 	expect(console.log).toHaveBeenCalledWith('Item one clicked');
 });
+
+it('Activates the click handler of a menu item after pressing space while focused on it', () => {
+	render(<TestComponent />);
+
+	jest.spyOn(console, 'log');
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	userEvent.type(screen.getByText('Item 1'), '{space}', {
+		skipClick: true,
+	});
+
+	expect(console.log).toHaveBeenCalledWith('Item one clicked');
+});
