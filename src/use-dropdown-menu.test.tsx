@@ -6,8 +6,10 @@ import userEvent from '@testing-library/user-event';
 
 // A mock component for testing the Hook
 const TestComponent: React.FC = () => {
-	const [itemCount, setItemCount] = useState(3);
+	const [itemCount, setItemCount] = useState(4);
 	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(itemCount);
+
+	const clickHandlers: (() => void)[] = [(): void => console.log('Item one clicked'), (): void => setIsOpen(false)];
 
 	return (
 		<React.Fragment>
@@ -21,8 +23,8 @@ const TestComponent: React.FC = () => {
 						{...props}
 						key={i}
 						id={`menu-item-${i + 1}`}
-						onClick={i === 0 ? (): void => setIsOpen(false) : undefined}
-						href={i !== 0 ? 'https://example.com' : undefined}
+						onClick={clickHandlers[i]}
+						href={i > 1 ? 'https://example.com' : undefined}
 					>
 						Item {i + 1}
 					</a>
@@ -144,7 +146,7 @@ it('Sets isOpen to false after clicking a menu item that calls the state change 
 	render(<TestComponent />);
 
 	userEvent.click(screen.getByText('Primary'));
-	userEvent.click(screen.getByText('Item 1'));
+	userEvent.click(screen.getByText('Item 2'));
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
@@ -226,7 +228,7 @@ it('Wraps the focus to the last element when pressing the up arrow at the beginn
 		})
 	);
 
-	expect(screen.getByText('Item 3')).toHaveFocus();
+	expect(screen.getByText('Item 4')).toHaveFocus();
 });
 
 it('Wraps the focus to the first element when pressing the down arrow at the end of the menu', () => {
@@ -249,10 +251,10 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 		})
 	);
 
-	expect(screen.getByText('Item 3')).toHaveFocus();
+	expect(screen.getByText('Item 4')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 3'),
+		screen.getByText('Item 4'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -379,7 +381,16 @@ it('Can navigate to a dynamically-added item', () => {
 		})
 	);
 
-	expect(screen.getByText('Item 4')).toHaveFocus();
+	fireEvent(
+		screen.getByText('Item 4'),
+		new KeyboardEvent('keydown', {
+			key: 'ArrowDown',
+			bubbles: true,
+			cancelable: true,
+		})
+	);
+
+	expect(screen.getByText('Item 5')).toHaveFocus();
 });
 
 it('Ignores keys that buttons don’t need to handle', () => {
@@ -418,4 +429,38 @@ it('Doesn’t crash when enter press occurs on a menu item', () => {
 	userEvent.type(screen.getByText('Item 1'), '{enter}', {
 		skipClick: true,
 	});
+});
+
+it('Closes the menu after pressing enter on a menu item with a click handler', () => {
+	render(<TestComponent />);
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	userEvent.type(screen.getByText('Item 1'), '{enter}', {
+		skipClick: true,
+	});
+
+	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
+});
+
+it('Activates the click handler of a menu item enter while focused on it', () => {
+	render(<TestComponent />);
+
+	jest.spyOn(console, 'log');
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	userEvent.type(screen.getByText('Item 1'), '{enter}', {
+		skipClick: true,
+	});
+
+	expect(console.log).toHaveBeenCalledWith('Item one clicked');
 });
