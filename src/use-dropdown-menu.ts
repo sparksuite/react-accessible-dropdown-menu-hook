@@ -140,49 +140,63 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 		// Destructure the key property from the event object
 		const { key } = e;
 
-		// Ignore keys that we shouldn't handle
-		if (!['Tab', 'Shift', 'Enter', 'Escape', 'ArrowUp', 'ArrowDown', ' '].includes(key)) {
+		// Handle keyboard controls
+		if (['Tab', 'Shift', 'Enter', 'Escape', 'ArrowUp', 'ArrowDown', ' '].includes(key)) {
+			// Create mutable value that initializes as the currentFocusIndex value
+			let newFocusIndex = currentFocusIndex.current;
+
+			// Controls whether the menu is open or closed, if the button should regain focus on close, and if a handler function should be called
+			if (key === 'Escape') {
+				setIsOpen(false);
+				buttonRef.current?.focus();
+				return;
+			} else if (key === 'Tab') {
+				setIsOpen(false);
+				return;
+			} else if (key === 'Enter' || key === ' ') {
+				if (!e.currentTarget.href) {
+					e.currentTarget.click();
+				}
+
+				setIsOpen(false);
+				return;
+			}
+
+			// Controls the current index to focus
+			if (newFocusIndex !== null) {
+				if (key === 'ArrowUp') {
+					newFocusIndex -= 1;
+				} else if (key === 'ArrowDown') {
+					newFocusIndex += 1;
+				}
+
+				if (newFocusIndex > itemRefs.length - 1) {
+					newFocusIndex = 0;
+				} else if (newFocusIndex < 0) {
+					newFocusIndex = itemRefs.length - 1;
+				}
+			}
+
+			// After any modification set state to the modified value
+			if (newFocusIndex !== null) {
+				moveFocus(newFocusIndex);
+			}
+
 			return;
 		}
 
-		// Create mutable value that initializes as the currentFocusIndex value
-		let newFocusIndex = currentFocusIndex.current;
+		// Handle printable keys
+		if (/[a-zA-Z0-9./<>?;:"'`!@#$%^&*()\\[\]{}_+=|\\-~,]/.test(key)) {
+			const index = itemRefs.findIndex(
+				(ref) =>
+					ref.current?.innerText?.toLowerCase().startsWith(key.toLowerCase()) ||
+					ref.current?.textContent?.toLowerCase().startsWith(key.toLowerCase()) ||
+					ref.current?.getAttribute('aria-label')?.toLowerCase().startsWith(key.toLowerCase())
+			);
 
-		// Controls whether the menu is open or closed, if the button should regain focus on close, and if a handler function should be called
-		if (key === 'Escape') {
-			setIsOpen(false);
-			buttonRef.current?.focus();
-			return;
-		} else if (key === 'Tab') {
-			setIsOpen(false);
-			return;
-		} else if (key === 'Enter' || key === ' ') {
-			if (!e.currentTarget.href) {
-				e.currentTarget.click();
+			if (index !== -1) {
+				moveFocus(index);
 			}
-
-			setIsOpen(false);
-			return;
-		}
-
-		// Controls the current index to focus
-		if (newFocusIndex !== null) {
-			if (key === 'ArrowUp') {
-				newFocusIndex -= 1;
-			} else if (key === 'ArrowDown') {
-				newFocusIndex += 1;
-			}
-
-			if (newFocusIndex > itemRefs.length - 1) {
-				newFocusIndex = 0;
-			} else if (newFocusIndex < 0) {
-				newFocusIndex = itemRefs.length - 1;
-			}
-		}
-
-		// After any modification set state to the modified value
-		if (newFocusIndex !== null) {
-			moveFocus(newFocusIndex);
 		}
 	};
 
