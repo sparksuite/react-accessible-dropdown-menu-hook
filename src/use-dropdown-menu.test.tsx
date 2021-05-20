@@ -26,7 +26,7 @@ const TestComponent: React.FC = () => {
 						onClick={clickHandlers[i]}
 						href={i > 1 ? 'https://example.com' : undefined}
 					>
-						Item {i + 1}
+						{i + 1} Item
 					</a>
 				))}
 			</div>
@@ -62,7 +62,7 @@ it('Moves the focus to the first menu item after pressing enter while focused on
 		skipClick: true,
 	});
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Moves the focus to the first menu item after pressing space while focused on the menu button', () => {
@@ -76,7 +76,7 @@ it('Moves the focus to the first menu item after pressing space while focused on
 		skipClick: true,
 	});
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button', () => {
@@ -88,7 +88,7 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 
 	userEvent.tab();
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button', () => {
@@ -107,7 +107,7 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 		})
 	);
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Sets isOpen to true after pressing enter while focused on the menu button', () => {
@@ -146,7 +146,7 @@ it('Sets isOpen to false after clicking a menu item that calls the state change 
 	render(<TestComponent />);
 
 	userEvent.click(screen.getByText('Primary'));
-	userEvent.click(screen.getByText('Item 2'));
+	userEvent.click(screen.getByText('2 Item'));
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
@@ -160,10 +160,10 @@ it('Moves the focus to the next element in the menu after pressing the down arro
 		skipClick: true,
 	});
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 1'),
+		screen.getByText('1 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -171,7 +171,7 @@ it('Moves the focus to the next element in the menu after pressing the down arro
 		})
 	);
 
-	expect(screen.getByText('Item 2')).toHaveFocus();
+	expect(screen.getByText('2 Item')).toHaveFocus();
 });
 
 it('Moves the focus to the previous element in the menu after pressing the up arrow', () => {
@@ -183,10 +183,10 @@ it('Moves the focus to the previous element in the menu after pressing the up ar
 		skipClick: true,
 	});
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 1'),
+		screen.getByText('1 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -194,10 +194,10 @@ it('Moves the focus to the previous element in the menu after pressing the up ar
 		})
 	);
 
-	expect(screen.getByText('Item 2')).toHaveFocus();
+	expect(screen.getByText('2 Item')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 2'),
+		screen.getByText('2 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowUp',
 			bubbles: true,
@@ -205,7 +205,7 @@ it('Moves the focus to the previous element in the menu after pressing the up ar
 		})
 	);
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Wraps the focus to the last element when pressing the up arrow at the beginning of the menu', () => {
@@ -217,10 +217,10 @@ it('Wraps the focus to the last element when pressing the up arrow at the beginn
 		skipClick: true,
 	});
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 1'),
+		screen.getByText('1 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowUp',
 			bubbles: true,
@@ -228,7 +228,7 @@ it('Wraps the focus to the last element when pressing the up arrow at the beginn
 		})
 	);
 
-	expect(screen.getByText('Item 4')).toHaveFocus();
+	expect(screen.getByText('4 Item')).toHaveFocus();
 });
 
 it('Wraps the focus to the first element when pressing the down arrow at the end of the menu', () => {
@@ -240,10 +240,10 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 		skipClick: true,
 	});
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 1'),
+		screen.getByText('1 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowUp',
 			bubbles: true,
@@ -251,10 +251,10 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 		})
 	);
 
-	expect(screen.getByText('Item 4')).toHaveFocus();
+	expect(screen.getByText('4 Item')).toHaveFocus();
 
 	fireEvent(
-		screen.getByText('Item 4'),
+		screen.getByText('4 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -262,7 +262,7 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 		})
 	);
 
-	expect(screen.getByText('Item 1')).toHaveFocus();
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Sets isOpen to false after pressing escape while focused on a menu item', () => {
@@ -274,7 +274,7 @@ it('Sets isOpen to false after pressing escape while focused on a menu item', ()
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{esc}', {
+	userEvent.type(screen.getByText('1 Item'), '{esc}', {
 		skipClick: true,
 	});
 
@@ -304,7 +304,7 @@ it('Moves the focus to the menu button after pressing escape while focused on a 
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{esc}', {
+	userEvent.type(screen.getByText('1 Item'), '{esc}', {
 		skipClick: true,
 	});
 
@@ -335,7 +335,7 @@ it('Adds properties to items added after mount', () => {
 
 	userEvent.click(screen.getByText('Add Item'));
 
-	expect(screen.getByText('Item 4')).toHaveAttribute('role', 'menuitem');
+	expect(screen.getByText('4 Item')).toHaveAttribute('role', 'menuitem');
 });
 
 it('Can navigate to a dynamically-added item', () => {
@@ -355,7 +355,7 @@ it('Can navigate to a dynamically-added item', () => {
 	);
 
 	fireEvent(
-		screen.getByText('Item 1'),
+		screen.getByText('1 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -364,7 +364,7 @@ it('Can navigate to a dynamically-added item', () => {
 	);
 
 	fireEvent(
-		screen.getByText('Item 2'),
+		screen.getByText('2 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -373,7 +373,7 @@ it('Can navigate to a dynamically-added item', () => {
 	);
 
 	fireEvent(
-		screen.getByText('Item 3'),
+		screen.getByText('3 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -382,7 +382,7 @@ it('Can navigate to a dynamically-added item', () => {
 	);
 
 	fireEvent(
-		screen.getByText('Item 4'),
+		screen.getByText('4 Item'),
 		new KeyboardEvent('keydown', {
 			key: 'ArrowDown',
 			bubbles: true,
@@ -390,7 +390,7 @@ it('Can navigate to a dynamically-added item', () => {
 		})
 	);
 
-	expect(screen.getByText('Item 5')).toHaveFocus();
+	expect(screen.getByText('5 Item')).toHaveFocus();
 });
 
 it('Ignores keys that buttons don’t need to handle', () => {
@@ -412,9 +412,11 @@ it('Ignores keys that items don’t need to handle', () => {
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), 'Z', {
+	userEvent.type(screen.getByText('1 Item'), 'Z', {
 		skipClick: true,
 	});
+
+	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
 it('Doesn’t crash when enter press occurs on a menu item', () => {
@@ -426,7 +428,7 @@ it('Doesn’t crash when enter press occurs on a menu item', () => {
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{enter}', {
+	userEvent.type(screen.getByText('1 Item'), '{enter}', {
 		skipClick: true,
 	});
 });
@@ -440,7 +442,7 @@ it('Closes the menu after pressing enter on a menu item with a click handler', (
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{enter}', {
+	userEvent.type(screen.getByText('1 Item'), '{enter}', {
 		skipClick: true,
 	});
 
@@ -458,7 +460,7 @@ it('Activates the click handler of a menu item after pressing enter while focuse
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{enter}', {
+	userEvent.type(screen.getByText('1 Item'), '{enter}', {
 		skipClick: true,
 	});
 
@@ -474,7 +476,7 @@ it('Closes the menu after pressing space on a menu item with a click handler', (
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{space}', {
+	userEvent.type(screen.getByText('1 Item'), '{space}', {
 		skipClick: true,
 	});
 
@@ -492,9 +494,25 @@ it('Activates the click handler of a menu item after pressing space while focuse
 		skipClick: true,
 	});
 
-	userEvent.type(screen.getByText('Item 1'), '{space}', {
+	userEvent.type(screen.getByText('1 Item'), '{space}', {
 		skipClick: true,
 	});
 
 	expect(console.log).toHaveBeenCalledWith('Item one clicked');
+});
+
+it('Moves the focus to the menu item with a label that starts with the corresponding character that was pressed', () => {
+	render(<TestComponent />);
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	userEvent.type(screen.getByText('1 Item'), '3', {
+		skipClick: true,
+	});
+
+	expect(screen.getByText('3 Item')).toHaveFocus();
 });
