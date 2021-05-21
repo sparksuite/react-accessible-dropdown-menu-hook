@@ -89,7 +89,7 @@ const Demo: React.FC = () => {
 											</li>
 											<li>
 												Pressing any other character will move to the first menu item that starts with that character,
-												if there is not a matching item, focus remains the same.
+												if there is not a matching item, focus remains the same
 											</li>
 										</ul>
 									</li>
