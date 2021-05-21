@@ -84,8 +84,12 @@ const Demo: React.FC = () => {
 											</li>
 											<li>Pressing escape will close the menu and return the focus to the button</li>
 											<li>
-												Pressing enter will activate that item and close the menu (whether it’s a link or has a click
-												handler attached)
+												Pressing enter or space will activate that item and close the menu (whether it’s a link or has a
+												click handler attached)
+											</li>
+											<li>
+												Pressing any other character will move to the first menu item that starts with that character,
+												if there is not a matching item, focus remains the same
 											</li>
 										</ul>
 									</li>
