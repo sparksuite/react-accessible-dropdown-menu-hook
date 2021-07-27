@@ -70,9 +70,7 @@ const Demo: React.FC = () => {
 										If the menu is revealed with the mouse, the first menu item can be focused by pressing tab / arrow
 										down
 									</li>
-									<li>
-										If the menu is revealed with the mouse, the menu can be be closed by pressing escape
-									</li>
+									<li>If the menu is revealed with the mouse, the menu can be be closed by pressing escape</li>
 									<li>
 										<em>Once focus is in the menu…</em>
 
