@@ -118,16 +118,23 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 		if (isKeyboardEvent(e)) {
 			const { key } = e;
 
-			if (!['Enter', ' ', 'Tab', 'ArrowDown'].includes(key)) {
+			if (!['Enter', ' ', 'Tab', 'ArrowDown', 'Escape'].includes(key)) {
 				return;
 			}
 
 			if ((key === 'Tab' || key === 'ArrowDown') && clickedOpen.current && isOpen) {
 				e.preventDefault();
 				moveFocus(0);
-			} else if (key !== 'Tab') {
+			}
+			
+			if (key === 'Enter' || key === ' ') {
 				e.preventDefault();
 				setIsOpen(true);
+			}
+
+			if (key === 'Escape') {
+				e.preventDefault();
+				setIsOpen(false);
 			}
 		} else {
 			clickedOpen.current = !isOpen;
