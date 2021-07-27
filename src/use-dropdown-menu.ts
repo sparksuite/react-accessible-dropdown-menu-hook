@@ -126,7 +126,7 @@ export default function useDropdownMenu(itemCount: number): DropdownMenuResponse
 				e.preventDefault();
 				moveFocus(0);
 			}
-			
+
 			if (key === 'Enter' || key === ' ') {
 				e.preventDefault();
 				setIsOpen(true);
