@@ -71,6 +71,9 @@ const Demo: React.FC = () => {
 										down
 									</li>
 									<li>
+										If the menu is revealed with the mouse, the menu can be be closed by pressing escape
+									</li>
+									<li>
 										<em>Once focus is in the menu…</em>
 
 										<ul>
