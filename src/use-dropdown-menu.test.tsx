@@ -126,6 +126,18 @@ it('Sets isOpen to true after pressing enter while focused on the menu button', 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('true');
 });
 
+it('Sets isOpen to false after pressing escape while focused on the menu button', () => {
+	render(<TestComponent />);
+
+	userEvent.click(screen.getByText('Primary'));
+
+	userEvent.type(screen.getByText('Primary'), '{esc}', {
+		skipClick: true,
+	});
+
+	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
+});
+
 it('Sets isOpen to true after pressing space while focused on the menu button', () => {
 	render(<TestComponent />);
 
