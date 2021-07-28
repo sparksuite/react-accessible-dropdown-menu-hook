@@ -1,6 +1,6 @@
 {
 	"name": "react-accessible-dropdown-menu-hook",
-	"version": "2.4.0",
+	"version": "2.3.1",
 	"description": "A simple Hook for creating fully accessible dropdown menus in React",
 	"main": "dist/use-dropdown-menu.js",
 	"types": "dist/use-dropdown-menu.d.ts",
