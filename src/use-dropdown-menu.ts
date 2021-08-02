@@ -11,6 +11,10 @@ interface ButtonProps
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
+interface DropdownMenuOptions {
+	focusFirstElementOnClick?: boolean;
+}
+
 interface DropdownMenuResponse {
 	readonly buttonProps: ButtonProps;
 	readonly itemProps: {
@@ -23,7 +27,7 @@ interface DropdownMenuResponse {
 	readonly setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function useDropdownMenu(itemCount: number): DropdownMenuResponse {
+export default function useDropdownMenu(itemCount: number, options?: DropdownMenuOptions): DropdownMenuResponse {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
