@@ -2,10 +2,10 @@
 title: Using
 ---
 
-To use the Hook, first call it, telling it how many items your menu will have:
+To use the Hook, first call it, telling it how many items your menu will have, and specify any options you want to pass:
 
 ```jsx
-const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(numberOfItems);
+const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(numberOfItems, options);
 ```
 
 Take the `buttonProps` object and spread it onto a button:
