@@ -65,12 +65,7 @@ const Demo: React.FC = () => {
 										The menu can be revealed by clicking the button, or by focusing the button and pressing enter /
 										space
 									</li>
-									<li>If the menu is revealed with the keyboard, the first menu item is automatically focused</li>
-									<li>
-										If the menu is revealed with the mouse, the first menu item can be focused by pressing tab / arrow
-										down
-									</li>
-									<li>If the menu is revealed with the mouse, the menu can be be closed by pressing escape</li>
+									<li>When the menu is revealed, the first menu item is automatically focused</li>
 									<li>
 										<em>Once focus is in the menu…</em>
 
