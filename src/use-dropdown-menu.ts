@@ -12,7 +12,7 @@ interface ButtonProps
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
 interface DropdownMenuOptions {
-	focusFirstElementOnClick?: boolean;
+	disableFocusFirstItemOnClick?: boolean;
 }
 
 interface DropdownMenuResponse {
@@ -60,7 +60,7 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 		}
 
 		// If the menu is currently open focus on the first item in the menu
-		if (isOpen && !clickedOpen.current) {
+		if (isOpen && !options?.disableFocusFirstItemOnClick) {
 			moveFocus(0);
 		} else if (!isOpen) {
 			clickedOpen.current = false;
@@ -141,7 +141,10 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 				setIsOpen(false);
 			}
 		} else {
-			clickedOpen.current = !isOpen;
+			if (options?.disableFocusFirstItemOnClick) {
+				clickedOpen.current = !isOpen;
+			}
+			
 			setIsOpen(!isOpen);
 		}
 	};
