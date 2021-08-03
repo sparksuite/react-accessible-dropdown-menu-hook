@@ -11,7 +11,7 @@ interface ButtonProps
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
-interface DropdownMenuOptions {
+export interface DropdownMenuOptions {
 	disableFocusFirstItemOnClick?: boolean;
 }
 
