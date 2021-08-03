@@ -102,7 +102,7 @@
 	text-decoration: none;
 	cursor: pointer;
 	outline: none;
-	border: 0.1rem solid;
+	border: 0.1rem solid transparent;
 	border-radius: 0.2rem;
 }
 
