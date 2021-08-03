@@ -2,12 +2,12 @@
 title: Options
 ---
 
-This Hook takes in the following options:
+You can customize the behavior with options, passed as the second argument.
 
-```ts
-{
-    disableFocusFirstItemOnClick?: boolean;
-}
-```
+Option | Default | Possible values
+:--- | :--- | :---
+`disableFocusFirstItemOnClick` | `false` | `boolean`
 
-- **disableFocusFirstItemOnClick:** If specified as `true` the default behavior of focusing the first menu item on click will be disabled. The menu button will instead retain focus.
+Option | Explanation
+:--- | :---
+`disableFocusFirstItemOnClick` | If specified as `true` the default behavior of focusing the first menu item on click will be disabled. The menu button will instead retain focus.
