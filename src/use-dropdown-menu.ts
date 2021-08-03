@@ -144,7 +144,7 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 			if (options?.disableFocusFirstItemOnClick) {
 				clickedOpen.current = !isOpen;
 			}
-			
+
 			setIsOpen(!isOpen);
 		}
 	};

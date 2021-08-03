@@ -92,7 +92,7 @@ it('Moves the focus to the first menu item after clicking the menu to open it', 
 });
 
 it('Moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button, if `disableFocusFirstItemOnClick` is specified', () => {
-	render(<TestComponent options={{ disableFocusFirstItemOnClick: true, }} />);
+	render(<TestComponent options={{ disableFocusFirstItemOnClick: true }} />);
 
 	userEvent.click(screen.getByText('Primary'));
 
@@ -104,7 +104,7 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 });
 
 it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button, if `disableFocusFirstItemOnClick` is specified', () => {
-	render(<TestComponent options={{ disableFocusFirstItemOnClick: true, }} />);
+	render(<TestComponent options={{ disableFocusFirstItemOnClick: true }} />);
 
 	userEvent.click(screen.getByText('Primary'));
 
