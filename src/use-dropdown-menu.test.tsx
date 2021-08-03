@@ -1,13 +1,17 @@
 // Imports
 import React, { useState } from 'react';
-import useDropdownMenu from './use-dropdown-menu';
+import useDropdownMenu, { DropdownMenuOptions } from './use-dropdown-menu';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 // A mock component for testing the Hook
-const TestComponent: React.FC = () => {
+interface Props {
+	options?: DropdownMenuOptions;
+}
+
+const TestComponent: React.FC<Props> = ({ options }) => {
 	const [itemCount, setItemCount] = useState(4);
-	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(itemCount);
+	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(itemCount, options);
 
 	const clickHandlers: (() => void)[] = [(): void => console.log('Item one clicked'), (): void => setIsOpen(false)];
 
@@ -79,8 +83,8 @@ it('Moves the focus to the first menu item after pressing space while focused on
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
-it('Moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button', () => {
-	render(<TestComponent />);
+it('Moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button, if `disableFocusFirstItemOnClick` is specified', () => {
+	render(<TestComponent options={{ disableFocusFirstItemOnClick: true, }} />);
 
 	userEvent.click(screen.getByText('Primary'));
 
@@ -91,8 +95,8 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
-it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button', () => {
-	render(<TestComponent />);
+it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button, if `disableFocusFirstItemOnClick` is specified', () => {
+	render(<TestComponent options={{ disableFocusFirstItemOnClick: true, }} />);
 
 	userEvent.click(screen.getByText('Primary'));
 
