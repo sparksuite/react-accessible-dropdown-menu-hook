@@ -110,7 +110,16 @@
 	text-decoration: underline;
 }
 
+/* Fallback for browsers that do not support :focus-visible. */
 .demo-menu a:focus {
+	border-color: #3a8eb8;
+}
+
+.demo-menu a:focus:not(:focus-visible) {
+	border-color: transparent;
+}
+
+.demo-menu a:focus-visible {
 	border-color: #3a8eb8;
 }
 
