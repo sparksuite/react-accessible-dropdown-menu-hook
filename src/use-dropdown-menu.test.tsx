@@ -11,7 +11,7 @@ interface Props {
 
 const TestComponent: React.FC<Props> = ({ options }) => {
 	const [itemCount, setItemCount] = useState(4);
-	const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(itemCount, options);
+	const { buttonProps, itemProps, isOpen, moveFocus, setIsOpen } = useDropdownMenu(itemCount, options);
 
 	const clickHandlers: (() => void)[] = [(): void => console.log('Item one clicked'), (): void => setIsOpen(false)];
 
@@ -28,6 +28,7 @@ const TestComponent: React.FC<Props> = ({ options }) => {
 						key={i}
 						id={`menu-item-${i + 1}`}
 						onClick={clickHandlers[i]}
+						onMouseEnter={(): void => moveFocus(i)}
 						href={i > 1 ? 'https://example.com' : undefined}
 					>
 						{i + 1} Item
@@ -537,6 +538,26 @@ it('Moves the focus to the menu item with a label that starts with the correspon
 	userEvent.type(screen.getByText('1 Item'), '3', {
 		skipClick: true,
 	});
+
+	expect(screen.getByText('3 Item')).toHaveFocus();
+});
+
+it('Moves the focus to the menu item currently hovered over by mouse', () => {
+	render(<TestComponent />);
+
+	userEvent.tab();
+
+	userEvent.type(screen.getByText('Primary'), '{enter}', {
+		skipClick: true,
+	});
+
+	fireEvent(
+		screen.getByText('3 Item'),
+		new MouseEvent('mouseover', {
+			bubbles: true,
+			cancelable: true,
+		})
+	);
 
 	expect(screen.getByText('3 Item')).toHaveFocus();
 });

@@ -38,7 +38,7 @@ import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 Call the Hook, telling it how many items your menu will have:
 
 ```tsx
-const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(numberOfItems);
+const { buttonProps, itemProps, isOpen, moveFocus, setIsOpen } = useDropdownMenu(numberOfItems);
 ```
 
 Spread the `buttonProps` onto a button:
