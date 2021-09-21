@@ -5,7 +5,7 @@ title: Using
 To use the Hook, first call it, telling it how many items your menu will have:
 
 ```jsx
-const { buttonProps, itemProps, isOpen, moveFocus, setIsOpen } = useDropdownMenu(numberOfItems);
+const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(numberOfItems);
 ```
 
 Take the `buttonProps` object and spread it onto a button:
@@ -20,7 +20,6 @@ Create the menu with the `role='menu'` property and spread `itemProps[x]` onto e
 <div className={isOpen ? 'visible' : ''} role='menu'>
     <a {...itemProps[0]} href='https://example.com'>Regular link</a>
     <a {...itemProps[1]} onClick={handleClick}>With click handler</a>
-    <a {...itemProps[2]} onClick={() => moveFocus(2)}>With mouse support</a>
 </div>
 ```
 

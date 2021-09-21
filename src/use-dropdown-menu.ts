@@ -24,8 +24,8 @@ interface DropdownMenuResponse {
 		ref: React.RefObject<HTMLAnchorElement>;
 	}[];
 	readonly isOpen: boolean;
-	readonly moveFocus: (itemIndex: number) => void;
 	readonly setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	readonly moveFocus: (itemIndex: number) => void;
 }
 
 export default function useDropdownMenu(itemCount: number, options?: DropdownMenuOptions): DropdownMenuResponse {
@@ -234,5 +234,5 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 	}));
 
 	// Return a listener for the button, individual list items, and the state of the menu
-	return { buttonProps, itemProps, isOpen, moveFocus, setIsOpen } as const;
+	return { buttonProps, itemProps, isOpen, setIsOpen, moveFocus } as const;
 }
