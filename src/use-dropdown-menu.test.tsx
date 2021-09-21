@@ -28,7 +28,6 @@ const TestComponent: React.FC<Props> = ({ options }) => {
 						key={i}
 						id={`menu-item-${i + 1}`}
 						onClick={clickHandlers[i]}
-						onMouseEnter={(): void => moveFocus(i)}
 						href={i > 1 ? 'https://example.com' : undefined}
 					>
 						{i + 1} Item
@@ -44,6 +43,10 @@ const TestComponent: React.FC<Props> = ({ options }) => {
 
 			<button id='add-item' onClick={(): void => setItemCount((prevCount) => prevCount + 1)}>
 				Add Item
+			</button>
+
+			<button data-testid='focus-third-item' onClick={(): void => moveFocus(2)}>
+				Focus third item
 			</button>
 
 			<span data-testid='is-open-indicator'>{isOpen ? 'true' : 'false'}</span>
@@ -542,7 +545,7 @@ it('Moves the focus to the menu item with a label that starts with the correspon
 	expect(screen.getByText('3 Item')).toHaveFocus();
 });
 
-it('Moves the focus to the menu item currently hovered over by mouse', () => {
+it('Moves the focus to the provided menu item when `moveFocus` is called', () => {
 	render(<TestComponent />);
 
 	userEvent.tab();
@@ -551,13 +554,7 @@ it('Moves the focus to the menu item currently hovered over by mouse', () => {
 		skipClick: true,
 	});
 
-	fireEvent(
-		screen.getByText('3 Item'),
-		new MouseEvent('mouseover', {
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	userEvent.click(screen.getByTestId('focus-third-item'));
 
 	expect(screen.getByText('3 Item')).toHaveFocus();
 });
