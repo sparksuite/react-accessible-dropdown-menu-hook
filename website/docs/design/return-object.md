@@ -26,6 +26,7 @@ This Hook returns an object of the following shape:
     ];
     isOpen: boolean;
     setIsOpen: (newValue: boolean) => void;
+    moveFocus: (itemIndex: number) => void;
 }
 ```
 
@@ -44,3 +45,4 @@ This Hook returns an object of the following shape:
     - **ref:** A React ref applied to each menu item, used to manage focus.
 - **isOpen:** A boolean value indicating if the menu is open or closed. The developer should use this value to make the menu visible or not.
 - **setIsOpen:** A function useful for allowing the developer to programmatically open/close the menu.
+- **moveFocus:** A function that changes internal pointer of currently focused element. This is useful when you want to allow seamless switching between keyboard and mouse use.
