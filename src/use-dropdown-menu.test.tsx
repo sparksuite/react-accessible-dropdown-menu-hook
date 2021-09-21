@@ -11,7 +11,7 @@ interface Props {
 
 const TestComponent: React.FC<Props> = ({ options }) => {
 	const [itemCount, setItemCount] = useState(4);
-	const { buttonProps, itemProps, isOpen, moveFocus, setIsOpen } = useDropdownMenu(itemCount, options);
+	const { buttonProps, itemProps, isOpen, setIsOpen, moveFocus } = useDropdownMenu(itemCount, options);
 
 	const clickHandlers: (() => void)[] = [(): void => console.log('Item one clicked'), (): void => setIsOpen(false)];
 
