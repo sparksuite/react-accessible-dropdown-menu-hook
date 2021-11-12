@@ -15,7 +15,7 @@ const Demo: React.FC = () => {
 
 	// Return JSX
 	return (
-		<Layout title={`Demo`} description='Easily validate CSS using W3C’s public CSS validator service'>
+		<Layout title={`Demo`} description='A simple Hook for creating fully accessible dropdown menus in React'>
 			<header className={clsx('hero hero--primary', styles.heroBanner)}>
 				<div className='container'>
 					<h1 className='hero__title'>Demo</h1>
