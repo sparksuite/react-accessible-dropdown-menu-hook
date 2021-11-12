@@ -60,7 +60,10 @@ const Home: React.FC = () => {
 
 	// Return JSX
 	return (
-		<Layout title={`Modern CSS Validation`} description='Easily validate CSS using W3C’s public CSS validator service'>
+		<Layout
+			title={`React Accessible Dropdown Menu Hook`}
+			description='A simple Hook for creating fully accessible dropdown menus in React'
+		>
 			<header className={clsx('hero hero--primary', styles.heroBanner)}>
 				<div className='container'>
 					<h1 className='hero__title'>{siteConfig.title}</h1>
