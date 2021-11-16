@@ -28,7 +28,10 @@ interface DropdownMenuResponse<T extends HTMLElement> {
 	readonly moveFocus: (itemIndex: number) => void;
 }
 
-export default function useDropdownMenu<T extends HTMLElement>(itemCount: number, options?: DropdownMenuOptions): DropdownMenuResponse<T> {
+export default function useDropdownMenu<T extends HTMLElement>(
+	itemCount: number,
+	options?: DropdownMenuOptions
+): DropdownMenuResponse<T> {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
