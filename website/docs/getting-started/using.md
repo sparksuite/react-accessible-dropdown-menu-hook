@@ -5,7 +5,7 @@ title: Using
 To use the Hook, first call it, telling it how many items your menu will have along with a valid HTMLElement subtype:
 
 ```jsx
-const { buttonProps, itemProps, isOpen } = useDropdownMenu<HTMLButtonElement>(numberOfItems);
+const { buttonProps, itemProps, isOpen } = useDropdownMenu(numberOfItems);
 ```
 
 Take the `buttonProps` object and spread it onto the element that opens the menu:

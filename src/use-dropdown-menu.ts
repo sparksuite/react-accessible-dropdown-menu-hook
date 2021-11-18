@@ -28,7 +28,7 @@ interface DropdownMenuResponse<T extends HTMLElement> {
 	readonly moveFocus: (itemIndex: number) => void;
 }
 
-export default function useDropdownMenu<T extends HTMLElement>(
+export default function useDropdownMenu<T extends HTMLElement = HTMLButtonElement>(
 	itemCount: number,
 	options?: DropdownMenuOptions
 ): DropdownMenuResponse<T> {
