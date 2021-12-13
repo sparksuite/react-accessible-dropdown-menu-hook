@@ -6,14 +6,14 @@ You can customize the behavior with optional type parameters.
 
 Type constraint | Default | Possible values
 :--- | :--- | :---
-`HTMLElement` | `HTMLButtonElement` | Any subclass of `HTMLElement`
+`HTMLElement` | `HTMLButtonElement` | Any class that extends `HTMLElement`
 
 ```js
 const { buttonProps, itemProps, isOpen } = useDropdownMenu<HTMLDivElement>(3);
 ```
 
 ```jsx
-<button {...buttonProps} id='menu-button'>
+<div {...buttonProps} id='menu-button'>
     Example
-</button>
+</div>
 ```
