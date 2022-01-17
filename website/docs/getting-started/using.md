@@ -8,7 +8,7 @@ To use the Hook, first call it, telling it how many items your menu will have:
 const { buttonProps, itemProps, isOpen } = useDropdownMenu(numberOfItems);
 ```
 
-Take the `buttonProps` object and spread it onto the menu button:
+Take the `buttonProps` object and spread it onto a button:
 
 ```jsx
 <button {...buttonProps}>Example</button>
