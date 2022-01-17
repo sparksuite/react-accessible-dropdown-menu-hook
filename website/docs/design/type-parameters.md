@@ -12,7 +12,7 @@ Type constraint | Default | Possible values
 const { buttonProps, itemProps, isOpen } = useDropdownMenu<HTMLDivElement>(3);
 ```
 
-```jsx
+```tsx
 <div {...buttonProps} id='menu-button'>
     Example
 </div>
