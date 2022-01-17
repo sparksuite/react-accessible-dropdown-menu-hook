@@ -8,7 +8,7 @@ Type constraint | Default | Possible values
 :--- | :--- | :---
 `HTMLElement` | `HTMLButtonElement` | Any type that extends `HTMLElement`
 
-```js
+```tsx
 const { buttonProps, itemProps, isOpen } = useDropdownMenu<HTMLDivElement>(3);
 ```
 
