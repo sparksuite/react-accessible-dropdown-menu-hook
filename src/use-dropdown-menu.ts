@@ -75,6 +75,11 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 			return;
 		}
 
+		// Initialize object to track if the removal happens before the addition of the event listener
+		const removalTracker = {
+			removed: false,
+		};
+
 		// This function is designed to handle every click
 		const handleEveryClick = (event: MouseEvent): void => {
 			// Make this happen asynchronously
@@ -97,11 +102,19 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 		// Add listener
 		//  -> Force it to be async to fix: https://github.com/facebook/react/issues/20074
 		setTimeout(() => {
+			if (removalTracker.removed) {
+				return;
+			}
+
 			document.addEventListener('click', handleEveryClick);
 		}, 1);
 
 		// Return function to remove listener
-		return (): void => document.removeEventListener('click', handleEveryClick);
+		return (): void => {
+			removalTracker.removed = true;
+
+			document.removeEventListener('click', handleEveryClick);
+		};
 	}, [isOpen]);
 
 	// Disable scroll when the menu is opened, and revert back when the menu is closed
