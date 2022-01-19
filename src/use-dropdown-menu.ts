@@ -2,12 +2,12 @@
 import React, { useState, useRef, createRef, useEffect, useMemo } from 'react';
 
 // Create interface for button properties
-interface ButtonProps
+interface ButtonProps<ButtonElement extends HTMLElement>
 	extends Pick<
-		React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+		React.DetailedHTMLProps<React.ButtonHTMLAttributes<ButtonElement>, ButtonElement>,
 		'onKeyDown' | 'onClick' | 'tabIndex' | 'role' | 'aria-haspopup' | 'aria-expanded'
 	> {
-	ref: React.RefObject<HTMLButtonElement>;
+	ref: React.RefObject<ButtonElement>;
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
@@ -15,8 +15,8 @@ export interface DropdownMenuOptions {
 	disableFocusFirstItemOnClick?: boolean;
 }
 
-interface DropdownMenuResponse {
-	readonly buttonProps: ButtonProps;
+interface DropdownMenuResponse<ButtonElement extends HTMLElement> {
+	readonly buttonProps: ButtonProps<ButtonElement>;
 	readonly itemProps: {
 		onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
 		tabIndex: number;
@@ -28,7 +28,10 @@ interface DropdownMenuResponse {
 	readonly moveFocus: (itemIndex: number) => void;
 }
 
-export default function useDropdownMenu(itemCount: number, options?: DropdownMenuOptions): DropdownMenuResponse {
+export default function useDropdownMenu<ButtonElement extends HTMLElement = HTMLButtonElement>(
+	itemCount: number,
+	options?: DropdownMenuOptions
+): DropdownMenuResponse<ButtonElement> {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
@@ -36,7 +39,7 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 	const clickedOpen = useRef(false);
 
 	// Create refs
-	const buttonRef = useRef<HTMLButtonElement>(null);
+	const buttonRef = useRef<ButtonElement>(null);
 	const itemRefs = useMemo<React.RefObject<HTMLAnchorElement>[]>(
 		() => Array.from({ length: itemCount }, () => createRef<HTMLAnchorElement>()),
 		[itemCount]
@@ -216,7 +219,7 @@ export default function useDropdownMenu(itemCount: number, options?: DropdownMen
 	};
 
 	// Define spreadable props for button and items
-	const buttonProps: ButtonProps = {
+	const buttonProps: ButtonProps<ButtonElement> = {
 		onKeyDown: buttonListener,
 		onClick: buttonListener,
 		tabIndex: 0,
