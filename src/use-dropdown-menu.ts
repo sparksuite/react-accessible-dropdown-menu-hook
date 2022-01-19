@@ -79,6 +79,7 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 		}
 
 		// Initialize object to track if the removal happens before the addition of the event listener
+		//  -> We're using an object here so that arrow functions below capture the reference and not the value
 		const removalTracker = {
 			removed: false,
 		};
