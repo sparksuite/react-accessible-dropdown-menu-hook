@@ -78,6 +78,12 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 			return;
 		}
 
+		// Initialize object to track if the removal happens before the addition of the event listener
+		//  -> We're using an object here so that arrow functions below capture the reference and not the value
+		const removalTracker = {
+			removed: false,
+		};
+
 		// This function is designed to handle every click
 		const handleEveryClick = (event: MouseEvent): void => {
 			// Make this happen asynchronously
@@ -100,11 +106,19 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 		// Add listener
 		//  -> Force it to be async to fix: https://github.com/facebook/react/issues/20074
 		setTimeout(() => {
+			if (removalTracker.removed) {
+				return;
+			}
+
 			document.addEventListener('click', handleEveryClick);
 		}, 1);
 
 		// Return function to remove listener
-		return (): void => document.removeEventListener('click', handleEveryClick);
+		return (): void => {
+			removalTracker.removed = true;
+
+			document.removeEventListener('click', handleEveryClick);
+		};
 	}, [isOpen]);
 
 	// Disable scroll when the menu is opened, and revert back when the menu is closed
