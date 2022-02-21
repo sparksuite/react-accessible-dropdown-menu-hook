@@ -2,12 +2,19 @@
 import React, { useState, useRef, createRef, useEffect, useMemo } from 'react';
 
 // Create interface for button properties
-interface ButtonProps<ButtonElement extends HTMLElement>
+export interface ButtonProps<ButtonElement extends HTMLElement>
 	extends Pick<
 		React.DetailedHTMLProps<React.ButtonHTMLAttributes<ButtonElement>, ButtonElement>,
 		'onKeyDown' | 'onClick' | 'tabIndex' | 'role' | 'aria-haspopup' | 'aria-expanded'
 	> {
 	ref: React.RefObject<ButtonElement>;
+}
+
+export interface ItemProps {
+	onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
+	tabIndex: number;
+	role: string;
+	ref: React.RefObject<HTMLAnchorElement>;
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
@@ -17,12 +24,7 @@ export interface DropdownMenuOptions {
 
 interface DropdownMenuResponse<ButtonElement extends HTMLElement> {
 	readonly buttonProps: ButtonProps<ButtonElement>;
-	readonly itemProps: {
-		onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
-		tabIndex: number;
-		role: string;
-		ref: React.RefObject<HTMLAnchorElement>;
-	}[];
+	readonly itemProps: ItemProps[];
 	readonly isOpen: boolean;
 	readonly setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	readonly moveFocus: (itemIndex: number) => void;
