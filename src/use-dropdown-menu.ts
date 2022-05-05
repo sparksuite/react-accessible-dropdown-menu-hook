@@ -13,6 +13,7 @@ interface ButtonProps<ButtonElement extends HTMLElement>
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
 export interface DropdownMenuOptions {
 	disableFocusFirstItemOnClick?: boolean;
+	handleItemKeyboardSelect?<T extends React.KeyboardEvent<HTMLElement>>(event: T): void;
 }
 
 interface DropdownMenuResponse<ButtonElement extends HTMLElement> {
@@ -186,7 +187,9 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 				setIsOpen(false);
 				return;
 			} else if (key === 'Enter' || key === ' ') {
-				if (!e.currentTarget.href) {
+				if (options?.handleItemKeyboardSelect) {
+					options.handleItemKeyboardSelect(e);
+				} else if (!e.currentTarget.href) {
 					e.currentTarget.click();
 				}
 
