@@ -1,13 +1,13 @@
 // Imports
-import React, { useState, useRef, createRef, useEffect, useMemo } from 'react';
+import React, { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 // Create interface for button properties
 interface ButtonProps<ButtonElement extends HTMLElement>
 	extends Pick<
-		React.DetailedHTMLProps<React.ButtonHTMLAttributes<ButtonElement>, ButtonElement>,
+		React.DetailedHTMLProps<React.HTMLAttributes<ButtonElement>, ButtonElement>,
 		'onKeyDown' | 'onClick' | 'tabIndex' | 'role' | 'aria-haspopup' | 'aria-expanded'
 	> {
-	ref: React.RefObject<ButtonElement>;
+	ref: React.RefObject<HTMLButtonElement>;
 }
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
@@ -17,22 +17,22 @@ export interface DropdownMenuOptions {
 }
 
 interface DropdownMenuResponse<ButtonElement extends HTMLElement> {
-	readonly buttonProps: ButtonProps<ButtonElement>;
+	readonly buttonProps: ButtonProps<HTMLButtonElement>;
 	readonly itemProps: {
-		onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
+		onKeyDown: (e: React.KeyboardEvent<ButtonElement>) => void;
 		tabIndex: number;
 		role: string;
-		ref: React.RefObject<HTMLAnchorElement>;
+		ref: React.RefObject<ButtonElement>;
 	}[];
 	readonly isOpen: boolean;
 	readonly setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	readonly moveFocus: (itemIndex: number) => void;
 }
 
-export default function useDropdownMenu<ButtonElement extends HTMLElement = HTMLButtonElement>(
+export default function useDropdownMenu<OptionElement extends HTMLElement = HTMLButtonElement>(
 	itemCount: number,
 	options?: DropdownMenuOptions
-): DropdownMenuResponse<ButtonElement> {
+): DropdownMenuResponse<OptionElement> {
 	// Use state
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const currentFocusIndex = useRef<number | null>(null);
@@ -40,9 +40,9 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 	const clickedOpen = useRef(false);
 
 	// Create refs
-	const buttonRef = useRef<ButtonElement>(null);
-	const itemRefs = useMemo<React.RefObject<HTMLAnchorElement>[]>(
-		() => Array.from({ length: itemCount }, () => createRef<HTMLAnchorElement>()),
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const itemRefs = useMemo<React.RefObject<OptionElement>[]>(
+		() => Array.from({ length: itemCount }, () => createRef<OptionElement>()),
 		[itemCount]
 	);
 
@@ -51,10 +51,15 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 		(e as React.KeyboardEvent).key !== undefined;
 
 	// Handles moving the focus between menu items
-	const moveFocus = (itemIndex: number): void => {
-		currentFocusIndex.current = itemIndex;
-		itemRefs[itemIndex].current?.focus();
-	};
+	const moveFocus = useCallback(
+		(itemIndex: number): void => {
+			if (itemRefs[itemIndex]) {
+				currentFocusIndex.current = itemIndex;
+				itemRefs[itemIndex].current?.focus();
+			}
+		},
+		[itemRefs]
+	);
 
 	// Focus the first item when the menu opens
 	useEffect(() => {
@@ -70,7 +75,7 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 		} else if (!isOpen) {
 			clickedOpen.current = false;
 		}
-	}, [isOpen]);
+	}, [isOpen, moveFocus, options?.disableFocusFirstItemOnClick]);
 
 	// Handle listening for clicks and auto-hiding the menu
 	useEffect(() => {
@@ -169,7 +174,7 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 	};
 
 	// Create a function that handles menu logic based on keyboard events that occur on menu items
-	const itemListener = (e: React.KeyboardEvent<HTMLAnchorElement>): void => {
+	const itemListener = (e: React.KeyboardEvent<OptionElement>): void => {
 		// Destructure the key property from the event object
 		const { key } = e;
 
@@ -183,13 +188,17 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 				setIsOpen(false);
 				buttonRef.current?.focus();
 				return;
-			} else if (key === 'Tab') {
+			}
+
+			if (key === 'Tab') {
 				setIsOpen(false);
 				return;
-			} else if (key === 'Enter' || key === ' ') {
+			}
+
+			if (key === 'Enter' || key === ' ') {
 				if (options?.handleItemKeyboardSelect) {
 					options.handleItemKeyboardSelect(e);
-				} else if (!e.currentTarget.href) {
+				} else if (e.currentTarget instanceof HTMLAnchorElement && !e.currentTarget.href) {
 					e.currentTarget.click();
 				}
 
@@ -236,7 +245,7 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 	};
 
 	// Define spreadable props for button and items
-	const buttonProps: ButtonProps<ButtonElement> = {
+	const buttonProps: ButtonProps<HTMLButtonElement> = {
 		onKeyDown: buttonListener,
 		onClick: buttonListener,
 		tabIndex: 0,
