@@ -62,9 +62,9 @@ const setup = (jsx: React.ReactElement): { user: UserEvent } => {
 	render(jsx);
 
 	return {
-	  user
-	}
-  }
+		user,
+	};
+};
 
 // Tests
 it('Renders', () => {
@@ -78,7 +78,7 @@ it('Moves the focus to the first menu item after pressing enter while focused on
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.keyboard('{enter}');
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -90,7 +90,7 @@ it('Moves the focus to the first menu item after pressing space while focused on
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.keyboard('{space}');
+	await user.keyboard('{ }');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -122,14 +122,7 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('Primary'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowDown}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -143,7 +136,7 @@ it('Sets isOpen to true after pressing enter while focused on the menu button', 
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.type(screen.getByText('Primary'), '{enter}', {
+	await user.type(screen.getByText('Primary'), '{Enter}', {
 		skipClick: true,
 	});
 
@@ -155,7 +148,7 @@ it('Sets isOpen to false after pressing escape while focused on the menu button'
 
 	await user.click(screen.getByText('Primary'));
 
-	await user.type(screen.getByText('Primary'), '{esc}', {
+	await user.type(screen.getByText('Primary'), '{Escape}', {
 		skipClick: true,
 	});
 
@@ -171,7 +164,7 @@ it('Sets isOpen to true after pressing space while focused on the menu button', 
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.type(screen.getByText('Primary'), '{space}', {
+	await user.type(screen.getByText('Primary'), '{ }', {
 		skipClick: true,
 	});
 
@@ -310,7 +303,7 @@ it('Sets isOpen to false after pressing escape while focused on a menu item', as
 		skipClick: true,
 	});
 
-	await user.type(screen.getByText('1 Item'), '{esc}', {
+	await user.type(screen.getByText('1 Item'), '{Escape}', {
 		skipClick: true,
 	});
 
@@ -340,7 +333,7 @@ it('Moves the focus to the menu button after pressing escape while focused on a 
 		skipClick: true,
 	});
 
-	await user.type(screen.getByText('1 Item'), '{esc}', {
+	await user.type(screen.getByText('1 Item'), '{Escape}', {
 		skipClick: true,
 	});
 
@@ -512,7 +505,7 @@ it('Closes the menu after pressing space on a menu item with a click handler', a
 		skipClick: true,
 	});
 
-	await user.type(screen.getByText('1 Item'), '{space}', {
+	await user.type(screen.getByText('1 Item'), '{ }', {
 		skipClick: true,
 	});
 
@@ -530,7 +523,7 @@ it('Activates the click handler of a menu item after pressing space while focuse
 		skipClick: true,
 	});
 
-	await user.type(screen.getByText('1 Item'), '{space}', {
+	await user.type(screen.getByText('1 Item'), '{ }', {
 		skipClick: true,
 	});
 

@@ -128,7 +128,11 @@ it('Leaves the menu open if you click inside of it', async () => {
 	await sleep(1000); // visibility: hidden is delayed via CSS
 	expect(await menuIsOpen(page)).toBe(true);
 
-	const { xOffset, yOffset } = await page.evaluate((el: HTMLElement) => {
+	const { xOffset, yOffset } = await page.evaluate((el: Element | null) => {
+		if (!el) {
+			throw new Error('Element should exist');
+		}
+
 		const { left: xOffset, top: yOffset } = el.getBoundingClientRect();
 		return { xOffset, yOffset };
 	}, await page.$('#menu'));
