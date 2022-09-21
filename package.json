@@ -38,6 +38,7 @@
 		"url": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues"
 	},
 	"homepage": "https://sparksuite.github.io/react-accessible-dropdown-menu-hook/",
+	"dependencies": {},
 	"peerDependencies": {},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
