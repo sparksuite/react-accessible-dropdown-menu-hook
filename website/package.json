@@ -40,11 +40,18 @@
 		]
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^2.0.0-alpha.70",
-		"@tsconfig/docusaurus": "^1.0.2",
+		"@docusaurus/module-type-aliases": "2.1.0",
+		"@tsconfig/docusaurus": "^1.0.6",
 		"@types/react": "link:../node_modules/@types/react",
 		"@types/react-helmet": "^6.1.0",
-		"@types/react-router-dom": "^5.1.7",
+		"@types/react-router-dom": "link:../../node_modules/@types/react-dom",
 		"typescript": "^4.2.2"
+	},
+	"resolutions": {
+		"@types/react": "link:../../node_modules/@types/react",
+		"@types/react-dom": "link:../../node_modules/@types/react-dom",
+		"react": "link:../../node_modules/react",
+		"react-accessible-dropdown-menu-hook": "link:../..",
+		"react-dom": "link:../../node_modules/react-dom"
 	}
 }
