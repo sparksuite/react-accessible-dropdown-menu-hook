@@ -38,9 +38,6 @@
 		"url": "https://github.com/sparksuite/react-accessible-dropdown-menu-hook/issues"
 	},
 	"homepage": "https://sparksuite.github.io/react-accessible-dropdown-menu-hook/",
-	"dependencies": {
-		"jest-environment-jsdom": "^28.1.3"
-	},
 	"peerDependencies": {},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
@@ -56,6 +53,7 @@
 		"eslint-plugin-react": "^7.31.8",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"jest": "link:./test-projects/browser/node_modules/jest",
+		"jest-environment-jsdom": "^28.1.3",
 		"jest-ts-webcompat-resolver": "^1.0.0",
 		"prettier": "^2.7.1",
 		"react": "^18.2.0",
