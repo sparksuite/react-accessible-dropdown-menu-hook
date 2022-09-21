@@ -45,7 +45,7 @@
 		"@types/react": "link:../node_modules/@types/react",
 		"@types/react-helmet": "^6.1.0",
 		"@types/react-router-dom": "link:../../node_modules/@types/react-dom",
-		"typescript": "^4.2.2"
+		"typescript": "^4.7.4"
 	},
 	"resolutions": {
 		"@types/react": "link:../../node_modules/@types/react",
