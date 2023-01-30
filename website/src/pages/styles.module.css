@@ -42,3 +42,7 @@
 	background: #fff;
 	color: #000;
 }
+
+.getStarted:hover {
+	filter: brightness(90%);
+}
