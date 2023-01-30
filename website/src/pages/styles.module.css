@@ -36,7 +36,8 @@
 	width: 200px;
 }
 
-.getStarted {
+.getStarted,
+.getStarted:hover {
 	border: none;
 	background: #fff;
 	color: #000;
