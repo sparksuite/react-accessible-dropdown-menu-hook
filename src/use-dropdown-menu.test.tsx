@@ -1,7 +1,7 @@
 // Imports
 import React, { useState } from 'react';
 import useDropdownMenu, { DropdownMenuOptions } from './use-dropdown-menu';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 
@@ -195,14 +195,7 @@ it('Moves the focus to the next element in the menu after pressing the down arro
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('1 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowDown}');
 
 	expect(screen.getByText('2 Item')).toHaveFocus();
 });
@@ -218,25 +211,11 @@ it('Moves the focus to the previous element in the menu after pressing the up ar
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('1 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowDown}');
 
 	expect(screen.getByText('2 Item')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('2 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowUp',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowUp}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -252,14 +231,7 @@ it('Wraps the focus to the last element when pressing the up arrow at the beginn
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('1 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowUp',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowUp}');
 
 	expect(screen.getByText('4 Item')).toHaveFocus();
 });
@@ -275,25 +247,11 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('1 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowUp',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowUp}');
 
 	expect(screen.getByText('4 Item')).toHaveFocus();
 
-	fireEvent(
-		screen.getByText('4 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	await user.keyboard('{ArrowDown}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -378,50 +336,9 @@ it('Can navigate to a dynamically-added item', async () => {
 
 	await user.click(screen.getByText('Primary'));
 
-	fireEvent(
-		screen.getByText('Primary'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
-
-	fireEvent(
-		screen.getByText('1 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
-
-	fireEvent(
-		screen.getByText('2 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
-
-	fireEvent(
-		screen.getByText('3 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
-
-	fireEvent(
-		screen.getByText('4 Item'),
-		new KeyboardEvent('keydown', {
-			key: 'ArrowDown',
-			bubbles: true,
-			cancelable: true,
-		})
-	);
+	for (let i = 0; i < 4; i += 1) {
+		await user.keyboard('{ArrowDown}');
+	}
 
 	expect(screen.getByText('5 Item')).toHaveFocus();
 });
