@@ -78,9 +78,7 @@ it('Moves the focus to the first menu item after pressing enter while focused on
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -92,9 +90,7 @@ it('Moves the focus to the first menu item after pressing space while focused on
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.type(screen.getByText('Primary'), '{ }', {
-		skipClick: true,
-	});
+	await user.keyboard('{ }');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -140,9 +136,7 @@ it('Sets isOpen to true after pressing enter while focused on the menu button', 
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('true');
 });
@@ -152,9 +146,7 @@ it('Sets isOpen to false after pressing escape while focused on the menu button'
 
 	await user.click(screen.getByText('Primary'));
 
-	await user.type(screen.getByText('Primary'), '{Escape}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Escape}');
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
@@ -168,9 +160,7 @@ it('Sets isOpen to true after pressing space while focused on the menu button', 
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 
-	await user.type(screen.getByText('Primary'), '{ }', {
-		skipClick: true,
-	});
+	await user.keyboard('{ }');
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('true');
 });
@@ -189,9 +179,7 @@ it('Moves the focus to the next element in the menu after pressing the down arro
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
@@ -205,9 +193,7 @@ it('Moves the focus to the previous element in the menu after pressing the up ar
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
@@ -225,9 +211,7 @@ it('Wraps the focus to the last element when pressing the up arrow at the beginn
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
@@ -241,9 +225,7 @@ it('Wraps the focus to the first element when pressing the down arrow at the end
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 
@@ -261,13 +243,9 @@ it('Sets isOpen to false after pressing escape while focused on a menu item', as
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '{Escape}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Escape}');
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
@@ -277,9 +255,7 @@ it('Sets isOpen to false after pressing tab while focused on a menu item', async
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	await user.tab();
 
@@ -291,13 +267,9 @@ it('Moves the focus to the menu button after pressing escape while focused on a 
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '{Escape}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Escape}');
 
 	expect(screen.getByText('Primary')).toHaveFocus();
 });
@@ -348,9 +320,7 @@ it('Ignores keys that buttons don’t need to handle', async () => {
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), 'Z', {
-		skipClick: true,
-	});
+	await user.keyboard('Z');
 });
 
 it('Ignores keys that items don’t need to handle', async () => {
@@ -358,13 +328,9 @@ it('Ignores keys that items don’t need to handle', async () => {
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), 'Z', {
-		skipClick: true,
-	});
+	await user.keyboard('Z');
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
@@ -374,13 +340,9 @@ it('Doesn’t crash when enter press occurs on a menu item', async () => {
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	user.type(screen.getByText('1 Item'), '{Enter}', {
-		skipClick: true,
-	});
+	user.keyboard('{Enter}');
 });
 
 it('Closes the menu after pressing enter on a menu item with a click handler', async () => {
@@ -388,13 +350,9 @@ it('Closes the menu after pressing enter on a menu item with a click handler', a
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
@@ -406,13 +364,9 @@ it('Activates the click handler of a menu item after pressing enter while focuse
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	expect(console.log).toHaveBeenCalledWith('Item one clicked');
 });
@@ -422,13 +376,9 @@ it('Closes the menu after pressing space on a menu item with a click handler', a
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '{ }', {
-		skipClick: true,
-	});
+	await user.keyboard('{ }');
 
 	expect(screen.getByTestId('is-open-indicator')).toHaveTextContent('false');
 });
@@ -440,13 +390,9 @@ it('Activates the click handler of a menu item after pressing space while focuse
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '{ }', {
-		skipClick: true,
-	});
+	await user.keyboard('{ }');
 
 	expect(console.log).toHaveBeenCalledWith('Item one clicked');
 });
@@ -456,13 +402,9 @@ it('Moves the focus to the menu item with a label that starts with the correspon
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
-	await user.type(screen.getByText('1 Item'), '3', {
-		skipClick: true,
-	});
+	await user.keyboard('3');
 
 	expect(screen.getByText('3 Item')).toHaveFocus();
 });
@@ -472,9 +414,7 @@ it('Moves the focus to the provided menu item when `moveFocus` is called', async
 
 	await user.tab();
 
-	await user.type(screen.getByText('Primary'), '{Enter}', {
-		skipClick: true,
-	});
+	await user.keyboard('{Enter}');
 
 	await user.click(screen.getByTestId('focus-third-item'));
 
