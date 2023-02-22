@@ -10,7 +10,7 @@ Option | Default | Possible values
 
 Option | Explanation
 :--- | :---
-`focusFirstItemOnClick` | If specified as `true` the first menu item will be focused on click as well as on keyboard interaction.
+`focusFirstItemOnClick` | If specified as `true`, the first menu item will be focused when the menu is opened via a click (in addition to via a keyboard interaction).
 
 ```js
 useDropdownMenu(numberOfItems, {
