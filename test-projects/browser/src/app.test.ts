@@ -35,11 +35,11 @@ it('Has the correct page title', async () => {
 	await expect(page.title()).resolves.toMatch('Browser');
 });
 
-it('Focuses the first menu item when menu button is clicked', async () => {
+it('Maintains focus when menu button is clicked', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
 
-	expect(await currentFocusID()).toBe('menu-item-1');
+	expect(await currentFocusID()).toBe('menu-button');
 });
 
 it('Focuses on the menu button after pressing escape', async () => {

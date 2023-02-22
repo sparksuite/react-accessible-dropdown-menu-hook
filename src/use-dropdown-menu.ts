@@ -12,7 +12,7 @@ interface ButtonProps<ButtonElement extends HTMLElement>
 
 // A custom Hook that abstracts away the listeners/controls for dropdown menus
 export interface DropdownMenuOptions {
-	disableFocusFirstItemOnClick?: boolean;
+	focusFirstItemOnClick?: boolean;
 }
 
 interface DropdownMenuResponse<ButtonElement extends HTMLElement> {
@@ -64,7 +64,7 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 		}
 
 		// If the menu is currently open focus on the first item in the menu
-		if (isOpen && !options?.disableFocusFirstItemOnClick) {
+		if (isOpen && (!clickedOpen.current || options?.focusFirstItemOnClick)) {
 			moveFocus(0);
 		} else if (!isOpen) {
 			clickedOpen.current = false;
@@ -159,7 +159,7 @@ export default function useDropdownMenu<ButtonElement extends HTMLElement = HTML
 				setIsOpen(false);
 			}
 		} else {
-			if (options?.disableFocusFirstItemOnClick) {
+			if (!options?.focusFirstItemOnClick) {
 				clickedOpen.current = !isOpen;
 			}
 
