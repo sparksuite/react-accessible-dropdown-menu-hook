@@ -6,14 +6,14 @@ You can customize the behavior with options, passed as the second argument.
 
 Option | Default | Possible values
 :--- | :--- | :---
-`disableFocusFirstItemOnClick` | `false` | `boolean`
+`focusFirstItemOnClick` | `false` | `boolean`
 
 Option | Explanation
 :--- | :---
-`disableFocusFirstItemOnClick` | If specified as `true` the default behavior of focusing the first menu item on click will be disabled. The menu button will instead retain focus.
+`focusFirstItemOnClick` | If specified as `true` the first menu item will be focused on click as well as on keyboard interaction.
 
 ```js
 useDropdownMenu(numberOfItems, {
-    disableFocusFirstItemOnClick: true,
+    focusFirstItemOnClick: true,
 });
 ```
