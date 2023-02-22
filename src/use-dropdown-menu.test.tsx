@@ -95,16 +95,16 @@ it('Moves the focus to the first menu item after pressing space while focused on
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
-it('Moves the focus to the first menu item after clicking the menu to open it', async () => {
-	const { user } = setup(<TestComponent />);
+it('Moves the focus to the first menu item after clicking the menu to open it, if `focusFirstItemOnClick` is specified', async () => {
+	const { user } = setup(<TestComponent options={{ focusFirstItemOnClick: true }} />);
 
 	await user.click(screen.getByText('Primary'));
 
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
-it('Moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button, if `disableFocusFirstItemOnClick` is specified', async () => {
-	const { user } = setup(<TestComponent options={{ disableFocusFirstItemOnClick: true }} />);
+it('Moves the focus to the first menu item after clicking the menu to open it, then pressing tab while focused on the menu button', async () => {
+	const { user } = setup(<TestComponent />);
 
 	await user.click(screen.getByText('Primary'));
 
@@ -115,8 +115,8 @@ it('Moves the focus to the first menu item after clicking the menu to open it, t
 	expect(screen.getByText('1 Item')).toHaveFocus();
 });
 
-it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button, if `disableFocusFirstItemOnClick` is specified', async () => {
-	const { user } = setup(<TestComponent options={{ disableFocusFirstItemOnClick: true }} />);
+it('Moves the focus to the first menu item after clicking the menu to open it, then pressing arrow down while focused on the menu button', async () => {
+	const { user } = setup(<TestComponent />);
 
 	await user.click(screen.getByText('Primary'));
 
@@ -307,6 +307,8 @@ it('Can navigate to a dynamically-added item', async () => {
 	await user.click(screen.getByText('Add Item'));
 
 	await user.click(screen.getByText('Primary'));
+
+	await user.keyboard('{ArrowDown}');
 
 	for (let i = 0; i < 4; i += 1) {
 		await user.keyboard('{ArrowDown}');
