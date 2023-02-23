@@ -10,6 +10,7 @@ export interface ButtonProps<ButtonElement extends HTMLElement>
 	ref: React.RefObject<ButtonElement>;
 }
 
+// Create interface for item properties
 export interface ItemProps {
 	onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
 	tabIndex: number;
