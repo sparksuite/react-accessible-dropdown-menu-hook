@@ -35,11 +35,11 @@ it('Has the correct page title', async () => {
 	await expect(page.title()).resolves.toMatch('Browser');
 });
 
-it('Focuses the first menu item when menu button is clicked', async () => {
+it('Maintains focus when menu button is clicked', async () => {
 	await page.click('#menu-button');
 	await menuOpen();
 
-	expect(await currentFocusID()).toBe('menu-item-1');
+	expect(await currentFocusID()).toBe('menu-button');
 });
 
 it('Focuses on the menu button after pressing escape', async () => {
@@ -128,7 +128,11 @@ it('Leaves the menu open if you click inside of it', async () => {
 	await sleep(1000); // visibility: hidden is delayed via CSS
 	expect(await menuIsOpen(page)).toBe(true);
 
-	const { xOffset, yOffset } = await page.evaluate((el: HTMLElement) => {
+	const { xOffset, yOffset } = await page.evaluate((el: Element | null) => {
+		if (!el) {
+			throw new Error('Element should exist');
+		}
+
 		const { left: xOffset, top: yOffset } = el.getBoundingClientRect();
 		return { xOffset, yOffset };
 	}, await page.$('#menu'));

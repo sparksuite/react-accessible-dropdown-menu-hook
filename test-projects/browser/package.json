@@ -5,21 +5,22 @@
 		"test": "jest --color"
 	},
 	"dependencies": {
-		"@types/jest": "^26.0.21",
-		"@types/jest-environment-puppeteer": "^4.4.1",
-		"@types/node": "^14.0.0",
+		"@types/jest": "^29.0.3",
+		"@types/jest-environment-puppeteer": "^5.0.2",
+		"@types/node": "^18.7.2",
 		"@types/react": "link:../../node_modules/@types/react",
 		"@types/react-dom": "link:../../node_modules/@types/react-dom",
-		"jest-puppeteer": "^5.0.2",
+		"jest": "^29.0.3",
+		"jest-puppeteer": "^6.1.1",
 		"merge": "^2.1.1",
-		"puppeteer": "^9.0.0",
+		"puppeteer": "^18.0.3",
 		"react": "link:../../node_modules/react",
 		"react-accessible-dropdown-menu-hook": "link:../..",
 		"react-dom": "link:../../node_modules/react-dom",
-		"react-scripts": "4.0.3",
-		"ts-jest": "^26.5.4",
-		"ts-node": "^9.1.1",
-		"typescript": "^4.1.2"
+		"react-scripts": "5.0.1",
+		"ts-jest": "^29.0.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.7.4"
 	},
 	"resolutions": {
 		"@types/react": "link:../../node_modules/@types/react",

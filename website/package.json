@@ -13,16 +13,16 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"@docusaurus/core": "2.0.0-alpha.73",
-		"@docusaurus/preset-classic": "2.0.0-alpha.73",
-		"@fortawesome/fontawesome-svg-core": "^1.2.35",
-		"@fortawesome/free-brands-svg-icons": "^5.15.3",
-		"@fortawesome/free-solid-svg-icons": "^5.15.3",
-		"@fortawesome/react-fontawesome": "^0.1.14",
+		"@docusaurus/core": "2.1.0",
+		"@docusaurus/preset-classic": "2.1.0",
+		"@fortawesome/fontawesome-svg-core": "^6.2.0",
+		"@fortawesome/free-brands-svg-icons": "^6.2.0",
+		"@fortawesome/free-solid-svg-icons": "^6.2.0",
+		"@fortawesome/react-fontawesome": "^0.2.0",
 		"@mdx-js/react": "^1.6.21",
 		"@types/react-loadable": "^5.5.5",
 		"@types/react-router-config": "^5.0.2",
-		"clsx": "^1.1.1",
+		"clsx": "^1.2.1",
 		"react": "link:../node_modules/react",
 		"react-accessible-dropdown-menu-hook": "link:../",
 		"react-dom": "link:../node_modules/react-dom"
@@ -40,11 +40,18 @@
 		]
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^2.0.0-alpha.70",
-		"@tsconfig/docusaurus": "^1.0.2",
+		"@docusaurus/module-type-aliases": "2.1.0",
+		"@tsconfig/docusaurus": "^1.0.6",
 		"@types/react": "link:../node_modules/@types/react",
 		"@types/react-helmet": "^6.1.0",
-		"@types/react-router-dom": "^5.1.7",
-		"typescript": "^4.2.2"
+		"@types/react-router-dom": "link:../../node_modules/@types/react-dom",
+		"typescript": "^4.7.4"
+	},
+	"resolutions": {
+		"@types/react": "link:../../node_modules/@types/react",
+		"@types/react-dom": "link:../../node_modules/@types/react-dom",
+		"react": "link:../../node_modules/react",
+		"react-accessible-dropdown-menu-hook": "link:../..",
+		"react-dom": "link:../../node_modules/react-dom"
 	}
 }

@@ -36,8 +36,13 @@
 	width: 200px;
 }
 
-.getStarted {
+.getStarted,
+.getStarted:hover {
 	border: none;
 	background: #fff;
 	color: #000;
+}
+
+.getStarted:hover {
+	filter: brightness(90%);
 }
