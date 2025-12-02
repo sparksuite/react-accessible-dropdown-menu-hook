@@ -112,7 +112,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn dev
-      - run: npm publish
+      - run: |
+          if [[ "$GITHUB_REF" =~ -alpha ]]; then
+            npm publish --tag alpha
+          elif [[ "$GITHUB_REF" =~ -beta ]]; then
+            npm publish --tag beta
+          else
+            npm publish
+          fi
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
