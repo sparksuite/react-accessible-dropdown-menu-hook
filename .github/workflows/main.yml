@@ -13,6 +13,10 @@ on:
     branches:
       - master
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   lint:
     name: Lint code
