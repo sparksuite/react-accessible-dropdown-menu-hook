@@ -91,6 +91,9 @@ jobs:
       - test
       - verify-website
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -109,9 +112,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn dev
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: |
+          if [[ "$GITHUB_REF" =~ -alpha ]]; then
+            npm publish --tag alpha
+          elif [[ "$GITHUB_REF" =~ -beta ]]; then
+            npm publish --tag beta
+          else
+            npm publish
+          fi
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
