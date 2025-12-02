@@ -112,9 +112,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn dev
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
