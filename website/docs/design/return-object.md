@@ -17,10 +17,10 @@ This Hook returns an object of the following shape:
     };
     itemProps: [
         {
-            onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => void;
+            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => void;
             tabIndex: -1;
             role: 'menuitem';
-            ref: React.RefObject<HTMLAnchorElement>;
+            ref: React.RefObject<any>;
         };
         ...
     ];
