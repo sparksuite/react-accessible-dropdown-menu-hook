@@ -13,6 +13,12 @@ on:
     branches:
       - master
 
+# Don't let Puppeteer's postinstall auto-download a browser. It downloads into a
+# location that has proven unreliable on GitHub-hosted runners; the `test` job
+# installs the browser explicitly (and caches it) instead.
+env:
+  PUPPETEER_SKIP_DOWNLOAD: 'true'
+
 jobs:
   lint:
     name: Lint code
@@ -57,7 +63,14 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Cache Puppeteer browser
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-${{ hashFiles('test-projects/browser/yarn.lock') }}
       - run: yarn dev
+      - name: Install Chrome for Puppeteer
+        run: yarn --cwd ./test-projects/browser download-browser
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v3

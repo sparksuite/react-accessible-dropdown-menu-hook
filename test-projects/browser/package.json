@@ -1,6 +1,7 @@
 {
 	"homepage": ".",
 	"scripts": {
+		"download-browser": "puppeteer browsers install chrome",
 		"pretest": "react-scripts build",
 		"test": "jest --color"
 	},
@@ -11,9 +12,9 @@
 		"@types/react": "link:../../node_modules/@types/react",
 		"@types/react-dom": "link:../../node_modules/@types/react-dom",
 		"jest": "^29.0.3",
-		"jest-puppeteer": "^6.1.1",
+		"jest-puppeteer": "^11.0.0",
 		"merge": "^2.1.1",
-		"puppeteer": "^18.0.3",
+		"puppeteer": "^24.43.1",
 		"react": "link:../../node_modules/react",
 		"react-accessible-dropdown-menu-hook": "link:../..",
 		"react-dom": "link:../../node_modules/react-dom",
