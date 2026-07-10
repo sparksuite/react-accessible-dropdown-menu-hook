@@ -13,6 +13,9 @@ on:
     branches:
       - master
 
+env:
+  PUPPETEER_SKIP_DOWNLOAD: 'true'
+
 jobs:
   lint:
     name: Lint code
@@ -34,12 +37,22 @@ jobs:
         node-version: [lts/*, current]
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: lts/*
           cache: 'yarn'
       - run: yarn install --frozen-lockfile --prefer-offline
+      # ubuntu-latest ships Google Chrome preinstalled; point Puppeteer at it rather than downloading a build, whose extraction has proven unreliable on hosted runners
+      - name: Use the runner's preinstalled Chrome
+        run: |
+          CHROME="$(command -v google-chrome-stable || command -v google-chrome || true)"
+          if [ -z "$CHROME" ]; then
+            echo "::error::No preinstalled Google Chrome found on the runner"
+            exit 1
+          fi
+          echo "Using chrome version $("$CHROME" --version) at $CHROME"
+          echo "PUPPETEER_EXECUTABLE_PATH=$CHROME" >> "$GITHUB_ENV"
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v3
@@ -64,6 +77,9 @@ jobs:
       - test
       - verify-website
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -74,9 +90,14 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --frozen-lockfile --prefer-offline
       - run: yarn compile
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: |
+          if [[ "$GITHUB_REF" =~ -alpha ]]; then
+            npm publish --tag alpha
+          elif [[ "$GITHUB_REF" =~ -beta ]]; then
+            npm publish --tag beta
+          else
+            npm publish
+          fi
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
