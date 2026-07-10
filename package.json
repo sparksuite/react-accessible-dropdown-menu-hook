@@ -8,7 +8,7 @@
 		"dist/"
 	],
 	"scripts": {
-		"dev": "yarn --cwd ./test-projects/browser install --frozen-lockfile && yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
+		"dev": "yarn install --frozen-lockfile && yarn compile && yarn --cwd ./website install --frozen-lockfile",
 		"test": "jest && rugged",
 		"lint": "eslint --ext .js,.ts,.jsx,.tsx ./ && prettier --check '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
 		"format": "eslint --fix --ext .js,.ts,.jsx,.tsx ./ && prettier --write '**/*.{ts,js,tsx,jsx,json,css,html,yml}'",
@@ -53,7 +53,7 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-react": "^7.31.8",
 		"eslint-plugin-react-hooks": "^4.6.0",
-		"jest": "link:./test-projects/browser/node_modules/jest",
+		"jest": "^28.1.3",
 		"jest-environment-jsdom": "^28.1.3",
 		"jest-ts-webcompat-resolver": "^1.0.0",
 		"prettier": "^2.7.1",
