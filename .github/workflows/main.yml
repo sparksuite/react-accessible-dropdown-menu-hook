@@ -40,7 +40,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node-version == 'current' && '*' || matrix.node-version }} # LATER: Revert to `${{ matrix.node-version }}` when https://github.com/actions/setup-node/pull/1668 is released and incorporated
           cache: 'yarn'
       - run: yarn install --frozen-lockfile --prefer-offline
       # ubuntu-latest ships Google Chrome preinstalled; point Puppeteer at it rather than downloading a build, whose extraction has proven unreliable on hosted runners
